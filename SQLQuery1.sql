@@ -1,0 +1,1 @@
+﻿SELECT* FROM USUARIOS WHERE UsuarioId = 'aaa21820-226a-4029-bd07-3afb565e049d';

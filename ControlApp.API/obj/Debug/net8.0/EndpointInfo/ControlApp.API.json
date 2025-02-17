@@ -1,0 +1,1439 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ControlApp.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/image/upload": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/image/images/{fileName}": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ponto/{usuarioId}/registrarinicioexpediente": {
+      "post": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Latitude": {
+                    "type": "string"
+                  },
+                  "Longitude": {
+                    "type": "string"
+                  },
+                  "FotoInicioExpediente": {
+                    "type": "string"
+                  },
+                  "FotoInicioExpedienteFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Observacoes": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Latitude": {
+                  "style": "form"
+                },
+                "Longitude": {
+                  "style": "form"
+                },
+                "FotoInicioExpediente": {
+                  "style": "form"
+                },
+                "FotoInicioExpedienteFile": {
+                  "style": "form"
+                },
+                "Observacoes": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioExpedienteResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioExpedienteResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioExpedienteResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto/{usuarioId}/registrarfimexpediente/{pontoId}": {
+      "post": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pontoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Latitude": {
+                    "type": "string"
+                  },
+                  "Longitude": {
+                    "type": "string"
+                  },
+                  "FotoFimExpediente": {
+                    "type": "string"
+                  },
+                  "Observacoes": {
+                    "type": "string"
+                  },
+                  "FotoFimExpedienteFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Latitude": {
+                  "style": "form"
+                },
+                "Longitude": {
+                  "style": "form"
+                },
+                "FotoFimExpediente": {
+                  "style": "form"
+                },
+                "Observacoes": {
+                  "style": "form"
+                },
+                "FotoFimExpedienteFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarFimExpedienteResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarFimExpedienteResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarFimExpedienteResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto/{usuarioId}/registrariniciopausa": {
+      "post": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarInicioPausaRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarInicioPausaRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarInicioPausaRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioPausaResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioPausaResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrarInicioPausaResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto/{usuarioId}/registrarfimpausa/{pontoId}": {
+      "post": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pontoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarFimPausaRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarFimPausaRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarFimPausaRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ponto/pontos-trajetos": {
+      "get": {
+        "tags": [
+          "Ponto"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TecnicoResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TecnicoResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TecnicoResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto/{usuarioId}/tecnico-com-pontos": {
+      "get": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsultarTecnicoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsultarTecnicoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsultarTecnicoResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto/pontos-combinados": {
+      "get": {
+        "tags": [
+          "Ponto"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usuario/authenticate": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutenticarUsuarioRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutenticarUsuarioRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutenticarUsuarioRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/register": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Nome": {
+                    "type": "string"
+                  },
+                  "UserName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Senha": {
+                    "type": "string"
+                  },
+                  "Cpf": {
+                    "type": "string"
+                  },
+                  "Role": {
+                    "$ref": "#/components/schemas/UserRole"
+                  },
+                  "HoraEntrada": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraSaida": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraAlmocoInicio": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraAlmocoFim": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "FotoUrl": {
+                    "type": "string"
+                  },
+                  "FotoFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Nome": {
+                  "style": "form"
+                },
+                "UserName": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Senha": {
+                  "style": "form"
+                },
+                "Cpf": {
+                  "style": "form"
+                },
+                "Role": {
+                  "style": "form"
+                },
+                "HoraEntrada": {
+                  "style": "form"
+                },
+                "HoraSaida": {
+                  "style": "form"
+                },
+                "HoraAlmocoInicio": {
+                  "style": "form"
+                },
+                "HoraAlmocoFim": {
+                  "style": "form"
+                },
+                "FotoUrl": {
+                  "style": "form"
+                },
+                "FotoFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/update/{id}": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Nome": {
+                    "type": "string"
+                  },
+                  "UserName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Senha": {
+                    "type": "string"
+                  },
+                  "Cpf": {
+                    "type": "string"
+                  },
+                  "LatitudeAtual": {
+                    "type": "string"
+                  },
+                  "LongitudeAtual": {
+                    "type": "string"
+                  },
+                  "Role": {
+                    "$ref": "#/components/schemas/UserRole"
+                  },
+                  "HoraEntrada": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraSaida": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraAlmocoInicio": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "HoraAlmocoFim": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "FotoUrl": {
+                    "type": "string"
+                  },
+                  "FotoFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "IsOnline": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "encoding": {
+                "Nome": {
+                  "style": "form"
+                },
+                "UserName": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Senha": {
+                  "style": "form"
+                },
+                "Cpf": {
+                  "style": "form"
+                },
+                "LatitudeAtual": {
+                  "style": "form"
+                },
+                "LongitudeAtual": {
+                  "style": "form"
+                },
+                "Role": {
+                  "style": "form"
+                },
+                "HoraEntrada": {
+                  "style": "form"
+                },
+                "HoraSaida": {
+                  "style": "form"
+                },
+                "HoraAlmocoInicio": {
+                  "style": "form"
+                },
+                "HoraAlmocoFim": {
+                  "style": "form"
+                },
+                "FotoUrl": {
+                  "style": "form"
+                },
+                "FotoFile": {
+                  "style": "form"
+                },
+                "IsOnline": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/update-location/{usuarioId}": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/get/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/getall": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AutenticarUsuarioRequestDto": {
+        "type": "object",
+        "properties": {
+          "senha": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConsultarPontoResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "inicioExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fimExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inicioPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "retornoPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "horasTrabalhadas": {
+            "type": "string",
+            "format": "duration"
+          },
+          "horasExtras": {
+            "type": "string",
+            "format": "duration"
+          },
+          "horasDevidas": {
+            "type": "string",
+            "format": "duration"
+          },
+          "latitudeInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraInicioExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "latitudeFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraFimExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "latitudeInicioPausa": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeInicioPausa": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraInicioPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "latitudeRetornoPausa": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeRetornoPausa": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraRetornoPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nomeTecnico": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoPonto": {
+            "$ref": "#/components/schemas/TipoPonto"
+          },
+          "distanciaPercorrida": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacaoInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacaoFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacaoInicioPausa": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacaoFimPausa": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConsultarTecnicoResponseDto": {
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "ativo": {
+            "type": "boolean"
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "horaEntrada": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaSaida": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaAlmocoInicio": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaAlmocoFim": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "fotoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOnline": {
+            "type": "boolean"
+          },
+          "pontos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsultarPontoResponseDto"
+            },
+            "nullable": true
+          },
+          "trajetos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrajetoResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PontoCombinadoResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tipoPonto": {
+            "$ref": "#/components/schemas/TipoPonto"
+          },
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "inicioExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fimExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inicioPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "retornoPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "horasTrabalhadas": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horasExtras": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horasDevidas": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "latitudeInicioExpediente": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudeInicioExpediente": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "latitudeFimExpediente": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudeFimExpediente": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "latitudeInicioPausa": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudeInicioPausa": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "latitudeRetornoPausa": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudeRetornoPausa": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "fotoInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarFimExpedienteResponseDto": {
+        "type": "object",
+        "properties": {
+          "horasTrabalhadas": {
+            "type": "string",
+            "format": "duration"
+          },
+          "horasExtras": {
+            "type": "string",
+            "format": "duration"
+          },
+          "horasDevidas": {
+            "type": "string",
+            "format": "duration"
+          },
+          "distanciaTotal": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarFimPausaRequestDto": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarInicioExpedienteResponseDto": {
+        "type": "object",
+        "properties": {
+          "pontoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "inicioExpediente": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarInicioPausaRequestDto": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarInicioPausaResponseDto": {
+        "type": "object",
+        "properties": {
+          "pontoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraInicioPausa": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TecnicoResponseDto": {
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "ativo": {
+            "type": "boolean"
+          },
+          "fotoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "horaEntrada": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaSaida": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaAlmocoInicio": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horaAlmocoFim": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "isOnline": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "latitudeAtual": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeAtual": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHoraUltimaAutenticacao": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "pontos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsultarPontoResponseDto"
+            },
+            "nullable": true
+          },
+          "trajetos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrajetoResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TipoPonto": {
+        "enum": [
+          "Expediente",
+          "Pausa"
+        ],
+        "type": "string"
+      },
+      "TrajetoResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pontoInicioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "latitudeInicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeInicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitudeFim": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeFim": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "enum": [
+          "Administrador",
+          "Colaborador"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Insira 'Bearer' [espaço] e o token JWT.\n\nExemplo: 'Bearer seuTokenAqui'",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
