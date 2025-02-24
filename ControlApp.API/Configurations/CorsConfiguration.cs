@@ -9,7 +9,8 @@
                 options.AddPolicy("AgendaPolicy", builder =>
                 {
                     builder.WithOrigins(
-                                "http://localhost:4200"
+                                "http://localhost:4200",
+                                 "https://localhost:5030" 
                             )
                            .AllowAnyMethod()
                            .AllowAnyHeader();

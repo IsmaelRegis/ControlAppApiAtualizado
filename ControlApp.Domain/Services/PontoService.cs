@@ -53,9 +53,10 @@ public class PontoService : IPontoService
             UsuarioId = usuarioId,
             TipoPonto = TipoPonto.Expediente,
             InicioExpediente = DateTime.Now,
-            LatitudeFimExpediente = string.IsNullOrWhiteSpace(dto.Latitude) ? "0" : dto.Latitude.Replace(",", "."),
-            LongitudeFimExpediente = string.IsNullOrWhiteSpace(dto.Longitude) ? "0" : dto.Longitude.Replace(",", "."),
+            LatitudeInicioExpediente = string.IsNullOrWhiteSpace(dto.Latitude) ? "0" : dto.Latitude.Replace(",", "."),
+            LongitudeInicioExpediente = string.IsNullOrWhiteSpace(dto.Longitude) ? "0" : dto.Longitude.Replace(",", "."),
             ObservacaoInicioExpediente = dto.Observacoes,
+            FotoInicioExpediente = dto.FotoInicioExpediente,
             Ativo = true
         };
 
@@ -646,7 +647,8 @@ public class PontoService : IPontoService
                 {
                     lista.Add(new PontoCombinadoResponseDto
                     {
-                        Id = exp.Id,
+                        PontoIdExpediente = exp.Id,
+                        PontoIdPausa = pau.Id,
                         TipoPonto = TipoPonto.Expediente,
                         UsuarioId = usuarioId,
                         Nome = exp.Tecnico?.Nome ?? pau.Tecnico?.Nome ?? "N/A",
@@ -679,7 +681,7 @@ public class PontoService : IPontoService
             {
                 lista.Add(new PontoCombinadoResponseDto
                 {
-                    Id = exp.Id,
+                    PontoIdExpediente = exp.Id,
                     TipoPonto = TipoPonto.Expediente,
                     UsuarioId = usuarioId,
                     Nome = exp.Tecnico?.Nome ?? "N/A",
@@ -704,7 +706,7 @@ public class PontoService : IPontoService
             {
                 lista.Add(new PontoCombinadoResponseDto
                 {
-                    Id = pau.Id,
+                    PontoIdPausa = pau.Id,
                     TipoPonto = TipoPonto.Pausa,
                     UsuarioId = usuarioId,
                     Nome = pau.Tecnico?.Nome ?? "N/A",
@@ -724,6 +726,16 @@ public class PontoService : IPontoService
 
         return lista;
     }
+    public async Task<bool> VerificarExpedienteDoDiaAsync(Guid usuarioId)
+    {
+        var hoje = DateTime.Now.Date;
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId);
+
+        // Verifica se há algum registro de início de expediente no dia atual
+        return pontos.Any(p => p.InicioExpediente.HasValue && p.InicioExpediente.Value.Date == hoje);
+    }
+
+
 
 }
 

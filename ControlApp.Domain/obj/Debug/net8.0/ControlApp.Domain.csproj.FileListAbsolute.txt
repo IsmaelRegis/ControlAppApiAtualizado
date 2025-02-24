@@ -23,3 +23,4 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\Control
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\refint\ControlApp.Domain.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ref\ControlApp.Domain.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.sourcelink.json

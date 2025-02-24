@@ -12,7 +12,6 @@ namespace ControlApp.Domain.Services
 
         public ImageService()
         {
-            // Obtendo o caminho absoluto da pasta wwwroot/images
             _uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
             if (!Directory.Exists(_uploadDirectory))
@@ -28,7 +27,6 @@ namespace ControlApp.Domain.Services
                 throw new ArgumentException("Arquivo inválido.");
             }
 
-            // Gerando um nome único para a imagem
             var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
             var filePath = Path.Combine(_uploadDirectory, fileName);
 
@@ -43,8 +41,6 @@ namespace ControlApp.Domain.Services
             {
                 throw new Exception($"Erro ao salvar a imagem: {ex.Message}");
             }
-
-            // Retorna o caminho relativo que pode ser usado no frontend
             return $"/images/{fileName}";
         }
     }

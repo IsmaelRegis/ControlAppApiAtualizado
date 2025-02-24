@@ -25,8 +25,16 @@
       "PackagePath": "staticwebassets\\images\\370bf6bb-6778-40e2-abba-f6d14f2fe425.png"
     },
     {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\375f9b60-4d52-4b5d-973e-59a08fc2679f.jfif",
+      "PackagePath": "staticwebassets\\images\\375f9b60-4d52-4b5d-973e-59a08fc2679f.jfif"
+    },
+    {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\3bcc4d23-efc0-4f1e-a60b-003b5917ebc3.jfif",
       "PackagePath": "staticwebassets\\images\\3bcc4d23-efc0-4f1e-a60b-003b5917ebc3.jfif"
+    },
+    {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\468726c1-587d-42f3-b28c-1f332f44cd96.jpg",
+      "PackagePath": "staticwebassets\\images\\468726c1-587d-42f3-b28c-1f332f44cd96.jpg"
     },
     {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\4b55e389-8ed0-4bd0-ade1-b96e030c1bd4.jfif",
@@ -69,6 +77,10 @@
       "PackagePath": "staticwebassets\\images\\85019764-e144-40ef-b1c9-df0918d42da7.png"
     },
     {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\91a3c685-29b8-4bb6-baeb-08ad7bc745bc.jpg",
+      "PackagePath": "staticwebassets\\images\\91a3c685-29b8-4bb6-baeb-08ad7bc745bc.jpg"
+    },
+    {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\a6666e21-c280-4476-849e-2c5987942b2b.jfif",
       "PackagePath": "staticwebassets\\images\\a6666e21-c280-4476-849e-2c5987942b2b.jfif"
     },
@@ -105,6 +117,10 @@
       "PackagePath": "staticwebassets\\images\\ce3b47b3-2374-4c3f-892b-1d7a7489ab6a.png"
     },
     {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\d09e32e2-71b5-4b99-be63-925e08168bce.jpg",
+      "PackagePath": "staticwebassets\\images\\d09e32e2-71b5-4b99-be63-925e08168bce.jpg"
+    },
+    {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\d373df08-441f-4971-94b6-3ff876d54d9d.png",
       "PackagePath": "staticwebassets\\images\\d373df08-441f-4971-94b6-3ff876d54d9d.png"
     },
@@ -135,6 +151,10 @@
     {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\fc4ddc1d-2fab-463d-ac92-e0a4046e4139.png",
       "PackagePath": "staticwebassets\\images\\fc4ddc1d-2fab-463d-ac92-e0a4046e4139.png"
+    },
+    {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\ffa293ef-73c8-43f4-9450-4543aff92c1b.jpg",
+      "PackagePath": "staticwebassets\\images\\ffa293ef-73c8-43f4-9450-4543aff92c1b.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ControlApp.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

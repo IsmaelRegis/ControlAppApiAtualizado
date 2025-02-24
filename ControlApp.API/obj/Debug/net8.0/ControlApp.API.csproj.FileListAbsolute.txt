@@ -349,3 +349,4 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\refint\Con
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ControlApp.API.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ControlApp.API.genruntimeconfig.cache
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ref\ControlApp.API.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ControlApp.API.sourcelink.json

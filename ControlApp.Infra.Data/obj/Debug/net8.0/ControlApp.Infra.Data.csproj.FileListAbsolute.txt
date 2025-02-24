@@ -33,3 +33,4 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Data\obj\Debug\net8.0\ref
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Data\obj\Debug\net8.0\ControlApp.Infra.Data.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Data\obj\Debug\net8.0\ControlApp.Infra.Data.genruntimeconfig.cache
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Data\obj\Debug\net8.0\ref\ControlApp.Infra.Data.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Data\obj\Debug\net8.0\ControlApp.Infra.Data.sourcelink.json

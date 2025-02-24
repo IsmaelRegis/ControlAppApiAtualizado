@@ -9,6 +9,8 @@ namespace ControlApp.Domain.Dtos.Response
 {
     public class PontoCombinadoResponseDto
     {
+        public Guid PontoIdPausa { get; set; }
+        public Guid PontoIdExpediente { get; set; }
         public Guid Id { get; set; }
         public TipoPonto TipoPonto { get; set; }
         public Guid UsuarioId { get; set; }

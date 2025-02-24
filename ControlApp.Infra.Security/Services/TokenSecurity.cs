@@ -15,25 +15,23 @@ namespace ControlApp.Infra.Security.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(JwtTokenSettings.Key);
 
-            // Criação do token
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                // Gravando a identificação do usuário e a role no token
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, usuarioId.ToString()),
-                    new Claim(ClaimTypes.Role, userRole) // Adiciona o UserRole ao token
+                    new Claim(ClaimTypes.Role, userRole)
                 }),
-
-                // Assinatura antifalsificação do token
+                Issuer = "ControlApp",
+                Audience = "VibeService",
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
 
-            // Retorna o token gerado
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
     }
+
 }

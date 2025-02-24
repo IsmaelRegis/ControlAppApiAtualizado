@@ -33,6 +33,58 @@
   },
   {
     "ContainingType": "PontoController",
+    "Method": "VerificarExpedienteDoDiaAsync",
+    "RelativePath": "api/ponto/{usuarioId}/expediente-hoje",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PontoController",
+    "Method": "GetPontosCombinadoPorUsuarioIdAsync",
+    "RelativePath": "api/ponto/{usuarioId}/pontos-combinados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ControlApp.Domain.Dtos.Response.PontoCombinadoResponseDto, ControlApp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PontoController",
     "Method": "RegisterFimExpedienteAsync",
     "RelativePath": "api/ponto/{usuarioId}/registrarfimexpediente/{pontoId}",
     "HttpMethod": "POST",
@@ -263,6 +315,38 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "GetUsuarioById",
+    "RelativePath": "api/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "GetUsuarioStatus",
+    "RelativePath": "api/usuario/{usuarioId}/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "Authenticate",
     "RelativePath": "api/usuario/authenticate",
     "HttpMethod": "POST",
@@ -388,6 +472,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "GetTecnicos",
+    "RelativePath": "api/usuario/tecnicos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

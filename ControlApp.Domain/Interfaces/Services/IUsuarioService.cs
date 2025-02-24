@@ -18,5 +18,6 @@ namespace ControlApp.Domain.Interfaces.Services
         Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto);
         Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude);
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);
+        Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync();
     }
 }

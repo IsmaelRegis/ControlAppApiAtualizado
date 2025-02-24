@@ -171,4 +171,20 @@ public class PontoController : ControllerBase
         }
     }
 
+    [HttpGet("{usuarioId}/expediente-hoje")]
+    public async Task<ActionResult<bool>> VerificarExpedienteDoDiaAsync(Guid usuarioId)
+    {
+        try
+        {
+            var expedienteIniciado = await _pontoService.VerificarExpedienteDoDiaAsync(usuarioId);
+            return Ok(expedienteIniciado);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+        }
+    }
+
+
+
 }

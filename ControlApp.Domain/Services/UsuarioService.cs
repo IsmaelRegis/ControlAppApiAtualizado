@@ -289,7 +289,7 @@ public class UsuarioService : IUsuarioService
         };
     }
 
-    public async Task<IEnumerable<UsuarioResponseDto>> GetAllAsync()
+    public async Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync()
     {
         var usuarios = await _usuarioRepository.GetAllAsync();
 
@@ -305,7 +305,7 @@ public class UsuarioService : IUsuarioService
                 UserName = usuario.UserName,
                 Role = usuario.Role,
                 Ativo = usuario.Ativo,
-                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM", // Se não houver foto, define uma padrão
                 TipoUsuario = usuario.TipoUsuario,
                 Cpf = tecnico?.Cpf ?? "N/A",
                 HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
@@ -314,11 +314,11 @@ public class UsuarioService : IUsuarioService
                 HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
                 IsOnline = tecnico?.IsOnline ?? false,
                 LatitudeAtual = tecnico?.LatitudeAtual,
-                LongitudeAtual = tecnico?.LongitutdeAtual
+                LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao
             };
         }).ToList();
     }
-
     public async Task<UsuarioResponseDto?> GetByIdAsync(Guid id)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
@@ -335,7 +335,7 @@ public class UsuarioService : IUsuarioService
             UserName = usuario.UserName,
             Role = usuario.Role,
             Ativo = usuario.Ativo,
-            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM", 
             TipoUsuario = usuario.TipoUsuario,
             Cpf = tecnico?.Cpf ?? "N/A",
             HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
@@ -345,14 +345,9 @@ public class UsuarioService : IUsuarioService
             IsOnline = tecnico?.IsOnline ?? false,
             LatitudeAtual = tecnico?.LatitudeAtual,
             LongitudeAtual = tecnico?.LongitutdeAtual,
-
-            // Campo da entidade
             DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao
         };
     }
-
-
-
     public async Task<bool> ExistsAsync(Guid id)
     {
         return await _usuarioRepository.ObterUsuarioPorIdAsync(id) != null;
@@ -415,7 +410,13 @@ public class UsuarioService : IUsuarioService
         }
     }
 
+
     Task<Usuario?> IBaseService<Usuario>.GetByIdAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<UsuarioResponseDto>> GetAllAsync()
     {
         throw new NotImplementedException();
     }

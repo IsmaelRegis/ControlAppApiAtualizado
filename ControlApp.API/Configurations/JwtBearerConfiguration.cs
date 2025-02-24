@@ -1,54 +1,46 @@
-﻿using ControlApp.Infra.Security.Settings;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ControlApp.Infra.Security.Settings;
 
 namespace ControlApp.API.Configurations
 {
     public class JwtBearerConfiguration
     {
-        public static void Configure(IServiceCollection services)
+        public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthentication(auth =>
+
+            services.AddAuthentication(options =>
             {
-                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    // Não valida emissor e público-alvo, conforme a configuração original
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+              .AddJwtBearer(options =>
+              {
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidIssuer = "ControlApp",
+                      ValidateAudience = true,
+                      ValidAudience = "VibeService",
+                      ValidateLifetime = false,
 
-                    // Valida o tempo de vida do token
-                    ValidateLifetime = false,
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenSettings.Key)),
+                      ClockSkew = TimeSpan.Zero
+                  };
 
-                    // Chave usada para validar a assinatura do token
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenSettings.Key)),
-
-                    // Tolerância ao tempo de validação, permitindo pequenas diferenças de horário
-                    ClockSkew = TimeSpan.FromMinutes(5)
-                };
-
-                // Configuração para personalizar a resposta de falha de autenticação
-                options.Events = new JwtBearerEvents
-                {
-                    OnChallenge = context =>
-                    {
-                        context.HandleResponse(); // Suprime a resposta padrão do 401
-                        context.Response.StatusCode = 401;
-                        context.Response.ContentType = "application/json";
-                        return context.Response.WriteAsync(new
-                        {
-                            Error = "Acesso negado. Token inválido ou não fornecido."
-                        }.ToString());
-                    }
-                };
-            });
+                  options.Events = new JwtBearerEvents
+                  {
+                      OnChallenge = context =>
+                      {
+                          context.HandleResponse();
+                          context.Response.StatusCode = 401;
+                          context.Response.ContentType = "application/json";
+                          return context.Response.WriteAsync("{\"Error\": \"Acesso negado. Token inválido ou não fornecido.\"}");
+                      }
+                  };
+              });
         }
     }
 }
-

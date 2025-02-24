@@ -29,3 +29,4 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Debug\net8.0
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Debug\net8.0\refint\ControlApp.Infra.Security.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Debug\net8.0\ControlApp.Infra.Security.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Debug\net8.0\ref\ControlApp.Infra.Security.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Debug\net8.0\ControlApp.Infra.Security.sourcelink.json
