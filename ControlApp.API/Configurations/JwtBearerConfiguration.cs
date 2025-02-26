@@ -9,7 +9,6 @@ namespace ControlApp.API.Configurations
     {
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -23,8 +22,7 @@ namespace ControlApp.API.Configurations
                       ValidIssuer = "ControlApp",
                       ValidateAudience = true,
                       ValidAudience = "VibeService",
-                      ValidateLifetime = false,
-
+                      ValidateLifetime = false, 
                       ValidateIssuerSigningKey = true,
                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenSettings.Key)),
                       ClockSkew = TimeSpan.Zero

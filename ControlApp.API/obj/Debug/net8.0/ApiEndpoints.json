@@ -379,32 +379,6 @@
   },
   {
     "ContainingType": "UsuarioController",
-    "Method": "GetById",
-    "RelativePath": "api/usuario/get/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UsuarioController",
-    "Method": "GetAll",
-    "RelativePath": "api/usuario/getall",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UsuarioController",
     "Method": "Register",
     "RelativePath": "api/usuario/register",
     "HttpMethod": "POST",

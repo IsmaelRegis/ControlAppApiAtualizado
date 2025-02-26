@@ -112,40 +112,7 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
         }
     }
-    [HttpGet("get/{id}")]
-    public async Task<ActionResult> GetById([FromRoute] Guid id)
-    {
-        try
-        {
-            var usuario = await _usuarioService.GetByIdAsync(id);
 
-            if (usuario == null)
-            {
-                return NotFound("Usuário não encontrado.");
-            }
-
-            return Ok(usuario);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
-
-    [Authorize(Roles = "Administrador")]
-    [HttpGet("getAll")]
-    public async Task<ActionResult> GetAll()
-    {
-        try
-        {
-            var usuarios = await _usuarioService.GetAllAsync();
-            return Ok(usuarios);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
 
     [Authorize(Roles = "Administrador")]
     [HttpDelete("delete/{id}")]

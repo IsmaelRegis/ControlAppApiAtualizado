@@ -19,7 +19,6 @@ public class UsuarioService : IUsuarioService
     private readonly TecnicoValidator _tecnicoValidator;
     private readonly CryptoSHA256 _cryptoSHA256;
 
-    // Agora o construtor recebe também o IImageService
     public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService)
     {
         _usuarioRepository = usuarioRepository;
@@ -31,7 +30,7 @@ public class UsuarioService : IUsuarioService
     }
     public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto)
     {
-        // Verifica se veio UserName
+
         if (!string.IsNullOrWhiteSpace(requestDto.UserName))
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
@@ -48,10 +47,8 @@ public class UsuarioService : IUsuarioService
                 isOnline = true;
             }
 
-            // >>> Aqui você atualiza a última autenticação na ENTIDADE
             usuario.DataHoraUltimaAutenticacao = DateTime.Now;
 
-            // Salva no banco, garantindo que DataHoraUltimaAutenticacao fique registrada
             await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
 
             var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
@@ -66,12 +63,11 @@ public class UsuarioService : IUsuarioService
                 Token = token,
                 FotoUrl = usuario.FotoUrl,
                 IsOnline = isOnline,
-                // Este é só para retornar na resposta dessa chamada
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
 
             };
         }
-        // ... Mesma lógica para CPF
+
         else if (!string.IsNullOrWhiteSpace(requestDto.Cpf))
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
@@ -88,10 +84,8 @@ public class UsuarioService : IUsuarioService
                 isOnline = true;
             }
 
-            // >>> Atualiza a última autenticação na ENTIDADE
             usuario.DataHoraUltimaAutenticacao = DateTime.Now;
 
-            // Salva no banco
             await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
 
             var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
@@ -106,7 +100,6 @@ public class UsuarioService : IUsuarioService
                 Token = token,
                 FotoUrl = usuario.FotoUrl,
                 IsOnline = isOnline,
-                // Este é só para retornar na resposta dessa chamada
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
 
             };
@@ -146,14 +139,12 @@ public class UsuarioService : IUsuarioService
             throw new Exception("Apenas técnicos podem ser criados por este serviço.");
         }
 
-        // Verifica se já existe um Técnico cadastrado com o mesmo CPF
         var usuarioExistente = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
         if (usuarioExistente != null)
         {
             throw new Exception("CPF já cadastrado.");
         }
 
-        // Upload da imagem e atribuição ao FotoUrl, se houver imagem
         string? fotoUrl = null;
         if (requestDto.FotoFile != null)
         {
@@ -172,7 +163,7 @@ public class UsuarioService : IUsuarioService
             HoraSaida = requestDto.HoraSaida,
             HoraAlmocoInicio = requestDto.HoraAlmocoInicio,
             HoraAlmocoFim = requestDto.HoraAlmocoFim,
-            FotoUrl = fotoUrl, // Armazena a URL da imagem
+            FotoUrl = fotoUrl,
             IsOnline = false,
             Role = requestDto.Role,
             Ativo = true
@@ -184,7 +175,6 @@ public class UsuarioService : IUsuarioService
             throw new Exception(string.Join(", ", validationResult.Errors));
         }
 
-        // Criptografando a senha antes de salvar no banco de dados
         tecnico.Senha = _cryptoSHA256.HashPassword(tecnico.Senha);
 
         await _usuarioRepository.CriarUsuarioAsync(tecnico);
@@ -201,7 +191,7 @@ public class UsuarioService : IUsuarioService
             HoraSaida = tecnico.HoraSaida,
             HoraAlmocoInicio = tecnico.HoraAlmocoInicio,
             HoraAlmocoFim = tecnico.HoraAlmocoFim,
-            FotoUrl = tecnico.FotoUrl, // Retorna a URL da imagem no response
+            FotoUrl = tecnico.FotoUrl, 
             IsOnline = tecnico.IsOnline,
             Role = tecnico.Role.ToString(),
             Ativo = tecnico.Ativo
@@ -226,7 +216,6 @@ public class UsuarioService : IUsuarioService
         usuario.UserName = requestDto.UserName ?? usuario.UserName;
         usuario.Email = requestDto.Email ?? usuario.Email;
 
-        // Atualizando a senha se fornecida
         if (!string.IsNullOrEmpty(requestDto.Senha))
         {
             usuario.Senha = _cryptoSHA256.HashPassword(requestDto.Senha);
@@ -240,7 +229,6 @@ public class UsuarioService : IUsuarioService
             tecnico.HoraAlmocoFim = requestDto.HoraAlmocoFim ?? tecnico.HoraAlmocoFim;
             tecnico.Cpf = requestDto.Cpf ?? tecnico.Cpf;
 
-            // Se houver nova foto para upload, realiza o upload e atualiza a URL; caso contrário, mantém a já existente
             if (requestDto.FotoFile != null)
             {
                 var fotoUrl = await _imageService.UploadImageAsync(requestDto.FotoFile);
@@ -256,7 +244,6 @@ public class UsuarioService : IUsuarioService
                 tecnico.IsOnline = requestDto.IsOnline.Value;
             }
 
-            // Atualizando a localização atual, se fornecida
             tecnico.LatitudeAtual = requestDto.LatitudeAtual ?? tecnico.LatitudeAtual;
             tecnico.LongitutdeAtual = requestDto.LongitudeAtual ?? tecnico.LongitutdeAtual;
 
@@ -305,7 +292,7 @@ public class UsuarioService : IUsuarioService
                 UserName = usuario.UserName,
                 Role = usuario.Role,
                 Ativo = usuario.Ativo,
-                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM", // Se não houver foto, define uma padrão
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM", 
                 TipoUsuario = usuario.TipoUsuario,
                 Cpf = tecnico?.Cpf ?? "N/A",
                 HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
@@ -389,19 +376,16 @@ public class UsuarioService : IUsuarioService
     }
     public async Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude)
     {
-        // Busca o usuário no repositório
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
         if (usuario == null)
             throw new InvalidOperationException("Usuário não encontrado.");
 
-        // Verifica se o usuário é realmente um técnico
         if (usuario is Tecnico tecnico)
         {
-            // Atualiza a localização atual
+
             tecnico.LatitudeAtual = latitude;
             tecnico.LongitutdeAtual = longitude;
 
-            // Atualiza o técnico no repositório
             await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId);
         }
         else

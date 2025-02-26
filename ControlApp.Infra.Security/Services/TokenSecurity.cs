@@ -33,5 +33,4 @@ namespace ControlApp.Infra.Security.Services
             return tokenHandler.WriteToken(token);
         }
     }
-
 }
