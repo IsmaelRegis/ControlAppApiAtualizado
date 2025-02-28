@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[8.0.12, )"
             },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "iTextSharp": {
               "target": "Package",
               "version": "[5.5.13.4, )"

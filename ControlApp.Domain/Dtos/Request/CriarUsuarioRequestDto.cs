@@ -22,6 +22,9 @@ namespace ControlApp.Domain.Dtos.Request
         public TimeSpan HoraAlmocoFim { get; set; }
         public string? FotoUrl { get; set; }
         public IFormFile? FotoFile { get; set; }
+        public string? NumeroMatricula { get; set; }
+        public Guid? EmpresaId { get; set; }
+
     }
 
 }

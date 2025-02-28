@@ -23,5 +23,7 @@ namespace ControlApp.Domain.Dtos.Response
         public bool Ativo { get; set; }
         public string? FotoUrl { get; set; }  
         public bool IsOnline { get; set; }
+        public string? NumeroMatricula { get; set; }
+        public Guid? EmpresaId { get; set; }
     }
 }

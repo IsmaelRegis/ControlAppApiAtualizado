@@ -14,19 +14,6 @@ namespace ControlApp.Domain.Validations
                 .NotEmpty().WithMessage("O CPF não pode ser vazio.")
                 .Must(ValidarCpf).WithMessage("O CPF informado é inválido.");       
 
-            // Verificando a hora de saída
-            RuleFor(t => t.HoraSaida)
-                .GreaterThanOrEqualTo(t => t.HoraEntrada).When(t => t.HoraSaida != null)
-                .WithMessage("A hora de saída não pode ser anterior à hora de entrada.");
-
-            // Verificando o horário de almoço
-            RuleFor(t => t.HoraAlmocoInicio)
-                .LessThan(t => t.HoraAlmocoFim).When(t => t.HoraAlmocoInicio != null && t.HoraAlmocoFim != null)
-                .WithMessage("O horário de início do almoço não pode ser após o horário de término do almoço.");
-
-            RuleFor(t => t.HoraAlmocoFim)
-                .GreaterThan(t => t.HoraAlmocoInicio).When(t => t.HoraAlmocoFim != null && t.HoraAlmocoInicio != null)
-                .WithMessage("O horário de término do almoço não pode ser antes do horário de início.");
 
         }
 

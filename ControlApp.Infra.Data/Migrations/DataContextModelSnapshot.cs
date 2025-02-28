@@ -291,6 +291,9 @@ namespace ControlApp.Infra.Data.Migrations
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("EmpresaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<TimeSpan>("HoraAlmocoFim")
                         .HasColumnType("time");
 
@@ -310,6 +313,9 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LongitutdeAtual")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroMatricula")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Tecnico");

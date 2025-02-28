@@ -15,7 +15,7 @@ namespace ControlApp.Infra.Data.Mappings
 
             builder.Property(t => t.Cpf)
                 .HasColumnName("CPF")
-                .HasMaxLength(11)
+                .HasMaxLength(100)
                 .IsRequired(); // Garantindo que o CPF seja obrigatório
 
             builder.HasIndex(t => t.Cpf)  // Adiciona o índice único no CPF
@@ -56,6 +56,15 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasColumnName("LONGITUDE_ATUAL")
                 .HasMaxLength(50)  // Define um limite de caracteres para a longitude
                 .IsRequired(false); // Pode ser nulo
+
+            builder.Property(t => t.NumeroMatricula)
+                .HasColumnName("NUMERO_MATRRICULA")
+                .HasMaxLength(50) // Ajuste o tamanho conforme necessário
+                .IsRequired(false); // Opcional
+
+            builder.Property(t => t.EmpresaId)
+                .HasColumnName("EMPRESA_ID")
+                .IsRequired(false); //
 
             builder.HasOne<Usuario>()
                 .WithOne()

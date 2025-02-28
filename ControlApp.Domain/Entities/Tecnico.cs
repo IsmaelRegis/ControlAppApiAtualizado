@@ -19,6 +19,8 @@ namespace ControlApp.Domain.Entities
         public string? LongitutdeAtual { get; set; }
         public ICollection<Ponto> Pontos { get; set; } = new List<Ponto>();
         public ICollection<Trajeto> Trajetos { get; set; } = new List<Trajeto>();
+        public string? NumeroMatricula { get; set; } 
+        public Guid? EmpresaId { get; set; }
     }
 
 }

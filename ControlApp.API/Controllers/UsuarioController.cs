@@ -1,9 +1,11 @@
 ﻿using ControlApp.Domain.Dtos.Request;
 using ControlApp.Domain.Dtos.Response;
+using ControlApp.Domain.Entities;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -78,6 +80,7 @@ public class UsuarioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
 
     [HttpPut("update/{id}")]
     public async Task<ActionResult> Update([FromRoute] Guid id, [FromForm] AtualizarUsuarioRequestDto request)

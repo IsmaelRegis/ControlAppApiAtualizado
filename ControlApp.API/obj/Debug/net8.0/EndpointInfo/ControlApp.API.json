@@ -633,6 +633,13 @@
                   "FotoFile": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "NumeroMatricula": {
+                    "type": "string"
+                  },
+                  "EmpresaId": {
+                    "type": "string",
+                    "format": "uuid"
                   }
                 }
               },
@@ -671,6 +678,12 @@
                   "style": "form"
                 },
                 "FotoFile": {
+                  "style": "form"
+                },
+                "NumeroMatricula": {
+                  "style": "form"
+                },
+                "EmpresaId": {
                   "style": "form"
                 }
               }
@@ -755,6 +768,10 @@
                   },
                   "IsOnline": {
                     "type": "boolean"
+                  },
+                  "EmpresaId": {
+                    "type": "string",
+                    "format": "uuid"
                   }
                 }
               },
@@ -802,6 +819,9 @@
                   "style": "form"
                 },
                 "IsOnline": {
+                  "style": "form"
+                },
+                "EmpresaId": {
                   "style": "form"
                 }
               }
@@ -1479,6 +1499,14 @@
           "cpf": {
             "type": "string",
             "nullable": true
+          },
+          "numeroMatricula": {
+            "type": "string",
+            "nullable": true
+          },
+          "empresaId": {
+            "type": "string",
+            "format": "uuid"
           },
           "pontos": {
             "type": "array",

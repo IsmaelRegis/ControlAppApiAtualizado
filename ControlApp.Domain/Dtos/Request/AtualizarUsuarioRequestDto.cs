@@ -26,6 +26,7 @@ namespace ControlApp.Domain.Dtos.Request
         public string? FotoUrl { get; set; }
         public IFormFile? FotoFile { get; set; }
         public bool? IsOnline { get; set; }
+        public Guid EmpresaId { get; set; }
     }
 
 }

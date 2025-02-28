@@ -11,6 +11,8 @@ namespace ControlApp.Domain.Dtos.Response
         public TimeSpan? HoraAlmocoInicio { get; set; }
         public TimeSpan? HoraAlmocoFim { get; set; }
         public bool? IsOnline { get; set; }
+        public string? NumeroMatricula { get; set; }
+        public Guid EmpresaId { get; set; }
         public List<ConsultarPontoResponseDto> Pontos { get; set; } = new();
         public List<TrajetoResponseDto> Trajetos { get; set; } = new();
     }

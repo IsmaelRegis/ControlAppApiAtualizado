@@ -27,6 +27,7 @@ namespace ControlApp.API.Configurations
             services.AddTransient<IPontoService, PontoService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddScoped<CryptoSHA256>();
+            services.AddScoped<CryptoAes>();
 
         }
     }
