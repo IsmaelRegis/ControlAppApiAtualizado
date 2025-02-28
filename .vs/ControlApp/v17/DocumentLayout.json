@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\ControlAppApiAtualizado\\ControlApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\dtos\\request\\criarusuariorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,16 +27,16 @@
       "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Migrations\\20250228124620_CamposNovosTecnicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ControlApp.Infra.Data\\Migrations\\20250228124620_CamposNovosTecnicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\dtos\\response\\criarusuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\dtos\\response\\criarusuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\migrations\\20250228124620_camposnovostecnicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\migrations\\20250228124620_camposnovostecnicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Program.cs",
               "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
@@ -71,8 +71,7 @@
               "RelativeToolTip": "ControlApp.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-28T14:02:19.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T14:02:19.098Z"
             },
             {
               "$type": "Document",
@@ -84,12 +83,11 @@
               "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\TecnicoMap.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAqwEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:41:07.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T12:41:07.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "CriarUsuarioResponseDto.cs",
               "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\CriarUsuarioResponseDto.cs",
               "RelativeDocumentMoniker": "ControlApp.Domain\\Dtos\\Response\\CriarUsuarioResponseDto.cs",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "ControlApp.Domain\\Dtos\\Response\\CriarUsuarioResponseDto.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:07:53.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T11:07:53.889Z"
             },
             {
               "$type": "Document",
@@ -110,18 +107,17 @@
               "RelativeToolTip": "ControlApp.Domain\\Dtos\\Request\\CriarUsuarioRequestDto.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:07:47.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T11:07:47.451Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
               "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
               "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
               "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAAG8BAAAAAAAAAAAqwJYBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABwBAAAAAAAAAAAkwJYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-28T10:56:22.571Z",
               "EditorCaption": ""
@@ -136,12 +132,11 @@
               "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:48:35.817Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T12:48:35.817Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "20250228124620_CamposNovosTecnicos.cs",
               "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Migrations\\20250228124620_CamposNovosTecnicos.cs",
               "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Migrations\\20250228124620_CamposNovosTecnicos.cs",
@@ -149,12 +144,11 @@
               "RelativeToolTip": "ControlApp.Infra.Data\\Migrations\\20250228124620_CamposNovosTecnicos.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T12:46:21.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T12:46:21.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Tecnico.cs",
               "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Tecnico.cs",
               "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Tecnico.cs",
@@ -162,8 +156,7 @@
               "RelativeToolTip": "ControlApp.Domain\\Entities\\Tecnico.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:07:17.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T11:07:17.757Z"
             }
           ]
         }
