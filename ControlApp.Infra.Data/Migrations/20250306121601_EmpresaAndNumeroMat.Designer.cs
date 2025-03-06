@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlApp.Infra.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250228124620_CamposNovosTecnicos")]
-    partial class CamposNovosTecnicos
+    [Migration("20250306121601_EmpresaAndNumeroMat")]
+    partial class EmpresaAndNumeroMat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,29 @@ namespace ControlApp.Infra.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ControlApp.Domain.Entities.Empresa", b =>
+                {
+                    b.Property<Guid>("EmpresaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("ATIVO");
+
+                    b.Property<string>("NomeDaEmpresa")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("NOME_EMPRESA");
+
+                    b.HasKey("EmpresaId");
+
+                    b.ToTable("EMPRESAS", (string)null);
+                });
 
             modelBuilder.Entity("ControlApp.Domain.Entities.Localizacao", b =>
                 {
@@ -71,7 +94,7 @@ namespace ControlApp.Infra.Data.Migrations
 
                     b.Property<DateTime?>("DataHoraUltimaAutenticacao")
                         .HasColumnType("datetime2")
-                        .HasColumnName("DATAHORAULTIMAAUTENTICACAO");
+                        .HasColumnName("DATA_HORA_ULTIMA_AUTENTICACAO");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -82,7 +105,7 @@ namespace ControlApp.Infra.Data.Migrations
                     b.Property<string>("FotoUrl")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)")
-                        .HasColumnName("FOTOURL");
+                        .HasColumnName("FOTO_URL");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -106,7 +129,9 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("USERNAME");
 
                     b.HasKey("UsuarioId");
 
@@ -292,36 +317,123 @@ namespace ControlApp.Infra.Data.Migrations
                     b.HasBaseType("ControlApp.Domain.Entities.Usuario");
 
                     b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("CPF");
 
                     b.Property<Guid?>("EmpresaId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("EMPRESA_ID");
 
                     b.Property<TimeSpan>("HoraAlmocoFim")
-                        .HasColumnType("time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIME")
+                        .HasColumnName("HORA_ALMOCO_FIM")
+                        .HasDefaultValueSql("CAST('00:00:00' AS TIME)");
 
                     b.Property<TimeSpan>("HoraAlmocoInicio")
-                        .HasColumnType("time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIME")
+                        .HasColumnName("HORA_ALMOCO_INICIO")
+                        .HasDefaultValueSql("CAST('00:00:00' AS TIME)");
 
                     b.Property<TimeSpan>("HoraEntrada")
-                        .HasColumnType("time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIME")
+                        .HasColumnName("HORA_ENTRADA")
+                        .HasDefaultValueSql("CAST('00:00:00' AS TIME)");
 
                     b.Property<TimeSpan>("HoraSaida")
-                        .HasColumnType("time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIME")
+                        .HasColumnName("HORA_SAIDA")
+                        .HasDefaultValueSql("CAST('00:00:00' AS TIME)");
 
                     b.Property<bool>("IsOnline")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IS_ONLINE");
 
                     b.Property<string>("LatitudeAtual")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LATITUDE_ATUAL");
 
                     b.Property<string>("LongitutdeAtual")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LONGITUDE_ATUAL");
 
                     b.Property<string>("NumeroMatricula")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("NUMERO_MATRICULA");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique()
+                        .HasFilter("[CPF] IS NOT NULL");
+
+                    b.HasIndex("EmpresaId");
 
                     b.HasDiscriminator().HasValue("Tecnico");
+                });
+
+            modelBuilder.Entity("ControlApp.Domain.Entities.Empresa", b =>
+                {
+                    b.OwnsOne("ControlApp.Domain.Entities.Endereco", "Endereco", b1 =>
+                        {
+                            b1.Property<Guid>("EmpresaId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Bairro")
+                                .HasMaxLength(255)
+                                .HasColumnType("nvarchar(255)")
+                                .HasColumnName("BAIRRO");
+
+                            b1.Property<string>("Cep")
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)")
+                                .HasColumnName("CEP");
+
+                            b1.Property<string>("Cidade")
+                                .HasMaxLength(255)
+                                .HasColumnType("nvarchar(255)")
+                                .HasColumnName("CIDADE");
+
+                            b1.Property<string>("Complemento")
+                                .HasMaxLength(255)
+                                .HasColumnType("nvarchar(255)")
+                                .HasColumnName("COMPLEMENTO");
+
+                            b1.Property<Guid>("EnderecoId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Estado")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
+                                .HasColumnName("ESTADO");
+
+                            b1.Property<string>("Logradouro")
+                                .HasMaxLength(255)
+                                .HasColumnType("nvarchar(255)")
+                                .HasColumnName("LOGRADOURO");
+
+                            b1.Property<string>("Numero")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
+                                .HasColumnName("NUMERO");
+
+                            b1.HasKey("EmpresaId");
+
+                            b1.ToTable("EMPRESAS");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EmpresaId");
+                        });
+
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("ControlApp.Domain.Entities.Localizacao", b =>
@@ -355,6 +467,21 @@ namespace ControlApp.Infra.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Tecnico");
+                });
+
+            modelBuilder.Entity("ControlApp.Domain.Entities.Tecnico", b =>
+                {
+                    b.HasOne("ControlApp.Domain.Entities.Empresa", "Empresa")
+                        .WithMany("Tecnicos")
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Empresa");
+                });
+
+            modelBuilder.Entity("ControlApp.Domain.Entities.Empresa", b =>
+                {
+                    b.Navigation("Tecnicos");
                 });
 
             modelBuilder.Entity("Trajeto", b =>

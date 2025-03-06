@@ -18,8 +18,10 @@ public class UsuarioService : IUsuarioService
     private readonly UsuarioValidator _usuarioValidator;
     private readonly TecnicoValidator _tecnicoValidator;
     private readonly CryptoSHA256 _cryptoSHA256;
+    private readonly ITecnicoRepository _tecnicoRepository;
+    private readonly IEmpresaRepository _empresaRepository;
 
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository)
     {
         _usuarioRepository = usuarioRepository;
         _tokenSecurity = tokenSecurity;
@@ -27,6 +29,8 @@ public class UsuarioService : IUsuarioService
         _usuarioValidator = new UsuarioValidator();
         _tecnicoValidator = new TecnicoValidator();
         _cryptoSHA256 = new CryptoSHA256();
+        _tecnicoRepository = tecnicoRepository;
+        _empresaRepository = empresaRepository;
     }
     public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto)
     {
@@ -135,21 +139,15 @@ public class UsuarioService : IUsuarioService
     public async Task<CriarUsuarioResponseDto> CreateUsuarioAsync(CriarUsuarioRequestDto requestDto)
     {
         if (requestDto.Role != UserRole.Colaborador)
-        {
             throw new Exception("Apenas técnicos podem ser criados por este serviço.");
-        }
 
         var usuarioExistente = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
         if (usuarioExistente != null)
-        {
             throw new Exception("CPF já cadastrado.");
-        }
 
         string? fotoUrl = null;
         if (requestDto.FotoFile != null)
-        {
             fotoUrl = await _imageService.UploadImageAsync(requestDto.FotoFile);
-        }
 
         var tecnico = new Tecnico
         {
@@ -166,18 +164,49 @@ public class UsuarioService : IUsuarioService
             FotoUrl = fotoUrl,
             IsOnline = false,
             Role = requestDto.Role,
-            Ativo = true
+            Ativo = true,
+            NumeroMatricula = await GerarNumeroMatriculaAsync(),
+            EmpresaId = requestDto.EmpresaId
         };
 
         var validationResult = await _tecnicoValidator.ValidateAsync(tecnico);
         if (!validationResult.IsValid)
-        {
             throw new Exception(string.Join(", ", validationResult.Errors));
-        }
 
         tecnico.Senha = _cryptoSHA256.HashPassword(tecnico.Senha);
-
         await _usuarioRepository.CriarUsuarioAsync(tecnico);
+
+        // Buscar dados da empresa usando o repositório
+        EmpresaResponseDto? empresaDto = null;
+        if (requestDto.EmpresaId.HasValue)
+        {
+            var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(requestDto.EmpresaId.Value);
+            if (empresa != null)
+            {
+                empresaDto = new EmpresaResponseDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    Ativo = empresa.Ativo,
+                    NomeDaEmpresa = empresa.NomeDaEmpresa,
+                    Endereco = empresa.Endereco == null ? null : new EnderecoDto
+                    {
+                        Cep = empresa.Endereco.Cep,
+                        Logradouro = empresa.Endereco.Logradouro,
+                        Complemento = empresa.Endereco.Complemento,
+                        Bairro = empresa.Endereco.Bairro,
+                        Localidade = empresa.Endereco.Cidade,
+                        Uf = empresa.Endereco.Estado,
+                        Numero = empresa.Endereco.Numero
+                    },
+                    Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+                    {
+                        UsuarioId = t.UsuarioId,
+                        Nome = t.Nome,
+                        Cpf = t.Cpf
+                    }).ToList()
+                };
+            }
+        }
 
         return new CriarUsuarioResponseDto
         {
@@ -194,10 +223,12 @@ public class UsuarioService : IUsuarioService
             FotoUrl = tecnico.FotoUrl,
             IsOnline = tecnico.IsOnline,
             Role = tecnico.Role.ToString(),
-            Ativo = tecnico.Ativo
+            Ativo = tecnico.Ativo,
+            NumeroMatricula = tecnico.NumeroMatricula,
+            EmpresaId = tecnico.EmpresaId,
+            Empresa = empresaDto
         };
     }
-
 
     public async Task<AtualizarUsuarioResponseDto> UpdateUsuarioAsync(Guid usuarioId, AtualizarUsuarioRequestDto requestDto)
     {
@@ -302,7 +333,9 @@ public class UsuarioService : IUsuarioService
                 IsOnline = tecnico?.IsOnline ?? false,
                 LatitudeAtual = tecnico?.LatitudeAtual,
                 LongitudeAtual = tecnico?.LongitutdeAtual,
-                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+                            NumeroMatricula = tecnico?.NumeroMatricula,
+            EmpresaId = tecnico?.EmpresaId
             };
         }).ToList();
     }
@@ -332,7 +365,10 @@ public class UsuarioService : IUsuarioService
             IsOnline = tecnico?.IsOnline ?? false,
             LatitudeAtual = tecnico?.LatitudeAtual,
             LongitudeAtual = tecnico?.LongitutdeAtual,
-            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao
+            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+            NumeroMatricula = tecnico?.NumeroMatricula,
+            EmpresaId = tecnico?.EmpresaId
+           
         };
     }
     public async Task<bool> ExistsAsync(Guid id)
@@ -404,4 +440,160 @@ public class UsuarioService : IUsuarioService
     {
         throw new NotImplementedException();
     }
+    private async Task<string> GerarNumeroMatriculaAsync()
+    {
+        var ultimaMatricula = await _tecnicoRepository.ObterUltimaMatriculaAsync();
+        int novoNumero = ultimaMatricula + 1;
+        return novoNumero.ToString("D6"); // Formata como "000001", "000002", etc.
+    }
+
+    public async Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto)
+    {
+        var empresa = new Empresa
+        {
+            EmpresaId = Guid.NewGuid(),
+            NomeDaEmpresa = requestDto.NomeDaEmpresa,
+            Ativo = true
+        };
+
+        if (requestDto.Endereco != null && !string.IsNullOrEmpty(requestDto.Endereco.Cep))
+        {
+            // Aqui você pode integrar com um serviço como ViaCep para buscar os dados do endereço pelo CEP
+            // Por simplicidade, assumimos que apenas Cep, Numero e Complemento são fornecidos
+            empresa.Endereco = new Endereco
+            {
+                EnderecoId = Guid.NewGuid(),
+                Cep = requestDto.Endereco.Cep,
+                Numero = requestDto.Endereco.Numero,
+                Complemento = requestDto.Endereco.Complemento
+                // Outros campos como Logradouro, Bairro, etc., podem ser preenchidos via integração externa se desejar
+            };
+        }
+
+        await _empresaRepository.CriarEmpresaAsync(empresa);
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            Endereco = empresa.Endereco == null ? null : new EnderecoDto
+            {
+                Cep = empresa.Endereco.Cep,
+                Numero = empresa.Endereco.Numero,
+                Complemento = empresa.Endereco.Complemento,
+                Logradouro = empresa.Endereco.Logradouro,
+                Bairro = empresa.Endereco.Bairro,
+                Localidade = empresa.Endereco.Cidade,
+                Uf = empresa.Endereco.Estado
+            },
+            Tecnicos = null // Não há técnicos associados inicialmente
+        };
+    }
+
+    public async Task<EmpresaResponseDto?> GetEmpresaByIdAsync(Guid id)
+    {
+        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(id);
+        if (empresa == null)
+            return null;
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            Endereco = new EnderecoDto
+            {
+                Cep = empresa.Endereco?.Cep,
+                Logradouro = empresa.Endereco?.Logradouro,
+                Bairro = empresa.Endereco?.Bairro,
+                Localidade = empresa.Endereco?.Cidade,
+                Uf = empresa.Endereco?.Estado,
+                Complemento = empresa.Endereco?.Complemento,
+                Numero = empresa.Endereco?.Numero
+            },
+            Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf
+            }).ToList()
+        };
+
+    }
+    public async Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync()
+    {
+        var empresas = await _empresaRepository.GetAllEmpresasAsync();
+        return empresas.Select(e => new EmpresaResponseDto
+        {
+            EmpresaId = e.EmpresaId,
+            NomeDaEmpresa = e.NomeDaEmpresa,
+            Ativo = e.Ativo,
+            Endereco = new EnderecoDto
+            {
+                Cep = e.Endereco?.Cep,
+                Logradouro = e.Endereco?.Logradouro,
+                Bairro = e.Endereco?.Bairro,
+                Localidade = e.Endereco?.Cidade,
+                Uf = e.Endereco?.Estado,
+                Complemento = e.Endereco?.Complemento,
+                Numero = e.Endereco?.Numero
+            },
+            Tecnicos = e.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf
+            }).ToList()
+        });
+    }
+    public async Task<EmpresaResponseDto> UpdateEmpresaAsync(Guid empresaId, AtualizarEmpresaRequestDto requestDto)
+    {
+        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(empresaId);
+        if (empresa == null)
+            throw new Exception("Empresa não encontrada.");
+
+        empresa.NomeDaEmpresa = requestDto.NomeDaEmpresa ?? empresa.NomeDaEmpresa;
+
+        if (requestDto.Endereco != null)
+        {
+            if (empresa.Endereco == null)
+                empresa.Endereco = new Endereco { EnderecoId = Guid.NewGuid() };
+
+            empresa.Endereco.Cep = requestDto.Endereco.Cep ?? empresa.Endereco.Cep;
+            empresa.Endereco.Numero = requestDto.Endereco.Numero ?? empresa.Endereco.Numero;
+            empresa.Endereco.Complemento = requestDto.Endereco.Complemento ?? empresa.Endereco.Complemento;
+            // Outros campos permanecem como estão, a menos que sejam atualizados via integração externa
+        }
+
+        await _empresaRepository.AtualizarEmpresaAsync(empresa);
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            Endereco = empresa.Endereco == null ? null : new EnderecoDto
+            {
+                Cep = empresa.Endereco.Cep,
+                Numero = empresa.Endereco.Numero,
+                Complemento = empresa.Endereco.Complemento,
+                Logradouro = empresa.Endereco.Logradouro,
+                Bairro = empresa.Endereco.Bairro,
+                Localidade = empresa.Endereco.Cidade,
+                Uf = empresa.Endereco.Estado
+            },
+            Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf
+            }).ToList()
+        };
+    }
+    public async Task DeleteEmpresaAsync(Guid id)
+    {
+        await _empresaRepository.ExcluirEmpresaAsync(id);
+    }
+
 }

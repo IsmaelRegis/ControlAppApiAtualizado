@@ -8,53 +8,54 @@ namespace ControlApp.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("USUARIOS");  // Nome da tabela no banco
-            builder.HasKey(u => u.UsuarioId);  // Definindo a chave primária
+            builder.ToTable("USUARIOS");
 
-            builder.Property(u => u.UsuarioId)
-                .IsRequired();
+            // Chave primária definida apenas na classe base
+            builder.HasKey(u => u.UsuarioId);
 
             builder.Property(u => u.Nome)
                 .HasColumnName("NOME")
                 .HasMaxLength(100)
-                .IsRequired();  // Nome do usuário
+                .IsRequired();
 
             builder.Property(u => u.Email)
                 .HasColumnName("EMAIL")
                 .HasMaxLength(150)
-                .IsRequired();  // Email do usuário
+                .IsRequired();
 
             builder.Property(u => u.Senha)
                 .HasColumnName("SENHA")
                 .HasMaxLength(100)
-                .IsRequired();  // Senha do usuário
+                .IsRequired();
+
+            builder.Property(u => u.UserName)
+                .HasColumnName("USERNAME")
+                .HasMaxLength(100)
+                .IsRequired(false); // Opcional, já que nem todos os usuários podem ter UserName
 
             builder.Property(u => u.Role)
                 .HasColumnName("ROLE")
-                .HasConversion<int>()  // Conversão de Enum para int
-                .IsRequired();  // Role (tipo do usuário)
+                .HasConversion<int>()
+                .IsRequired();
 
             builder.Property(u => u.Ativo)
                 .HasColumnName("ATIVO")
-                .IsRequired()
-                .HasDefaultValue(true);  // Indicador de se o usuário está ativo
+                .HasDefaultValue(true);
 
-            // Propriedade para a URL da foto
             builder.Property(u => u.FotoUrl)
-                .HasColumnName("FOTOURL")
+                .HasColumnName("FOTO_URL")
                 .HasMaxLength(250)
                 .IsRequired(false);
 
             builder.Property(u => u.DataHoraUltimaAutenticacao)
-               .HasColumnName("DATAHORAULTIMAAUTENTICACAO")
-               .IsRequired(false); // Como é nullable, deixamos opcional
+                .HasColumnName("DATA_HORA_ULTIMA_AUTENTICACAO")
+                .IsRequired(false);
 
-
-            // Configuração do Discriminador para os tipos de usuário (Tabela por Hierarquia - TPH)
-            builder.HasDiscriminator<string>("TipoUsuario")  // Discriminador: TipoUsuario
-                .HasValue<Usuario>("Usuario")  // Tipo base: Usuario
-                .HasValue<Tecnico>("Tecnico")  // Tipo derivado: Tecnico
-                .HasValue<Administrador>("Administrador");  // Tipo derivado: Administrador
+            // Configuração do discriminador para TPH
+            builder.HasDiscriminator<string>("TipoUsuario")
+                .HasValue<Usuario>("Usuario") // Classe base (pode ser abstrata ou genérica)
+                .HasValue<Tecnico>("Tecnico")
+                .HasValue<Administrador>("Administrador");
         }
     }
 }

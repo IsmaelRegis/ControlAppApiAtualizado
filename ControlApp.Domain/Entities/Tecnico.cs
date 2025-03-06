@@ -21,6 +21,7 @@ namespace ControlApp.Domain.Entities
         public ICollection<Trajeto> Trajetos { get; set; } = new List<Trajeto>();
         public string? NumeroMatricula { get; set; } 
         public Guid? EmpresaId { get; set; }
+        public Empresa? Empresa { get; set; }
     }
 
 }

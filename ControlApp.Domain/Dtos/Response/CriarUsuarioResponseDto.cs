@@ -25,5 +25,6 @@ namespace ControlApp.Domain.Dtos.Response
         public bool IsOnline { get; set; }
         public string? NumeroMatricula { get; set; }
         public Guid? EmpresaId { get; set; }
+        public EmpresaResponseDto? Empresa { get; set; }
     }
 }

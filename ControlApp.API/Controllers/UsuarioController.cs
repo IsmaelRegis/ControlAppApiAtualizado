@@ -157,4 +157,64 @@ public class UsuarioController : ControllerBase
             return NotFound("Usuário não encontrado.");
         return Ok(usuario);
     }
+    [Authorize(Roles = "Administrador")]
+    [HttpPost("empresa")]
+    public async Task<ActionResult> CreateEmpresa([FromBody] CriarEmpresaRequestDto request)
+    {
+        try
+        {
+            var response = await _usuarioService.CreateEmpresaAsync(request);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("empresa/{empresaId}")]
+    public async Task<IActionResult> GetEmpresaById(Guid empresaId)
+    {
+        var empresa = await _usuarioService.GetEmpresaByIdAsync(empresaId);
+        if (empresa == null)
+            return NotFound("Empresa não encontrada.");
+        return Ok(empresa);
+    }
+
+    [HttpGet("empresa")]
+    public async Task<IActionResult> GetAllEmpresas()
+    {
+        var empresas = await _usuarioService.GetAllEmpresasAsync();
+        return Ok(empresas);
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpPut("empresa/{empresaId}")]
+    public async Task<ActionResult> UpdateEmpresa(Guid empresaId, [FromBody] AtualizarEmpresaRequestDto request)
+    {
+        try
+        {
+            var response = await _usuarioService.UpdateEmpresaAsync(empresaId, request);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpDelete("empresa/{empresaId}")]
+    public async Task<ActionResult> DeleteEmpresa(Guid empresaId)
+    {
+        try
+        {
+            await _usuarioService.DeleteEmpresaAsync(empresaId);
+            return Ok("Empresa excluída com sucesso.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

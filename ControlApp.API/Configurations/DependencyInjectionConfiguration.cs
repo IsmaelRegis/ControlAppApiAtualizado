@@ -20,6 +20,7 @@ namespace ControlApp.API.Configurations
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<ITecnicoRepository, TecnicoRepository>();
             services.AddTransient<IPontoRepository, PontoRepository>();
+            services.AddTransient<IEmpresaRepository, EmpresaRepository>();
             services.AddTransient<IUsuario, Tecnico>();
             services.AddTransient<IUsuario, Administrador>();
             services.AddTransient<ITokenSecurity, TokenSecurity>();

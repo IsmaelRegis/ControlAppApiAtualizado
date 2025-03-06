@@ -97,5 +97,15 @@ namespace ControlApp.Infra.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> ObterUltimaMatriculaAsync()
+        {
+            var ultimaMatricula = await _context.Usuarios.OfType<Tecnico>()
+                .OrderByDescending(t => t.NumeroMatricula)
+                .Select(t => t.NumeroMatricula)
+                .FirstOrDefaultAsync();
+
+            return ultimaMatricula != null ? int.Parse(ultimaMatricula) : 0;
+        }
     }
 }

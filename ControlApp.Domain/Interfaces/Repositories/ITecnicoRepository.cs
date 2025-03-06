@@ -12,5 +12,6 @@ namespace ControlApp.Domain.Interfaces.Repositories
     {
         Task<ICollection<Ponto>> ObterPontosPorTecnicoAsync(Guid tecnicoId);
         Task<ICollection<Ponto>> ObterPontosPorPeriodoAsync(Guid tecnicoId, DateTime inicio, DateTime fim);
+        Task<int> ObterUltimaMatriculaAsync();
     }
 }

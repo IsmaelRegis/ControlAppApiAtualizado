@@ -634,9 +634,6 @@
                     "type": "string",
                     "format": "binary"
                   },
-                  "NumeroMatricula": {
-                    "type": "string"
-                  },
                   "EmpresaId": {
                     "type": "string",
                     "format": "uuid"
@@ -678,9 +675,6 @@
                   "style": "form"
                 },
                 "FotoFile": {
-                  "style": "form"
-                },
-                "NumeroMatricula": {
                   "style": "form"
                 },
                 "EmpresaId": {
@@ -952,10 +946,148 @@
           }
         }
       }
+    },
+    "/api/usuario/empresa": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarEmpresaRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarEmpresaRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarEmpresaRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/usuario/empresa/{empresaId}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "empresaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "empresaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizarEmpresaRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizarEmpresaRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizarEmpresaRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "empresaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "AtualizarEmpresaRequestDto": {
+        "type": "object",
+        "properties": {
+          "nomeDaEmpresa": {
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/EnderecoRequestDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "AutenticarUsuarioRequestDto": {
         "type": "object",
         "properties": {
@@ -1179,6 +1311,98 @@
             "items": {
               "$ref": "#/components/schemas/TrajetoResponseDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CriarEmpresaRequestDto": {
+        "type": "object",
+        "properties": {
+          "nomeDaEmpresa": {
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/EnderecoRequestDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmpresaResponseDto": {
+        "type": "object",
+        "properties": {
+          "empresaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ativo": {
+            "type": "boolean"
+          },
+          "nomeDaEmpresa": {
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/EnderecoDto"
+          },
+          "tecnicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TecnicoResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnderecoDto": {
+        "type": "object",
+        "properties": {
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "logradouro": {
+            "type": "string",
+            "nullable": true
+          },
+          "complemento": {
+            "type": "string",
+            "nullable": true
+          },
+          "bairro": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidade": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnderecoRequestDto": {
+        "type": "object",
+        "properties": {
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero": {
+            "type": "string",
+            "nullable": true
+          },
+          "complemento": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1496,6 +1720,13 @@
             "format": "date-time",
             "nullable": true
           },
+          "empresaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/EmpresaResponseDto"
+          },
           "cpf": {
             "type": "string",
             "nullable": true
@@ -1503,10 +1734,6 @@
           "numeroMatricula": {
             "type": "string",
             "nullable": true
-          },
-          "empresaId": {
-            "type": "string",
-            "format": "uuid"
           },
           "pontos": {
             "type": "array",

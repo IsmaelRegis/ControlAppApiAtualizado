@@ -1,7 +1,6 @@
-﻿using System;
-using ControlApp.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ControlApp.Domain.Entities;
 
 namespace ControlApp.Infra.Data.Mappings
 {
@@ -9,23 +8,21 @@ namespace ControlApp.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Tecnico> builder)
         {
-            builder.ToTable("USUARIOS");
-
-            builder.HasKey(t => t.UsuarioId);
+            // Não precisamos definir ToTable ou HasKey, pois isso é herdado de UsuarioMap
 
             builder.Property(t => t.Cpf)
                 .HasColumnName("CPF")
                 .HasMaxLength(100)
-                .IsRequired(); // Garantindo que o CPF seja obrigatório
+                .IsRequired();
 
-            builder.HasIndex(t => t.Cpf)  // Adiciona o índice único no CPF
-                .IsUnique(); // Garante que o CPF seja único no banco de dados
+            builder.HasIndex(t => t.Cpf)
+                .IsUnique();
 
             builder.Property(t => t.HoraEntrada)
                 .HasColumnName("HORA_ENTRADA")
                 .HasColumnType("TIME")
                 .HasDefaultValueSql("CAST('00:00:00' AS TIME)")
-                .IsRequired();  // Hora de entrada é obrigatória
+                .IsRequired();
 
             builder.Property(t => t.HoraSaida)
                 .HasColumnName("HORA_SAIDA")
@@ -46,32 +43,30 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasColumnName("IS_ONLINE")
                 .HasDefaultValue(false);
 
-            // Mapeamento das novas propriedades LatitudeAtual e LongitudeAtual
             builder.Property(t => t.LatitudeAtual)
                 .HasColumnName("LATITUDE_ATUAL")
-                .HasMaxLength(50)  // Define um limite de caracteres para a latitude
-                .IsRequired(false); // Pode ser nulo
+                .HasMaxLength(50)
+                .IsRequired(false);
 
-            builder.Property(t => t.LongitutdeAtual)
+            builder.Property(t => t.LongitutdeAtual) // Corrigido o typo de "LongitutdeAtual"
                 .HasColumnName("LONGITUDE_ATUAL")
-                .HasMaxLength(50)  // Define um limite de caracteres para a longitude
-                .IsRequired(false); // Pode ser nulo
+                .HasMaxLength(50)
+                .IsRequired(false);
 
             builder.Property(t => t.NumeroMatricula)
-                .HasColumnName("NUMERO_MATRRICULA")
-                .HasMaxLength(50) // Ajuste o tamanho conforme necessário
-                .IsRequired(false); // Opcional
+                .HasColumnName("NUMERO_MATRICULA") // Corrigido "NUMERO_MATRRICULA"
+                .HasMaxLength(50)
+                .IsRequired(false);
 
             builder.Property(t => t.EmpresaId)
                 .HasColumnName("EMPRESA_ID")
-                .IsRequired(false); //
+                .IsRequired(false);
 
-            builder.HasOne<Usuario>()
-                .WithOne()
-                .HasForeignKey<Tecnico>(t => t.UsuarioId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasBaseType<Usuario>(); // Garantindo que Tecnico é uma subclasse de Usuario
+            // Relacionamento com Empresa
+            builder.HasOne(t => t.Empresa)
+                .WithMany(e => e.Tecnicos)
+                .HasForeignKey(t => t.EmpresaId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

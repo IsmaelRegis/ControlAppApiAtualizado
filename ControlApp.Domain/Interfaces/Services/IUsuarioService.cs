@@ -19,5 +19,10 @@ namespace ControlApp.Domain.Interfaces.Services
         Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude);
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);
         Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync();
+        Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto);
+        Task<EmpresaResponseDto?> GetEmpresaByIdAsync(Guid id);
+        Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync();
+        Task<EmpresaResponseDto> UpdateEmpresaAsync(Guid id, AtualizarEmpresaRequestDto requestDto);
+        Task DeleteEmpresaAsync(Guid id);
     }
 }

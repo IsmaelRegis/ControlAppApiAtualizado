@@ -379,6 +379,85 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "CreateEmpresa",
+    "RelativePath": "api/usuario/empresa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ControlApp.Domain.Dtos.Request.CriarEmpresaRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "GetAllEmpresas",
+    "RelativePath": "api/usuario/empresa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "GetEmpresaById",
+    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresaId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "UpdateEmpresa",
+    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresaId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "ControlApp.Domain.Dtos.Request.AtualizarEmpresaRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "DeleteEmpresa",
+    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresaId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "Register",
     "RelativePath": "api/usuario/register",
     "HttpMethod": "POST",
@@ -443,11 +522,6 @@
       {
         "Name": "FotoFile",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "NumeroMatricula",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
