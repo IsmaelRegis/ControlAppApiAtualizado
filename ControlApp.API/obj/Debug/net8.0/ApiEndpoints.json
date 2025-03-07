@@ -1,37 +1,5 @@
 [
   {
-    "ContainingType": "ControlApp.Api.Controllers.ImageController",
-    "Method": "GetImage",
-    "RelativePath": "api/image/images/{fileName}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "fileName",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ControlApp.Api.Controllers.ImageController",
-    "Method": "UploadImage",
-    "RelativePath": "api/image/upload",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "PontoController",
     "Method": "VerificarExpedienteDoDiaAsync",
     "RelativePath": "api/ponto/{usuarioId}/expediente-hoje",

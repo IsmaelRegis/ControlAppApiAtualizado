@@ -1,14 +1,8 @@
-﻿using ControlApp.Domain.Dtos.Request;
-using ControlApp.Domain.Dtos.Response;
+﻿using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Services;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 public class PontoService : IPontoService
 {
@@ -16,6 +10,7 @@ public class PontoService : IPontoService
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IImageService _imageService;
 
+    #region Construtor
     public PontoService(
         IPontoRepository pontoRepository,
         IUsuarioRepository usuarioRepository,
@@ -25,28 +20,31 @@ public class PontoService : IPontoService
         _usuarioRepository = usuarioRepository;
         _imageService = imageService;
     }
+    #endregion
 
+    #region Métodos de Registro e Consulta
     public async Task<RegistrarInicioExpedienteResponseDto> RegisterInicioExpedienteAsync(Guid usuarioId, RegistrarInicioExpedienteRequestDto dto)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
         if (usuario == null)
             throw new InvalidOperationException("Usuário não encontrado.");
 
+        // Verifica se já tem expediente hoje pra evitar duplicação
         var pontosHoje = await _pontoRepository.ObterPontosPorUsuarioEPeriodoAsync(
             usuarioId,
             DateTime.Now.Date,
             DateTime.Now.Date.AddDays(1));
-
-        bool jaTemExpedienteHoje = pontosHoje.Any(p => p.TipoPonto == TipoPonto.Expediente);
-        if (jaTemExpedienteHoje)
+        if (pontosHoje.Any(p => p.TipoPonto == TipoPonto.Expediente))
             throw new InvalidOperationException("Já existe um ponto de expediente registrado para hoje para este usuário.");
 
+        // Salva a foto do início, se tiver
         if (dto.FotoInicioExpedienteFile != null)
         {
             var fotoInicioUrl = await _imageService.UploadImageAsync(dto.FotoInicioExpedienteFile);
             dto.FotoInicioExpediente = fotoInicioUrl;
         }
 
+        // Cria o novo ponto de expediente
         var novoPonto = new Ponto
         {
             Id = Guid.NewGuid(),
@@ -65,8 +63,8 @@ public class PontoService : IPontoService
         return new RegistrarInicioExpedienteResponseDto
         {
             PontoId = novoPonto.Id,
-            Latitude = dto.Latitude,  
-            Longitude = dto.Longitude, 
+            Latitude = dto.Latitude,
+            Longitude = dto.Longitude,
             FotoInicioExpediente = dto.FotoInicioExpediente,
             Observacoes = dto.Observacoes,
             InicioExpediente = DateTime.Now
@@ -83,43 +81,30 @@ public class PontoService : IPontoService
         if (ponto == null || ponto.TipoPonto != TipoPonto.Expediente)
             throw new InvalidOperationException("Ponto de expediente não encontrado.");
 
+        // Confere se o início foi registrado e se o fim não é antes dele
         if (ponto.InicioExpediente == null)
             throw new InvalidOperationException("Início de expediente não registrado.");
+        var fimReal = DateTime.Now;
+        if (fimReal <= ponto.InicioExpediente)
+            throw new InvalidOperationException("O horário de fim do expediente não pode ser anterior ou igual ao início.");
 
+        // Salva a foto de fim, se tiver
         if (dto.FotoFimExpedienteFile != null)
         {
             var fotoFimUrl = await _imageService.UploadImageAsync(dto.FotoFimExpedienteFile);
             dto.FotoFimExpediente = fotoFimUrl;
         }
 
-        var fimReal = DateTime.Now;
-
-        if (fimReal <= ponto.InicioExpediente)
-            throw new InvalidOperationException("O horário de fim do expediente não pode ser anterior ou igual ao início.");
-
+        // Calcula horas trabalhadas, extras e devidas
         var horasTrabalhadas = fimReal - ponto.InicioExpediente.Value;
-
         var tecnico = usuario as Tecnico;
         if (tecnico == null)
             throw new InvalidOperationException("Usuário não é um Técnico.");
+        var jornadaEfetiva = (tecnico.HoraSaida - tecnico.HoraEntrada) - (tecnico.HoraAlmocoFim - tecnico.HoraAlmocoInicio);
+        var horasExtras = horasTrabalhadas > jornadaEfetiva ? horasTrabalhadas - jornadaEfetiva : TimeSpan.Zero;
+        var horasDevidas = horasTrabalhadas < jornadaEfetiva ? jornadaEfetiva - horasTrabalhadas : TimeSpan.Zero;
 
-        var jornadaDiaria = tecnico.HoraSaida - tecnico.HoraEntrada;
-        var intervaloAlmoco = tecnico.HoraAlmocoFim - tecnico.HoraAlmocoInicio;
-
-        var jornadaEfetiva = jornadaDiaria - intervaloAlmoco;
-        var horasExtras = horasTrabalhadas > jornadaEfetiva
-            ? horasTrabalhadas - jornadaEfetiva
-            : TimeSpan.Zero;
-
-        var horasDevidas = horasTrabalhadas < jornadaEfetiva
-            ? jornadaEfetiva - horasTrabalhadas
-            : TimeSpan.Zero;
-
-        if (horasExtras.TotalHours > 24)
-            horasExtras = TimeSpan.FromHours(24);
-        if (horasDevidas.TotalHours > 24)
-            horasDevidas = TimeSpan.FromHours(24);
-
+        // Atualiza o ponto com os dados de fim
         ponto.FimExpediente = fimReal;
         ponto.HorasTrabalhadas = horasTrabalhadas;
         ponto.HorasExtras = horasExtras;
@@ -150,6 +135,7 @@ public class PontoService : IPontoService
         if (usuario == null)
             throw new InvalidOperationException("Usuário não encontrado.");
 
+        // Cria um novo ponto de pausa
         var novoPonto = new Ponto
         {
             Id = Guid.NewGuid(),
@@ -184,9 +170,11 @@ public class PontoService : IPontoService
         if (pontoPausa == null || pontoPausa.TipoPonto != TipoPonto.Pausa)
             throw new InvalidOperationException("Ponto de pausa não encontrado.");
 
+        // Confere se a pausa já foi iniciada
         if (pontoPausa.InicioPausa == null)
             throw new InvalidOperationException("Início de pausa não registrado.");
 
+        // Atualiza o ponto com os dados de retorno
         pontoPausa.RetornoPausa = DateTime.Now;
         pontoPausa.LatitudeRetornoPausa = string.IsNullOrWhiteSpace(dto.Latitude) ? 0 : Convert.ToDouble(dto.Latitude.Replace(",", "."));
         pontoPausa.LongitudeRetornoPausa = string.IsNullOrWhiteSpace(dto.Longitude) ? 0 : Convert.ToDouble(dto.Longitude.Replace(",", "."));
@@ -197,47 +185,44 @@ public class PontoService : IPontoService
 
         return new RegistrarFimPausaResponseDto
         {
-            Latitude = dto.Latitude,  
-            Longitude = dto.Longitude,  
+            Latitude = dto.Latitude,
+            Longitude = dto.Longitude,
             Observacoes = pontoPausa.ObservacaoFimPausa,
             DataHoraRetornoPausa = DateTime.Now
         };
-
     }
-
 
     public async Task<List<TecnicoResponseDto>> GetPontosComTrajetosAsync()
     {
-        var pontos = await _pontoRepository.ObterTodosPontosAsync();
-        var pontosAgrupadosPorUsuario = pontos.GroupBy(p => p.UsuarioId);
+        var pontos = await _pontoRepository.ObterTodosPontosAsync(); // Pega todos os pontos
+        var pontosAgrupadosPorUsuario = pontos.GroupBy(p => p.UsuarioId); // Agrupa por usuário
 
         var responseDtos = new List<TecnicoResponseDto>();
 
+        // Monta uma lista com técnicos e seus pontos/trajetos
         foreach (var grupoUsuario in pontosAgrupadosPorUsuario)
         {
             var tecnico = await _usuarioRepository.ObterUsuarioPorIdAsync(grupoUsuario.Key);
             if (tecnico == null) continue;
 
             var tecnicoResponseDto = MapearParaTecnicoResponseDto(tecnico);
+
             var trajetos = grupoUsuario
-               .Where(p => p.TipoPonto == TipoPonto.Expediente &&
-            !string.IsNullOrWhiteSpace(p.LatitudeInicioExpediente) &&
-            !string.IsNullOrWhiteSpace(p.LongitudeInicioExpediente) &&
-            !string.IsNullOrWhiteSpace(p.LatitudeFimExpediente) &&
-            !string.IsNullOrWhiteSpace(p.LongitudeFimExpediente))
-
-
-               .Select(p => new TrajetoResponseDto
-               {
-                   PontoInicioId = p.Id,
-                   LatitudeInicio = p.LatitudeInicioExpediente?.ToString() ?? "0",
-                   LongitudeInicio = p.LongitudeInicioExpediente?.ToString() ?? "0",
-                   LatitudeFim = p.LatitudeFimExpediente?.ToString() ?? "0",
-                   LongitudeFim = p.LongitudeFimExpediente?.ToString() ?? "0"
-               })
+                .Where(p => p.TipoPonto == TipoPonto.Expediente &&
+                    !string.IsNullOrWhiteSpace(p.LatitudeInicioExpediente) &&
+                    !string.IsNullOrWhiteSpace(p.LongitudeInicioExpediente) &&
+                    !string.IsNullOrWhiteSpace(p.LatitudeFimExpediente) &&
+                    !string.IsNullOrWhiteSpace(p.LongitudeFimExpediente))
+                .Select(p => new TrajetoResponseDto
+                {
+                    PontoInicioId = p.Id,
+                    LatitudeInicio = p.LatitudeInicioExpediente?.ToString() ?? "0",
+                    LongitudeInicio = p.LongitudeInicioExpediente?.ToString() ?? "0",
+                    LatitudeFim = p.LatitudeFimExpediente?.ToString() ?? "0",
+                    LongitudeFim = p.LongitudeFimExpediente?.ToString() ?? "0"
+                })
                 .ToList();
 
-            // Mapeia os pontos
             var pontosDto = grupoUsuario.Select(p => new ConsultarPontoResponseDto
             {
                 Id = p.Id,
@@ -281,46 +266,44 @@ public class PontoService : IPontoService
         return responseDtos;
     }
 
-
     public async Task<IEnumerable<Ponto>> GetAllAsync()
     {
-        return await _pontoRepository.ObterPontosPorTecnicoIdAsync(Guid.Empty);
+        return await _pontoRepository.ObterPontosPorTecnicoIdAsync(Guid.Empty); // Retorna todos os pontos (simples)
     }
 
     public async Task<Ponto?> GetByIdAsync(Guid id)
     {
-        return await _pontoRepository.ObterPontoPorIdAsync(id);
+        return await _pontoRepository.ObterPontoPorIdAsync(id); // Busca um ponto pelo ID
     }
 
     public async Task AddAsync(Ponto entity)
     {
-        await _pontoRepository.CriarPontoAsync(entity);
+        await _pontoRepository.CriarPontoAsync(entity); // Adiciona um novo ponto
     }
 
     public async Task UpdateAsync(Ponto entity)
     {
-        await _pontoRepository.AtualizarPontoAsync(entity.Id, entity);
+        await _pontoRepository.AtualizarPontoAsync(entity.Id, entity); // Atualiza um ponto existente
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        await _pontoRepository.DesativarPontoAsync(id);
+        await _pontoRepository.DesativarPontoAsync(id); // Desativa um ponto
     }
 
     public async Task<bool> ExistsAsync(Guid id)
     {
-        var ponto = await _pontoRepository.ObterPontoPorIdAsync(id);
+        var ponto = await _pontoRepository.ObterPontoPorIdAsync(id); // Verifica se o ponto existe
         return ponto != null;
     }
 
     public async Task<ConsultarPontoResponseDto> GetPontoByIdAsync(Guid usuarioId)
     {
-        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId);
-
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); // Busca pontos do usuário
         if (pontos == null || !pontos.Any())
             throw new InvalidOperationException("Nenhum ponto encontrado para este usuário.");
 
-        var ponto = pontos.First();
+        var ponto = pontos.First(); // Pega o primeiro ponto encontrado
 
         return new ConsultarPontoResponseDto
         {
@@ -349,27 +332,23 @@ public class PontoService : IPontoService
         };
     }
 
-
     public async Task<ConsultarTecnicoResponseDto> GetTecnicoComPontosAsync(Guid usuarioId)
     {
         var tecnico = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId) as Tecnico;
         if (tecnico == null)
             throw new InvalidOperationException("Técnico não encontrado.");
 
-        var fotoUrlFinal = !string.IsNullOrEmpty(tecnico.FotoUrl) ? tecnico.FotoUrl : "Foto não encontrada";
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); // Busca os pontos do técnico
 
-        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId);
-
+        // Monta os trajetos com base nos pontos de expediente
         var trajetos = new List<TrajetoResponseDto>();
-
         foreach (var ponto in pontos)
         {
             if (ponto.TipoPonto == TipoPonto.Expediente &&
-    !string.IsNullOrWhiteSpace(ponto.LatitudeInicioExpediente) &&
-    !string.IsNullOrWhiteSpace(ponto.LongitudeInicioExpediente) &&
-    !string.IsNullOrWhiteSpace(ponto.LatitudeFimExpediente) &&
-    !string.IsNullOrWhiteSpace(ponto.LongitudeFimExpediente))
-
+                !string.IsNullOrWhiteSpace(ponto.LatitudeInicioExpediente) &&
+                !string.IsNullOrWhiteSpace(ponto.LongitudeInicioExpediente) &&
+                !string.IsNullOrWhiteSpace(ponto.LatitudeFimExpediente) &&
+                !string.IsNullOrWhiteSpace(ponto.LongitudeFimExpediente))
             {
                 trajetos.Add(new TrajetoResponseDto
                 {
@@ -379,7 +358,6 @@ public class PontoService : IPontoService
                     LatitudeFim = ponto.LatitudeFimExpediente?.ToString() ?? "0",
                     LongitudeFim = ponto.LongitudeFimExpediente?.ToString() ?? "0"
                 });
-
             }
         }
 
@@ -392,7 +370,7 @@ public class PontoService : IPontoService
             Role = tecnico.Role,
             Ativo = tecnico.Ativo,
             Cpf = tecnico.Cpf,
-            FotoUrl = fotoUrlFinal,
+            FotoUrl = !string.IsNullOrEmpty(tecnico.FotoUrl) ? tecnico.FotoUrl : "Foto não encontrada",
             HoraEntrada = tecnico.HoraEntrada,
             HoraSaida = tecnico.HoraSaida,
             HoraAlmocoInicio = tecnico.HoraAlmocoInicio,
@@ -408,49 +386,41 @@ public class PontoService : IPontoService
                 HorasTrabalhadas = p.HorasTrabalhadas,
                 HorasExtras = p.HorasExtras,
                 HorasDevidas = p.HorasDevidas,
-
                 LatitudeInicioExpediente = p.LatitudeInicioExpediente?.ToString() ?? "0",
                 LongitudeInicioExpediente = p.LongitudeInicioExpediente?.ToString() ?? "0",
                 DataHoraInicioExpediente = p.InicioExpediente,
-
                 LatitudeFimExpediente = p.LatitudeFimExpediente?.ToString() ?? "0",
                 LongitudeFimExpediente = p.LongitudeFimExpediente?.ToString() ?? "0",
                 DataHoraFimExpediente = p.FimExpediente,
-
                 LatitudeInicioPausa = p.LatitudeInicioPausa?.ToString() ?? "0",
                 LongitudeInicioPausa = p.LongitudeInicioPausa?.ToString() ?? "0",
                 DataHoraInicioPausa = p.InicioPausa,
-
                 LatitudeRetornoPausa = p.LatitudeRetornoPausa?.ToString() ?? "0",
                 LongitudeRetornoPausa = p.LongitudeRetornoPausa?.ToString() ?? "0",
                 DataHoraRetornoPausa = p.RetornoPausa,
-
                 UsuarioId = p.UsuarioId,
                 NomeTecnico = tecnico.Nome,
                 FotoInicioExpediente = p.FotoInicioExpediente,
                 FotoFimExpediente = p.FotoFimExpediente,
                 TipoPonto = p.TipoPonto,
-
                 DistanciaPercorrida = p.DistanciaPercorrida,
                 ObservacaoInicioExpediente = p.ObservacaoInicioExpediente,
                 ObservacaoFimExpediente = p.ObservacaoFimExpediente,
                 ObservacaoInicioPausa = p.ObservacaoInicioPausa,
                 ObservacaoFimPausa = p.ObservacaoFimPausa
             }).ToList(),
-
-            Trajetos = trajetos,
-
+            Trajetos = trajetos
         };
     }
 
     Task<IEnumerable<UsuarioResponseDto>> IBaseService<Ponto>.GetAllAsync()
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); // Método não implementado
     }
 
     private TecnicoResponseDto MapearParaTecnicoResponseDto(Usuario usuario)
     {
-        var tecnico = usuario as Tecnico;
+        var tecnico = usuario as Tecnico; // Converte o usuário pra técnico
 
         return new TecnicoResponseDto
         {
@@ -475,20 +445,16 @@ public class PontoService : IPontoService
 
     public async Task<List<PontoCombinadoResponseDto>> GetAllPontosCombinadoAsync()
     {
-        var pontos = await _pontoRepository.ObterTodosPontosAsync();
-
-        // Agrupar os pontos por usuário
+        var pontos = await _pontoRepository.ObterTodosPontosAsync(); // Pega todos os pontos
         var pontosCombinados = pontos
-            .GroupBy(p => p.UsuarioId)
+            .GroupBy(p => p.UsuarioId) // Agrupa por usuário
             .SelectMany(grupo =>
             {
-                // Separe os expedientes e pausas desse usuário
                 var expedientes = grupo.Where(x => x.TipoPonto == TipoPonto.Expediente).ToList();
                 var pausas = grupo.Where(x => x.TipoPonto == TipoPonto.Pausa).ToList();
-
                 var lista = new List<PontoCombinadoResponseDto>();
 
-                // 1) Se tiver AMBOS (Expediente e Pausa), vamos criar um "combo" para cada par
+                // Combina expedientes e pausas, ou usa só um deles se o outro não existir
                 if (expedientes.Any() && pausas.Any())
                 {
                     foreach (var exp in expedientes)
@@ -501,38 +467,23 @@ public class PontoService : IPontoService
                                 TipoPonto = TipoPonto.Expediente,
                                 UsuarioId = grupo.Key,
                                 Nome = exp.Tecnico?.Nome ?? pau.Tecnico?.Nome ?? "N/A",
-
-                                // Dados do expediente
                                 InicioExpediente = exp.InicioExpediente,
                                 FimExpediente = exp.FimExpediente,
-                                LatitudeInicioExpediente = double.TryParse(exp.LatitudeInicioExpediente?.Replace(",", "."),
-                                           out double latInicio) ? latInicio : 0,
-
-                                LongitudeInicioExpediente = double.TryParse(exp.LongitudeInicioExpediente?.Replace(",", "."),
-                                            out double longInicio) ? longInicio : 0,
-
-                                LatitudeFimExpediente = double.TryParse(exp.LatitudeFimExpediente?.Replace(",", "."),
-                                        out double latFim) ? latFim : 0,
-
-                                LongitudeFimExpediente = double.TryParse(exp.LongitudeFimExpediente?.Replace(",", "."),
-                                         out double longFim) ? longFim : 0,
-
+                                LatitudeInicioExpediente = double.TryParse(exp.LatitudeInicioExpediente?.Replace(",", "."), out double latInicio) ? latInicio : 0,
+                                LongitudeInicioExpediente = double.TryParse(exp.LongitudeInicioExpediente?.Replace(",", "."), out double longInicio) ? longInicio : 0,
+                                LatitudeFimExpediente = double.TryParse(exp.LatitudeFimExpediente?.Replace(",", "."), out double latFim) ? latFim : 0,
+                                LongitudeFimExpediente = double.TryParse(exp.LongitudeFimExpediente?.Replace(",", "."), out double longFim) ? longFim : 0,
                                 FotoInicioExpediente = exp.FotoInicioExpediente,
                                 FotoFimExpediente = exp.FotoFimExpediente,
-
-                                // Dados da pausa
                                 InicioPausa = pau.InicioPausa,
                                 RetornoPausa = pau.RetornoPausa,
                                 LatitudeInicioPausa = pau.LatitudeInicioPausa,
                                 LongitudeInicioPausa = pau.LongitudeInicioPausa,
                                 LatitudeRetornoPausa = pau.LatitudeRetornoPausa,
                                 LongitudeRetornoPausa = pau.LongitudeRetornoPausa,
-
-                                // Horas combinadas (trazendo as do expediente)
                                 HorasTrabalhadas = exp.HorasTrabalhadas,
                                 HorasExtras = exp.HorasExtras,
                                 HorasDevidas = exp.HorasDevidas,
-                                // Observações: une as do expediente e as da pausa
                                 Observacoes = string.Join(" | ", new[]
                                 {
                                     exp.ObservacaoInicioExpediente,
@@ -544,83 +495,52 @@ public class PontoService : IPontoService
                         }
                     }
                 }
-                else
+                else if (expedientes.Any())
                 {
-                    // 2) Se tiver APENAS Expedientes (nenhuma Pausa)
-                    if (expedientes.Any() && !pausas.Any())
+                    foreach (var exp in expedientes)
                     {
-                        foreach (var exp in expedientes)
+                        lista.Add(new PontoCombinadoResponseDto
                         {
-                            lista.Add(new PontoCombinadoResponseDto
-                            {
-                                Id = exp.Id,
-                                TipoPonto = TipoPonto.Expediente,
-                                UsuarioId = grupo.Key,
-                                Nome = exp.Tecnico?.Nome ?? "N/A",
-
-                                // Dados do expediente
-                                InicioExpediente = exp.InicioExpediente,
-                                FimExpediente = exp.FimExpediente,
-                                LatitudeInicioExpediente = double.TryParse(exp.LatitudeInicioExpediente?.Replace(",", "."),
-                                           out double latInicio) ? latInicio : 0,
-
-                                LongitudeInicioExpediente = double.TryParse(exp.LongitudeInicioExpediente?.Replace(",", "."),
-                                            out double longInicio) ? longInicio : 0,
-
-                                LatitudeFimExpediente = double.TryParse(exp.LatitudeFimExpediente?.Replace(",", "."),
-                                        out double latFim) ? latFim : 0,
-
-                                LongitudeFimExpediente = double.TryParse(exp.LongitudeFimExpediente?.Replace(",", "."),
-                                         out double longFim) ? longFim : 0,
-
-                                FotoInicioExpediente = exp.FotoInicioExpediente,
-                                FotoFimExpediente = exp.FotoFimExpediente,
-
-                                // Horas combinadas (do expediente)
-                                HorasTrabalhadas = exp.HorasTrabalhadas,
-                                HorasExtras = exp.HorasExtras,
-                                HorasDevidas = exp.HorasDevidas,
-                                // Observações
-                                Observacoes = string.Join(" | ", new[]
-                                {
-                                    exp.ObservacaoInicioExpediente,
-                                    exp.ObservacaoFimExpediente
-                                }.Where(o => !string.IsNullOrEmpty(o)))
-                            });
-                        }
+                            Id = exp.Id,
+                            TipoPonto = TipoPonto.Expediente,
+                            UsuarioId = grupo.Key,
+                            Nome = exp.Tecnico?.Nome ?? "N/A",
+                            InicioExpediente = exp.InicioExpediente,
+                            FimExpediente = exp.FimExpediente,
+                            LatitudeInicioExpediente = double.TryParse(exp.LatitudeInicioExpediente?.Replace(",", "."), out double latInicio) ? latInicio : 0,
+                            LongitudeInicioExpediente = double.TryParse(exp.LongitudeInicioExpediente?.Replace(",", "."), out double longInicio) ? longInicio : 0,
+                            LatitudeFimExpediente = double.TryParse(exp.LatitudeFimExpediente?.Replace(",", "."), out double latFim) ? latFim : 0,
+                            LongitudeFimExpediente = double.TryParse(exp.LongitudeFimExpediente?.Replace(",", "."), out double longFim) ? longFim : 0,
+                            FotoInicioExpediente = exp.FotoInicioExpediente,
+                            FotoFimExpediente = exp.FotoFimExpediente,
+                            HorasTrabalhadas = exp.HorasTrabalhadas,
+                            HorasExtras = exp.HorasExtras,
+                            HorasDevidas = exp.HorasDevidas,
+                            Observacoes = string.Join(" | ", new[] { exp.ObservacaoInicioExpediente, exp.ObservacaoFimExpediente }.Where(o => !string.IsNullOrEmpty(o)))
+                        });
                     }
-
-                    // 3) Se tiver APENAS Pausas (nenhum Expediente)
-                    if (!expedientes.Any() && pausas.Any())
+                }
+                else if (pausas.Any())
+                {
+                    foreach (var pau in pausas)
                     {
-                        foreach (var pau in pausas)
+                        lista.Add(new PontoCombinadoResponseDto
                         {
-                            lista.Add(new PontoCombinadoResponseDto
-                            {
-                                Id = pau.Id,
-                                TipoPonto = TipoPonto.Pausa,
-                                UsuarioId = grupo.Key,
-                                Nome = pau.Tecnico?.Nome ?? "N/A",
-
-                                // Dados da pausa
-                                InicioPausa = pau.InicioPausa,
-                                RetornoPausa = pau.RetornoPausa,
-                                LatitudeInicioPausa = pau.LatitudeInicioPausa,
-                                LongitudeInicioPausa = pau.LongitudeInicioPausa,
-                                LatitudeRetornoPausa = pau.LatitudeRetornoPausa,
-                                LongitudeRetornoPausa = pau.LongitudeRetornoPausa,
-
-                                HorasTrabalhadas = pau.HorasTrabalhadas,
-                                HorasExtras = pau.HorasExtras,
-                                HorasDevidas = pau.HorasDevidas,
-                                // Observações
-                                Observacoes = string.Join(" | ", new[]
-                                {
-                                    pau.ObservacaoInicioPausa,
-                                    pau.ObservacaoFimPausa
-                                }.Where(o => !string.IsNullOrEmpty(o)))
-                            });
-                        }
+                            Id = pau.Id,
+                            TipoPonto = TipoPonto.Pausa,
+                            UsuarioId = grupo.Key,
+                            Nome = pau.Tecnico?.Nome ?? "N/A",
+                            InicioPausa = pau.InicioPausa,
+                            RetornoPausa = pau.RetornoPausa,
+                            LatitudeInicioPausa = pau.LatitudeInicioPausa,
+                            LongitudeInicioPausa = pau.LongitudeInicioPausa,
+                            LatitudeRetornoPausa = pau.LatitudeRetornoPausa,
+                            LongitudeRetornoPausa = pau.LongitudeRetornoPausa,
+                            HorasTrabalhadas = pau.HorasTrabalhadas,
+                            HorasExtras = pau.HorasExtras,
+                            HorasDevidas = pau.HorasDevidas,
+                            Observacoes = string.Join(" | ", new[] { pau.ObservacaoInicioPausa, pau.ObservacaoFimPausa }.Where(o => !string.IsNullOrEmpty(o)))
+                        });
                     }
                 }
 
@@ -630,15 +550,15 @@ public class PontoService : IPontoService
 
         return pontosCombinados;
     }
+
     public async Task<List<PontoCombinadoResponseDto>> GetPontosCombinadoPorUsuarioIdAsync(Guid usuarioId)
     {
-        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId);
-
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); // Pega os pontos do usuário
         var expedientes = pontos.Where(x => x.TipoPonto == TipoPonto.Expediente).ToList();
         var pausas = pontos.Where(x => x.TipoPonto == TipoPonto.Pausa).ToList();
-
         var lista = new List<PontoCombinadoResponseDto>();
 
+        // Combina expedientes e pausas ou usa só um deles
         if (expedientes.Any() && pausas.Any())
         {
             foreach (var exp in expedientes)
@@ -652,7 +572,6 @@ public class PontoService : IPontoService
                         TipoPonto = TipoPonto.Expediente,
                         UsuarioId = usuarioId,
                         Nome = exp.Tecnico?.Nome ?? pau.Tecnico?.Nome ?? "N/A",
-
                         InicioExpediente = exp.InicioExpediente,
                         FimExpediente = exp.FimExpediente,
                         LatitudeInicioExpediente = Convert.ToDouble(exp.LatitudeInicioExpediente?.Replace(",", ".") ?? "0"),
@@ -726,23 +645,14 @@ public class PontoService : IPontoService
 
         return lista;
     }
+
     public async Task<bool> VerificarExpedienteDoDiaAsync(Guid usuarioId)
     {
         var hoje = DateTime.Now.Date;
-        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId);
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); // Busca pontos do usuário
 
-        // Verifica se há algum registro de início de expediente no dia atual
+        // Confere se tem algum início de expediente hoje
         return pontos.Any(p => p.InicioExpediente.HasValue && p.InicioExpediente.Value.Date == hoje);
     }
-
-
-
+    #endregion
 }
-
-
-
-
-
-
-
-

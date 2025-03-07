@@ -21,6 +21,7 @@ public class UsuarioService : IUsuarioService
     private readonly ITecnicoRepository _tecnicoRepository;
     private readonly IEmpresaRepository _empresaRepository;
 
+    #region Construtor
     public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository)
     {
         _usuarioRepository = usuarioRepository;
@@ -32,30 +33,24 @@ public class UsuarioService : IUsuarioService
         _tecnicoRepository = tecnicoRepository;
         _empresaRepository = empresaRepository;
     }
+    #endregion
+
+    #region Métodos de Autenticação e Gestão de Usuários
     public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto)
     {
-
+        // Tenta autenticar por UserName ou CPF
         if (!string.IsNullOrWhiteSpace(requestDto.UserName))
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
-
             if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-            {
                 throw new UnauthorizedAccessException("UserName ou senha inválidos.");
-            }
 
-            bool isOnline = false;
-            if (usuario is Tecnico tecnico)
-            {
-                tecnico.IsOnline = true;
-                isOnline = true;
-            }
-
+            // Marca técnico como online e atualiza a última autenticação
+            bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
             usuario.DataHoraUltimaAutenticacao = DateTime.Now;
-
             await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
 
-            var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
+            var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString()); // Gera o token JWT
 
             return new AutenticarUsuarioResponseDto
             {
@@ -68,28 +63,16 @@ public class UsuarioService : IUsuarioService
                 FotoUrl = usuario.FotoUrl,
                 IsOnline = isOnline,
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
-
             };
         }
-
         else if (!string.IsNullOrWhiteSpace(requestDto.Cpf))
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
-
             if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-            {
                 throw new UnauthorizedAccessException("CPF ou senha inválidos.");
-            }
 
-            bool isOnline = false;
-            if (usuario is Tecnico tecnico)
-            {
-                tecnico.IsOnline = true;
-                isOnline = true;
-            }
-
+            bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
             usuario.DataHoraUltimaAutenticacao = DateTime.Now;
-
             await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
 
             var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
@@ -105,39 +88,33 @@ public class UsuarioService : IUsuarioService
                 FotoUrl = usuario.FotoUrl,
                 IsOnline = isOnline,
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
-
             };
         }
         else
-        {
             throw new UnauthorizedAccessException("CPF ou UserName deve ser fornecido.");
-        }
     }
 
     public async Task<Usuario?> GetByEmailAsync(string email)
     {
-        return await _usuarioRepository.ObterUsuarioPorEmailAsync(email);
+        return await _usuarioRepository.ObterUsuarioPorEmailAsync(email); // Busca usuário por email
     }
 
     public async Task ChangePasswordAsync(Guid usuarioId, string novaSenha)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
         if (usuario == null)
-        {
             throw new Exception("Usuário não encontrado.");
-        }
 
         if (usuario is Administrador)
-        {
             throw new Exception("O Administrador não pode alterar a senha diretamente.");
-        }
 
-        usuario.Senha = _cryptoSHA256.HashPassword(novaSenha);
+        usuario.Senha = _cryptoSHA256.HashPassword(novaSenha); // Criptografa a nova senha
         await _usuarioRepository.AtualizarUsuarioAsync(usuarioId);
     }
 
     public async Task<CriarUsuarioResponseDto> CreateUsuarioAsync(CriarUsuarioRequestDto requestDto)
     {
+        // Só permite criar técnicos
         if (requestDto.Role != UserRole.Colaborador)
             throw new Exception("Apenas técnicos podem ser criados por este serviço.");
 
@@ -145,9 +122,8 @@ public class UsuarioService : IUsuarioService
         if (usuarioExistente != null)
             throw new Exception("CPF já cadastrado.");
 
-        string? fotoUrl = null;
-        if (requestDto.FotoFile != null)
-            fotoUrl = await _imageService.UploadImageAsync(requestDto.FotoFile);
+        // Salva a foto, se tiver
+        string? fotoUrl = requestDto.FotoFile != null ? await _imageService.UploadImageAsync(requestDto.FotoFile) : null;
 
         var tecnico = new Tecnico
         {
@@ -173,10 +149,10 @@ public class UsuarioService : IUsuarioService
         if (!validationResult.IsValid)
             throw new Exception(string.Join(", ", validationResult.Errors));
 
-        tecnico.Senha = _cryptoSHA256.HashPassword(tecnico.Senha);
+        tecnico.Senha = _cryptoSHA256.HashPassword(tecnico.Senha); // Criptografa a senha antes de salvar
         await _usuarioRepository.CriarUsuarioAsync(tecnico);
 
-        // Buscar dados da empresa usando o repositório
+        // Busca dados da empresa, se tiver
         EmpresaResponseDto? empresaDto = null;
         if (requestDto.EmpresaId.HasValue)
         {
@@ -234,23 +210,18 @@ public class UsuarioService : IUsuarioService
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
         if (usuario == null)
-        {
             throw new Exception("Usuário não encontrado.");
-        }
 
         if (usuario is Administrador)
-        {
             throw new Exception("O Administrador não pode ser atualizado diretamente.");
-        }
 
+        // Atualiza só os campos que vieram no request
         usuario.Nome = requestDto.Nome ?? usuario.Nome;
         usuario.UserName = requestDto.UserName ?? usuario.UserName;
         usuario.Email = requestDto.Email ?? usuario.Email;
 
         if (!string.IsNullOrEmpty(requestDto.Senha))
-        {
             usuario.Senha = _cryptoSHA256.HashPassword(requestDto.Senha);
-        }
 
         if (usuario is Tecnico tecnico)
         {
@@ -261,28 +232,19 @@ public class UsuarioService : IUsuarioService
             tecnico.Cpf = requestDto.Cpf ?? tecnico.Cpf;
 
             if (requestDto.FotoFile != null)
-            {
-                var fotoUrl = await _imageService.UploadImageAsync(requestDto.FotoFile);
-                tecnico.FotoUrl = fotoUrl;
-            }
+                tecnico.FotoUrl = await _imageService.UploadImageAsync(requestDto.FotoFile);
             else
-            {
                 tecnico.FotoUrl = requestDto.FotoUrl ?? tecnico.FotoUrl;
-            }
 
             if (requestDto.IsOnline.HasValue)
-            {
                 tecnico.IsOnline = requestDto.IsOnline.Value;
-            }
 
             tecnico.LatitudeAtual = requestDto.LatitudeAtual ?? tecnico.LatitudeAtual;
             tecnico.LongitutdeAtual = requestDto.LongitudeAtual ?? tecnico.LongitutdeAtual;
 
             var validationResult = await _tecnicoValidator.ValidateAsync(tecnico);
             if (!validationResult.IsValid)
-            {
                 throw new Exception(string.Join(", ", validationResult.Errors));
-            }
         }
 
         await _usuarioRepository.AtualizarUsuarioAsync(usuarioId);
@@ -309,13 +271,33 @@ public class UsuarioService : IUsuarioService
 
     public async Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync()
     {
-        var usuarios = await _usuarioRepository.GetAllAsync();
+        #region Busca de Técnicos
+        var usuarios = await _usuarioRepository.GetAllAsync(); // Pega todos os usuários
+        #endregion
 
-        return usuarios.Select(usuario =>
+        #region Mapeamento
+        var result = new List<UsuarioResponseDto>();
+        foreach (var usuario in usuarios)
         {
             var tecnico = usuario as Tecnico;
 
-            return new UsuarioResponseDto
+            // Busca a empresa associada, se houver EmpresaId
+            EmpresaResponseDto? empresaDto = null;
+            if (tecnico?.EmpresaId.HasValue == true)
+            {
+                var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+                if (empresa != null)
+                {
+                    empresaDto = new EmpresaResponseDto
+                    {
+                        EmpresaId = empresa.EmpresaId,
+                        NomeDaEmpresa = empresa.NomeDaEmpresa,
+                        Ativo = empresa.Ativo
+                    };
+                }
+            }
+
+            result.Add(new UsuarioResponseDto
             {
                 UsuarioId = usuario.UsuarioId,
                 Nome = usuario.Nome,
@@ -334,54 +316,76 @@ public class UsuarioService : IUsuarioService
                 LatitudeAtual = tecnico?.LatitudeAtual,
                 LongitudeAtual = tecnico?.LongitutdeAtual,
                 DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
-                            NumeroMatricula = tecnico?.NumeroMatricula,
-            EmpresaId = tecnico?.EmpresaId
-            };
-        }).ToList();
+                NumeroMatricula = tecnico?.NumeroMatricula,
+                EmpresaId = tecnico?.EmpresaId,
+                Empresa = empresaDto
+            });
+        }
+        return result;
+        #endregion
     }
     public async Task<UsuarioResponseDto?> GetByIdAsync(Guid id)
+{
+    #region Busca de Técnico
+    var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
+    if (usuario == null)
+        return null;
+    #endregion
+
+    #region Mapeamento
+    var tecnico = usuario as Tecnico;
+
+    // Busca a empresa associada, se houver EmpresaId
+    EmpresaResponseDto? empresaDto = null;
+    if (tecnico?.EmpresaId.HasValue == true)
     {
-        var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
-        if (usuario == null)
-            return null;
-
-        var tecnico = usuario as Tecnico;
-
-        return new UsuarioResponseDto
+        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+        if (empresa != null)
         {
-            UsuarioId = usuario.UsuarioId,
-            Nome = usuario.Nome,
-            Email = usuario.Email,
-            UserName = usuario.UserName,
-            Role = usuario.Role,
-            Ativo = usuario.Ativo,
-            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
-            TipoUsuario = usuario.TipoUsuario,
-            Cpf = tecnico?.Cpf ?? "N/A",
-            HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
-            HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
-            HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
-            HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
-            IsOnline = tecnico?.IsOnline ?? false,
-            LatitudeAtual = tecnico?.LatitudeAtual,
-            LongitudeAtual = tecnico?.LongitutdeAtual,
-            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
-            NumeroMatricula = tecnico?.NumeroMatricula,
-            EmpresaId = tecnico?.EmpresaId
-           
-        };
+            empresaDto = new EmpresaResponseDto
+            {
+                EmpresaId = empresa.EmpresaId,
+                NomeDaEmpresa = empresa.NomeDaEmpresa,
+                Ativo = empresa.Ativo
+            };
+        }
     }
+
+    return new UsuarioResponseDto
+    {
+        UsuarioId = usuario.UsuarioId,
+        Nome = usuario.Nome,
+        Email = usuario.Email,
+        UserName = usuario.UserName,
+        Role = usuario.Role,
+        Ativo = usuario.Ativo,
+        FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+        TipoUsuario = usuario.TipoUsuario,
+        Cpf = tecnico?.Cpf ?? "N/A",
+        HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+        HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+        HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+        HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+        IsOnline = tecnico?.IsOnline ?? false,
+        LatitudeAtual = tecnico?.LatitudeAtual,
+        LongitudeAtual = tecnico?.LongitutdeAtual,
+        DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+        NumeroMatricula = tecnico?.NumeroMatricula,
+        EmpresaId = tecnico?.EmpresaId,
+        Empresa = empresaDto // Inclui os dados da empresa, com NomeDaEmpresa
+    };
+    #endregion
+}
+
     public async Task<bool> ExistsAsync(Guid id)
     {
-        return await _usuarioRepository.ObterUsuarioPorIdAsync(id) != null;
+        return await _usuarioRepository.ObterUsuarioPorIdAsync(id) != null; // Verifica se o usuário existe
     }
 
     public async Task AddAsync(Usuario entity)
     {
         if (entity is Administrador)
-        {
             throw new Exception("O Administrador não pode ser criado pelo sistema.");
-        }
 
         await _usuarioRepository.CriarUsuarioAsync(entity);
     }
@@ -389,9 +393,7 @@ public class UsuarioService : IUsuarioService
     public async Task UpdateAsync(Usuario entity)
     {
         if (entity is Administrador)
-        {
             throw new Exception("O Administrador não pode ser atualizado.");
-        }
 
         await _usuarioRepository.AtualizarUsuarioAsync(entity.UsuarioId);
     }
@@ -400,16 +402,14 @@ public class UsuarioService : IUsuarioService
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
         if (usuario == null)
-        {
             throw new Exception("Usuário não encontrado.");
-        }
 
         if (usuario is Administrador)
-        {
             throw new Exception("O Administrador não pode ser excluído.");
-        }
-        await _usuarioRepository.DeletarUsuarioAsync(id);
+
+        await _usuarioRepository.DeletarUsuarioAsync(id); // Deleta o usuário
     }
+
     public async Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
@@ -418,33 +418,29 @@ public class UsuarioService : IUsuarioService
 
         if (usuario is Tecnico tecnico)
         {
-
             tecnico.LatitudeAtual = latitude;
             tecnico.LongitutdeAtual = longitude;
-
-            await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId);
+            await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId); // Atualiza a localização do técnico
         }
         else
-        {
             throw new InvalidOperationException("Apenas técnicos podem ter a localização atualizada.");
-        }
     }
-
 
     Task<Usuario?> IBaseService<Usuario>.GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); // Método não implementado
     }
 
     public Task<IEnumerable<UsuarioResponseDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); // Método não implementado
     }
+
     private async Task<string> GerarNumeroMatriculaAsync()
     {
         var ultimaMatricula = await _tecnicoRepository.ObterUltimaMatriculaAsync();
         int novoNumero = ultimaMatricula + 1;
-        return novoNumero.ToString("D6"); // Formata como "000001", "000002", etc.
+        return novoNumero.ToString("D6"); // Gera número de matrícula com 6 dígitos (ex: "000001")
     }
 
     public async Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto)
@@ -456,17 +452,15 @@ public class UsuarioService : IUsuarioService
             Ativo = true
         };
 
+        // Adiciona endereço se tiver CEP
         if (requestDto.Endereco != null && !string.IsNullOrEmpty(requestDto.Endereco.Cep))
         {
-            // Aqui você pode integrar com um serviço como ViaCep para buscar os dados do endereço pelo CEP
-            // Por simplicidade, assumimos que apenas Cep, Numero e Complemento são fornecidos
             empresa.Endereco = new Endereco
             {
                 EnderecoId = Guid.NewGuid(),
                 Cep = requestDto.Endereco.Cep,
                 Numero = requestDto.Endereco.Numero,
                 Complemento = requestDto.Endereco.Complemento
-                // Outros campos como Logradouro, Bairro, etc., podem ser preenchidos via integração externa se desejar
             };
         }
 
@@ -487,7 +481,7 @@ public class UsuarioService : IUsuarioService
                 Localidade = empresa.Endereco.Cidade,
                 Uf = empresa.Endereco.Estado
             },
-            Tecnicos = null // Não há técnicos associados inicialmente
+            Tecnicos = null
         };
     }
 
@@ -519,11 +513,11 @@ public class UsuarioService : IUsuarioService
                 Cpf = t.Cpf
             }).ToList()
         };
-
     }
+
     public async Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync()
     {
-        var empresas = await _empresaRepository.GetAllEmpresasAsync();
+        var empresas = await _empresaRepository.GetAllEmpresasAsync(); // Pega todas as empresas
         return empresas.Select(e => new EmpresaResponseDto
         {
             EmpresaId = e.EmpresaId,
@@ -547,6 +541,7 @@ public class UsuarioService : IUsuarioService
             }).ToList()
         });
     }
+
     public async Task<EmpresaResponseDto> UpdateEmpresaAsync(Guid empresaId, AtualizarEmpresaRequestDto requestDto)
     {
         var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(empresaId);
@@ -555,15 +550,14 @@ public class UsuarioService : IUsuarioService
 
         empresa.NomeDaEmpresa = requestDto.NomeDaEmpresa ?? empresa.NomeDaEmpresa;
 
+        // Atualiza o endereço se vier no request
         if (requestDto.Endereco != null)
         {
             if (empresa.Endereco == null)
                 empresa.Endereco = new Endereco { EnderecoId = Guid.NewGuid() };
-
             empresa.Endereco.Cep = requestDto.Endereco.Cep ?? empresa.Endereco.Cep;
             empresa.Endereco.Numero = requestDto.Endereco.Numero ?? empresa.Endereco.Numero;
             empresa.Endereco.Complemento = requestDto.Endereco.Complemento ?? empresa.Endereco.Complemento;
-            // Outros campos permanecem como estão, a menos que sejam atualizados via integração externa
         }
 
         await _empresaRepository.AtualizarEmpresaAsync(empresa);
@@ -591,9 +585,10 @@ public class UsuarioService : IUsuarioService
             }).ToList()
         };
     }
+
     public async Task DeleteEmpresaAsync(Guid id)
     {
-        await _empresaRepository.ExcluirEmpresaAsync(id);
+        await _empresaRepository.ExcluirEmpresaAsync(id); // Deleta a empresa
     }
-
+    #endregion
 }

@@ -16,14 +16,15 @@ namespace ControlApp.Infra.Data.Seeders
 
         public DataSeeder(DataContext context, CryptoSHA256 cryptoSHA256)
         {
-            _context = context;
-            _cryptoSHA256 = cryptoSHA256;
+            _context = context;           // Recebe o contexto do banco
+            _cryptoSHA256 = cryptoSHA256; // Recebe o serviço de hash pra senha
         }
 
         public async Task SeedAsync()
         {
-            await _context.Database.MigrateAsync();
+            await _context.Database.MigrateAsync(); // Aplica as migrações pra criar/atualizar o banco
 
+            // Verifica se já tem administrador; se não tiver, cria um
             if (!_context.Usuarios.Any(u => u.Role == UserRole.Administrador))
             {
                 var admin = new Administrador
@@ -32,14 +33,14 @@ namespace ControlApp.Infra.Data.Seeders
                     Nome = "Admin",
                     UserName = "admin",
                     Email = "admin@controlapp.com",
-                    Senha = _cryptoSHA256.HashPassword("@Admin123"),  
+                    Senha = _cryptoSHA256.HashPassword("@Admin123"), 
                     Role = UserRole.Administrador,
                     Ativo = true,
-                    TipoUsuario = "Administrador" ,
+                    TipoUsuario = "Administrador",
                 };
 
-                _context.Usuarios.Add(admin);
-                await _context.SaveChangesAsync();
+                _context.Usuarios.Add(admin);    
+                await _context.SaveChangesAsync(); 
             }
         }
     }

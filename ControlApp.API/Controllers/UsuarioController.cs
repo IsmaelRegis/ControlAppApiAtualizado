@@ -16,11 +16,18 @@ public class UsuarioController : ControllerBase
     private readonly IUsuarioService _usuarioService;
     private readonly ITokenSecurity _tokenSecurity;
 
+    #region Construtor
     public UsuarioController(IUsuarioService usuarioService, ITokenSecurity tokenSecurity)
     {
-        _usuarioService = usuarioService;
-        _tokenSecurity = tokenSecurity;
+        _usuarioService = usuarioService; // Injeção de dependência do serviço de usuário
+        _tokenSecurity = tokenSecurity;   // Injeção de dependência do serviço de token
     }
+    #endregion
+
+    #region Endpoints
+    /* 
+     * Endpoints para gerenciamento de usuários e empresas.
+     */
 
     [HttpPost("authenticate")]
     [AllowAnonymous]
@@ -28,24 +35,17 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request);
-
+            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request); // Autentica o usuário
             if (usuarioResponse == null)
             {
-                return Unauthorized("CPF ou senha inválidos.");
+                return Unauthorized("CPF ou senha inválidos."); // Retorna 401 se falhar
             }
-
-            var token = _tokenSecurity.CreateToken(usuarioResponse.UsuarioId, usuarioResponse.Role);
-
-            return Ok(new
-            {
-                Token = token,
-                Usuario = usuarioResponse
-            });
+            var token = _tokenSecurity.CreateToken(usuarioResponse.UsuarioId, usuarioResponse.Role); // Gera token JWT
+            return Ok(new { Token = token, Usuario = usuarioResponse });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(ex.Message); // Retorna 400 com erro
         }
     }
 
@@ -55,8 +55,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var response = await _usuarioService.CreateUsuarioAsync(request);
-
+            var response = await _usuarioService.CreateUsuarioAsync(request); // Cria novo usuário
             var usuarioResponse = new CriarUsuarioResponseDto
             {
                 UsuarioId = response.UsuarioId,
@@ -72,7 +71,6 @@ public class UsuarioController : ControllerBase
                 HoraAlmocoInicio = response.HoraAlmocoInicio,
                 HoraAlmocoFim = response.HoraAlmocoFim,
             };
-
             return Ok(usuarioResponse);
         }
         catch (Exception ex)
@@ -81,13 +79,12 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
     [HttpPut("update/{id}")]
     public async Task<ActionResult> Update([FromRoute] Guid id, [FromForm] AtualizarUsuarioRequestDto request)
     {
         try
         {
-            var response = await _usuarioService.UpdateUsuarioAsync(id, request);
+            var response = await _usuarioService.UpdateUsuarioAsync(id, request); // Atualiza usuário
             return Ok(response);
         }
         catch (Exception ex)
@@ -95,15 +92,16 @@ public class UsuarioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
     [HttpPut("update-location/{usuarioId}")]
     public async Task<ActionResult> AtualizarLocalizacaoAtual(
-    [FromRoute] Guid usuarioId,
-    [FromQuery] string latitude,
-    [FromQuery] string longitude)
+        [FromRoute] Guid usuarioId,
+        [FromQuery] string latitude,
+        [FromQuery] string longitude)
     {
         try
         {
-            await _usuarioService.AtualizarLocalizacaoAtualAsync(usuarioId, latitude, longitude);
+            await _usuarioService.AtualizarLocalizacaoAtualAsync(usuarioId, latitude, longitude); // Atualiza localização
             return Ok("Localização atualizada com sucesso.");
         }
         catch (InvalidOperationException ex)
@@ -116,14 +114,13 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
     [Authorize(Roles = "Administrador")]
     [HttpDelete("delete/{id}")]
     public async Task<ActionResult> Delete([FromRoute] Guid id)
     {
         try
         {
-            await _usuarioService.DeleteAsync(id);
+            await _usuarioService.DeleteAsync(id); // Exclui usuário
             return Ok();
         }
         catch (Exception ex)
@@ -135,35 +132,35 @@ public class UsuarioController : ControllerBase
     [HttpGet("tecnicos")]
     public async Task<IActionResult> GetTecnicos()
     {
-        var tecnicos = await _usuarioService.GetAllTecnicosAsync();
+        var tecnicos = await _usuarioService.GetAllTecnicosAsync(); // Lista todos os técnicos
         return Ok(tecnicos);
     }
 
     [HttpGet("{usuarioId}/status")]
     public async Task<IActionResult> GetUsuarioStatus(Guid usuarioId)
     {
-        var usuario = await _usuarioService.GetByIdAsync(usuarioId);
+        var usuario = await _usuarioService.GetByIdAsync(usuarioId); // Obtém status do usuário
         if (usuario == null)
             return NotFound("Usuário não encontrado.");
-
         return Ok(usuario.Ativo);
     }
 
     [HttpGet("{usuarioId}")]
     public async Task<IActionResult> GetUsuarioById(Guid usuarioId)
     {
-        var usuario = await _usuarioService.GetByIdAsync(usuarioId);
+        var usuario = await _usuarioService.GetByIdAsync(usuarioId); // Obtém usuário por ID
         if (usuario == null)
             return NotFound("Usuário não encontrado.");
         return Ok(usuario);
     }
+
     [Authorize(Roles = "Administrador")]
     [HttpPost("empresa")]
     public async Task<ActionResult> CreateEmpresa([FromBody] CriarEmpresaRequestDto request)
     {
         try
         {
-            var response = await _usuarioService.CreateEmpresaAsync(request);
+            var response = await _usuarioService.CreateEmpresaAsync(request); // Cria nova empresa
             return Ok(response);
         }
         catch (Exception ex)
@@ -175,7 +172,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("empresa/{empresaId}")]
     public async Task<IActionResult> GetEmpresaById(Guid empresaId)
     {
-        var empresa = await _usuarioService.GetEmpresaByIdAsync(empresaId);
+        var empresa = await _usuarioService.GetEmpresaByIdAsync(empresaId); // Obtém empresa por ID
         if (empresa == null)
             return NotFound("Empresa não encontrada.");
         return Ok(empresa);
@@ -184,7 +181,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("empresa")]
     public async Task<IActionResult> GetAllEmpresas()
     {
-        var empresas = await _usuarioService.GetAllEmpresasAsync();
+        var empresas = await _usuarioService.GetAllEmpresasAsync(); // Lista todas as empresas
         return Ok(empresas);
     }
 
@@ -194,7 +191,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var response = await _usuarioService.UpdateEmpresaAsync(empresaId, request);
+            var response = await _usuarioService.UpdateEmpresaAsync(empresaId, request); // Atualiza empresa
             return Ok(response);
         }
         catch (Exception ex)
@@ -209,7 +206,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            await _usuarioService.DeleteEmpresaAsync(empresaId);
+            await _usuarioService.DeleteEmpresaAsync(empresaId); // Exclui empresa
             return Ok("Empresa excluída com sucesso.");
         }
         catch (Exception ex)
@@ -217,4 +214,5 @@ public class UsuarioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    #endregion
 }
