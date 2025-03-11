@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\dtos\\response\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\dtos\\response\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.security\\settings\\jwttokensettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\settings\\jwttokensettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.security\\services\\tokensecurity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokensecurity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\seeds\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\seeds\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,19 +26,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsuarioResponseDto.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAADwvx4AAAAhAAAAAAAAAA==",
+              "Title": "UsuarioMap.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
+              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
+              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T16:58:17.455Z",
+              "WhenOpened": "2025-03-11T13:29:48.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T13:29:37.16Z",
               "EditorCaption": ""
             },
             {
@@ -53,48 +62,22 @@
               "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
               "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
               "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAACsCAAAAAAAAAAAiwFECAAABAAAAAAAAAA==",
+              "ViewState": "AgIAALAAAAAAAAAAAAAAAIEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T16:55:14.032Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "JwtTokenSettings.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Settings\\JwtTokenSettings.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Settings\\JwtTokenSettings.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Settings\\JwtTokenSettings.cs",
-              "RelativeToolTip": "ControlApp.Infra.Security\\Settings\\JwtTokenSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T16:38:11.087Z",
+              "WhenOpened": "2025-03-10T12:23:45.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TokenSecurity.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "RelativeToolTip": "ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCQAAAABAAAAAAAAAA==",
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T16:36:00.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DataSeeder.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Seeds\\DataSeeder.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Seeds\\DataSeeder.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Seeds\\DataSeeder.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Seeds\\DataSeeder.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCoAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T16:35:31.971Z",
+              "WhenOpened": "2025-03-10T12:20:48.896Z",
               "EditorCaption": ""
             }
           ]

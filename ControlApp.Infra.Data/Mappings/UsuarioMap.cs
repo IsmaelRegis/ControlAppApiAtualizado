@@ -10,7 +10,6 @@ namespace ControlApp.Infra.Data.Mappings
         {
             builder.ToTable("USUARIOS");
 
-            // Chave primária definida apenas na classe base
             builder.HasKey(u => u.UsuarioId);
 
             builder.Property(u => u.Nome)
@@ -31,7 +30,10 @@ namespace ControlApp.Infra.Data.Mappings
             builder.Property(u => u.UserName)
                 .HasColumnName("USERNAME")
                 .HasMaxLength(100)
-                .IsRequired(false); // Opcional, já que nem todos os usuários podem ter UserName
+                .IsRequired(false); 
+
+            builder.HasIndex(u => u.UserName)
+                .IsUnique();
 
             builder.Property(u => u.Role)
                 .HasColumnName("ROLE")
@@ -51,9 +53,8 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasColumnName("DATA_HORA_ULTIMA_AUTENTICACAO")
                 .IsRequired(false);
 
-            // Configuração do discriminador para TPH
             builder.HasDiscriminator<string>("TipoUsuario")
-                .HasValue<Usuario>("Usuario") // Classe base (pode ser abstrata ou genérica)
+                .HasValue<Usuario>("Usuario") 
                 .HasValue<Tecnico>("Tecnico")
                 .HasValue<Administrador>("Administrador");
         }

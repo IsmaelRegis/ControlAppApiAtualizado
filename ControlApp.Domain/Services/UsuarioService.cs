@@ -122,6 +122,13 @@ public class UsuarioService : IUsuarioService
         if (usuarioExistente != null)
             throw new Exception("CPF já cadastrado.");
 
+        if (!string.IsNullOrWhiteSpace(requestDto.UserName))
+        {
+            var usuarioExistentePorUserName = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
+            if (usuarioExistentePorUserName != null)
+                throw new Exception("UserName já cadastrado. Escolha outro UserName.");
+        }
+
         // Salva a foto, se tiver
         string? fotoUrl = requestDto.FotoFile != null ? await _imageService.UploadImageAsync(requestDto.FotoFile) : null;
 
@@ -325,57 +332,57 @@ public class UsuarioService : IUsuarioService
         #endregion
     }
     public async Task<UsuarioResponseDto?> GetByIdAsync(Guid id)
-{
-    #region Busca de Técnico
-    var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
-    if (usuario == null)
-        return null;
-    #endregion
-
-    #region Mapeamento
-    var tecnico = usuario as Tecnico;
-
-    // Busca a empresa associada, se houver EmpresaId
-    EmpresaResponseDto? empresaDto = null;
-    if (tecnico?.EmpresaId.HasValue == true)
     {
-        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
-        if (empresa != null)
+        #region Busca de Técnico
+        var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
+        if (usuario == null)
+            return null;
+        #endregion
+
+        #region Mapeamento
+        var tecnico = usuario as Tecnico;
+
+        // Busca a empresa associada, se houver EmpresaId
+        EmpresaResponseDto? empresaDto = null;
+        if (tecnico?.EmpresaId.HasValue == true)
         {
-            empresaDto = new EmpresaResponseDto
+            var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+            if (empresa != null)
             {
-                EmpresaId = empresa.EmpresaId,
-                NomeDaEmpresa = empresa.NomeDaEmpresa,
-                Ativo = empresa.Ativo
-            };
+                empresaDto = new EmpresaResponseDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    NomeDaEmpresa = empresa.NomeDaEmpresa,
+                    Ativo = empresa.Ativo
+                };
+            }
         }
-    }
 
-    return new UsuarioResponseDto
-    {
-        UsuarioId = usuario.UsuarioId,
-        Nome = usuario.Nome,
-        Email = usuario.Email,
-        UserName = usuario.UserName,
-        Role = usuario.Role,
-        Ativo = usuario.Ativo,
-        FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
-        TipoUsuario = usuario.TipoUsuario,
-        Cpf = tecnico?.Cpf ?? "N/A",
-        HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
-        HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
-        HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
-        HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
-        IsOnline = tecnico?.IsOnline ?? false,
-        LatitudeAtual = tecnico?.LatitudeAtual,
-        LongitudeAtual = tecnico?.LongitutdeAtual,
-        DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
-        NumeroMatricula = tecnico?.NumeroMatricula,
-        EmpresaId = tecnico?.EmpresaId,
-        Empresa = empresaDto // Inclui os dados da empresa, com NomeDaEmpresa
-    };
-    #endregion
-}
+        return new UsuarioResponseDto
+        {
+            UsuarioId = usuario.UsuarioId,
+            Nome = usuario.Nome,
+            Email = usuario.Email,
+            UserName = usuario.UserName,
+            Role = usuario.Role,
+            Ativo = usuario.Ativo,
+            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+            TipoUsuario = usuario.TipoUsuario,
+            Cpf = tecnico?.Cpf ?? "N/A",
+            HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+            HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+            HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+            HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+            IsOnline = tecnico?.IsOnline ?? false,
+            LatitudeAtual = tecnico?.LatitudeAtual,
+            LongitudeAtual = tecnico?.LongitutdeAtual,
+            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+            NumeroMatricula = tecnico?.NumeroMatricula,
+            EmpresaId = tecnico?.EmpresaId,
+            Empresa = empresaDto // Inclui os dados da empresa, com NomeDaEmpresa
+        };
+        #endregion
+    }
 
     public async Task<bool> ExistsAsync(Guid id)
     {
@@ -510,7 +517,8 @@ public class UsuarioService : IUsuarioService
             {
                 UsuarioId = t.UsuarioId,
                 Nome = t.Nome,
-                Cpf = t.Cpf
+                Cpf = t.Cpf,
+                Role = t.Role
             }).ToList()
         };
     }
@@ -537,7 +545,8 @@ public class UsuarioService : IUsuarioService
             {
                 UsuarioId = t.UsuarioId,
                 Nome = t.Nome,
-                Cpf = t.Cpf
+                Cpf = t.Cpf,
+                Role = t.Role
             }).ToList()
         });
     }
@@ -558,6 +567,10 @@ public class UsuarioService : IUsuarioService
             empresa.Endereco.Cep = requestDto.Endereco.Cep ?? empresa.Endereco.Cep;
             empresa.Endereco.Numero = requestDto.Endereco.Numero ?? empresa.Endereco.Numero;
             empresa.Endereco.Complemento = requestDto.Endereco.Complemento ?? empresa.Endereco.Complemento;
+            empresa.Endereco.Logradouro = requestDto.Endereco.Logradouro ?? empresa.Endereco.Logradouro;
+            empresa.Endereco.Bairro = requestDto.Endereco.Bairro ?? empresa.Endereco.Bairro;
+            empresa.Endereco.Cidade = requestDto.Endereco.Cidade ?? empresa.Endereco.Cidade;
+            empresa.Endereco.Estado = requestDto.Endereco.Estado ?? empresa.Endereco.Estado;
         }
 
         await _empresaRepository.AtualizarEmpresaAsync(empresa);
@@ -581,7 +594,8 @@ public class UsuarioService : IUsuarioService
             {
                 UsuarioId = t.UsuarioId,
                 Nome = t.Nome,
-                Cpf = t.Cpf
+                Cpf = t.Cpf,
+                Role = t.Role
             }).ToList()
         };
     }

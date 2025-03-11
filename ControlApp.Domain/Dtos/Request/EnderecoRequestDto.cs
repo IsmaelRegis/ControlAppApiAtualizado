@@ -8,8 +8,12 @@ namespace ControlApp.Domain.Dtos.Request
 {
     public class EnderecoRequestDto
     {
-        public string? Cep { get; set; } // Opcional
-        public string? Numero { get; set; } // Opcional
-        public string? Complemento { get; set; } // Opcional
+        public string? Cep { get; set; } 
+        public string? Numero { get; set; } 
+        public string? Complemento { get; set; } 
+        public string? Logradouro { get; set; }
+        public string? Bairro { get; set; }
+        public string? Cidade { get; set; }
+        public string? Estado { get; set; }
     }
 }
