@@ -2,7 +2,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "VerificarExpedienteDoDiaAsync",
-    "RelativePath": "api/ponto/{usuarioId}/expediente-hoje",
+    "RelativePath": "controlapp/ponto/{usuarioId}/expediente-hoje",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -28,7 +28,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "GetPontosCombinadoPorUsuarioIdAsync",
-    "RelativePath": "api/ponto/{usuarioId}/pontos-combinados",
+    "RelativePath": "controlapp/ponto/{usuarioId}/pontos-combinados",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -54,7 +54,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "RegisterFimExpedienteAsync",
-    "RelativePath": "api/ponto/{usuarioId}/registrarfimexpediente/{pontoId}",
+    "RelativePath": "controlapp/ponto/{usuarioId}/registrarfimexpediente/{pontoId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -110,7 +110,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "RegisterFimPausaAsync",
-    "RelativePath": "api/ponto/{usuarioId}/registrarfimpausa/{pontoId}",
+    "RelativePath": "controlapp/ponto/{usuarioId}/registrarfimpausa/{pontoId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -136,7 +136,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "RegisterInicioExpedienteAsync",
-    "RelativePath": "api/ponto/{usuarioId}/registrarinicioexpediente",
+    "RelativePath": "controlapp/ponto/{usuarioId}/registrarinicioexpediente",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -187,7 +187,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "RegisterInicioPausaAsync",
-    "RelativePath": "api/ponto/{usuarioId}/registrariniciopausa",
+    "RelativePath": "controlapp/ponto/{usuarioId}/registrariniciopausa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -218,7 +218,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "GetTecnicoComPontos",
-    "RelativePath": "api/ponto/{usuarioId}/tecnico-com-pontos",
+    "RelativePath": "controlapp/ponto/{usuarioId}/tecnico-com-pontos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -244,7 +244,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "GetAllPontosCombinadoAsync",
-    "RelativePath": "api/ponto/pontos-combinados",
+    "RelativePath": "controlapp/ponto/pontos-combinados",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -264,7 +264,7 @@
   {
     "ContainingType": "PontoController",
     "Method": "GetPontosComTrajetosAsync",
-    "RelativePath": "api/ponto/pontos-trajetos",
+    "RelativePath": "controlapp/ponto/pontos-trajetos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -284,7 +284,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "GetUsuarioById",
-    "RelativePath": "api/usuario/{usuarioId}",
+    "RelativePath": "controlapp/usuario/{usuarioId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -300,7 +300,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "GetUsuarioStatus",
-    "RelativePath": "api/usuario/{usuarioId}/status",
+    "RelativePath": "controlapp/usuario/{usuarioId}/status",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -316,7 +316,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Authenticate",
-    "RelativePath": "api/usuario/authenticate",
+    "RelativePath": "controlapp/usuario/authenticate",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -332,7 +332,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Delete",
-    "RelativePath": "api/usuario/delete/{id}",
+    "RelativePath": "controlapp/usuario/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -348,7 +348,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "CreateEmpresa",
-    "RelativePath": "api/usuario/empresa",
+    "RelativePath": "controlapp/usuario/empresa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -364,7 +364,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "GetAllEmpresas",
-    "RelativePath": "api/usuario/empresa",
+    "RelativePath": "controlapp/usuario/empresa",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -374,7 +374,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "GetEmpresaById",
-    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "RelativePath": "controlapp/usuario/empresa/{empresaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -390,7 +390,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "UpdateEmpresa",
-    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "RelativePath": "controlapp/usuario/empresa/{empresaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -411,7 +411,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "DeleteEmpresa",
-    "RelativePath": "api/usuario/empresa/{empresaId}",
+    "RelativePath": "controlapp/usuario/empresa/{empresaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -427,7 +427,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Register",
-    "RelativePath": "api/usuario/register",
+    "RelativePath": "controlapp/usuario/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -503,7 +503,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "GetTecnicos",
-    "RelativePath": "api/usuario/tecnicos",
+    "RelativePath": "controlapp/usuario/tecnicos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -513,7 +513,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "AtualizarLocalizacaoAtual",
-    "RelativePath": "api/usuario/update-location/{usuarioId}",
+    "RelativePath": "controlapp/usuario/update-location/{usuarioId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -539,7 +539,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Update",
-    "RelativePath": "api/usuario/update/{id}",
+    "RelativePath": "controlapp/usuario/update/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

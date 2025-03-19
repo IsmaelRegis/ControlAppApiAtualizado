@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/ponto/{usuarioId}/registrarinicioexpediente": {
+    "/controlapp/ponto/{usuarioId}/registrarinicioexpediente": {
       "post": {
         "tags": [
           "Ponto"
@@ -89,7 +89,7 @@
         }
       }
     },
-    "/api/ponto/{usuarioId}/registrarfimexpediente/{pontoId}": {
+    "/controlapp/ponto/{usuarioId}/registrarfimexpediente/{pontoId}": {
       "post": {
         "tags": [
           "Ponto"
@@ -182,7 +182,7 @@
         }
       }
     },
-    "/api/ponto/{usuarioId}/registrariniciopausa": {
+    "/controlapp/ponto/{usuarioId}/registrariniciopausa": {
       "post": {
         "tags": [
           "Ponto"
@@ -241,7 +241,7 @@
         }
       }
     },
-    "/api/ponto/{usuarioId}/registrarfimpausa/{pontoId}": {
+    "/controlapp/ponto/{usuarioId}/registrarfimpausa/{pontoId}": {
       "post": {
         "tags": [
           "Ponto"
@@ -292,7 +292,7 @@
         }
       }
     },
-    "/api/ponto/pontos-trajetos": {
+    "/controlapp/ponto/pontos-trajetos": {
       "get": {
         "tags": [
           "Ponto"
@@ -330,7 +330,7 @@
         }
       }
     },
-    "/api/ponto/{usuarioId}/tecnico-com-pontos": {
+    "/controlapp/ponto/{usuarioId}/tecnico-com-pontos": {
       "get": {
         "tags": [
           "Ponto"
@@ -370,7 +370,7 @@
         }
       }
     },
-    "/api/ponto/pontos-combinados": {
+    "/controlapp/ponto/pontos-combinados": {
       "get": {
         "tags": [
           "Ponto"
@@ -408,56 +408,7 @@
         }
       }
     },
-    "/api/ponto/{usuarioId}/pontos-combinados": {
-      "get": {
-        "tags": [
-          "Ponto"
-        ],
-        "parameters": [
-          {
-            "name": "usuarioId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ponto/{usuarioId}/expediente-hoje": {
+    "/controlapp/ponto/{usuarioId}/pontos-combinados": {
       "get": {
         "tags": [
           "Ponto"
@@ -479,6 +430,55 @@
             "content": {
               "text/plain": {
                 "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PontoCombinadoResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/controlapp/ponto/{usuarioId}/expediente-hoje": {
+      "get": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
                   "type": "boolean"
                 }
               },
@@ -497,7 +497,7 @@
         }
       }
     },
-    "/api/usuario/authenticate": {
+    "/controlapp/usuario/authenticate": {
       "post": {
         "tags": [
           "Usuario"
@@ -528,7 +528,7 @@
         }
       }
     },
-    "/api/usuario/register": {
+    "/controlapp/usuario/register": {
       "post": {
         "tags": [
           "Usuario"
@@ -637,7 +637,7 @@
         }
       }
     },
-    "/api/usuario/update/{id}": {
+    "/controlapp/usuario/update/{id}": {
       "put": {
         "tags": [
           "Usuario"
@@ -775,7 +775,7 @@
         }
       }
     },
-    "/api/usuario/update-location/{usuarioId}": {
+    "/controlapp/usuario/update-location/{usuarioId}": {
       "put": {
         "tags": [
           "Usuario"
@@ -812,7 +812,7 @@
         }
       }
     },
-    "/api/usuario/delete/{id}": {
+    "/controlapp/usuario/delete/{id}": {
       "delete": {
         "tags": [
           "Usuario"
@@ -835,7 +835,7 @@
         }
       }
     },
-    "/api/usuario/tecnicos": {
+    "/controlapp/usuario/tecnicos": {
       "get": {
         "tags": [
           "Usuario"
@@ -847,30 +847,7 @@
         }
       }
     },
-    "/api/usuario/{usuarioId}/status": {
-      "get": {
-        "tags": [
-          "Usuario"
-        ],
-        "parameters": [
-          {
-            "name": "usuarioId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/usuario/{usuarioId}": {
+    "/controlapp/usuario/{usuarioId}/status": {
       "get": {
         "tags": [
           "Usuario"
@@ -893,7 +870,30 @@
         }
       }
     },
-    "/api/usuario/empresa": {
+    "/controlapp/usuario/{usuarioId}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/controlapp/usuario/empresa": {
       "post": {
         "tags": [
           "Usuario"
@@ -934,7 +934,7 @@
         }
       }
     },
-    "/api/usuario/empresa/{empresaId}": {
+    "/controlapp/usuario/empresa/{empresaId}": {
       "get": {
         "tags": [
           "Usuario"

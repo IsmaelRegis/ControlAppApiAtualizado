@@ -7,7 +7,7 @@ using ControlApp.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
+[Route("controlapp/[controller]")]
 [ApiController]
 public class PontoController : ControllerBase
 {

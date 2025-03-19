@@ -16,8 +16,13 @@
                 options.AddPolicy("AgendaPolicy", builder =>
                 {
                     builder.WithOrigins(
-                            "http://localhost:4200",   // Origem do frontend
-                            "https://localhost:5030"   // Origem da outra API
+                            "http://212.85.1.124:5030",
+                            "https://212.85.1.124:5030",
+                            "http://localhost:4200",
+                            "https://api.gilvandev.com",
+                            "https://gilvandev.com",
+                            "https://212.85.1.124",
+                            "http://212.85.1.124"
                         )
                         .AllowAnyMethod()   // Permite todos os métodos HTTP (GET, POST, PUT, etc.)
                         .AllowAnyHeader();  // Permite todos os cabeçalhos nas requisições

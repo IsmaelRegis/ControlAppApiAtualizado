@@ -1,0 +1,16 @@
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\bin\Release\net8.0\ControlApp.Infra.Security.deps.json
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\bin\Release\net8.0\ControlApp.Infra.Security.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\bin\Release\net8.0\ControlApp.Infra.Security.pdb
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\bin\Release\net8.0\ControlApp.Domain.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\bin\Release\net8.0\ControlApp.Domain.pdb
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.csproj.AssemblyReference.cache
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.GeneratedMSBuildEditorConfig.editorconfig
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.AssemblyInfoInputs.cache
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.AssemblyInfo.cs
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.csproj.CoreCompileInputs.cache
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.sourcelink.json
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlA.D1A8F90A.Up2Date
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\refint\ControlApp.Infra.Security.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ControlApp.Infra.Security.pdb
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.Infra.Security\obj\Release\net8.0\ref\ControlApp.Infra.Security.dll

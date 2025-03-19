@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ControlApp.Infra.Security")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a494366d02f5d7a4229322a02989961db0c15b92")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76353c57c26ce4599d426aeab83cc653ea425a21")]
 [assembly: System.Reflection.AssemblyProductAttribute("ControlApp.Infra.Security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ControlApp.Infra.Security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

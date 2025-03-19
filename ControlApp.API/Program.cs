@@ -95,14 +95,12 @@ using (var scope = app.Services.CreateScope())
     await dataSeeder.SeedAsync(); // Executa o seeding de dados iniciais
 }
 #endregion
-
-#region Configuração de Desenvolvimento
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(); // Habilita Swagger em ambiente de desenvolvimento
     app.UseSwaggerUI(); // Habilita interface do Swagger
+
 }
-#endregion
 
 #region Pipeline da Aplicação
 app.UseRouting(); // Configura roteamento
@@ -110,5 +108,6 @@ app.UseCors("AgendaPolicy"); // Aplica política de CORS
 app.UseAuthentication(); // Habilita autenticação
 app.UseAuthorization(); // Habilita autorização
 app.MapControllers(); // Mapeia os controladores
-app.Run(); // Inicia a aplicação
+app.Urls.Add("http://0.0.0.0:5000");
+app.Run();
 #endregion
