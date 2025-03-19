@@ -43,7 +43,12 @@ public class UsuarioService : IUsuarioService
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
             if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-                throw new UnauthorizedAccessException("UserName ou senha inválidos.");
+            {
+                return new AutenticarUsuarioResponseDto
+                {
+                    Mensagem = "Username ou senha inválidos"
+                };
+            }
 
             // Marca técnico como online e atualiza a última autenticação
             bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
@@ -61,6 +66,7 @@ public class UsuarioService : IUsuarioService
                 Cpf = (usuario as Tecnico)?.Cpf,
                 Token = token,
                 FotoUrl = usuario.FotoUrl,
+                UserName = usuario.UserName,
                 IsOnline = isOnline,
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
             };
@@ -69,7 +75,12 @@ public class UsuarioService : IUsuarioService
         {
             var usuario = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
             if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-                throw new UnauthorizedAccessException("CPF ou senha inválidos.");
+            {
+                return new AutenticarUsuarioResponseDto
+                {
+                    Mensagem = "Username ou senha inválidos"
+                };
+            }
 
             bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
             usuario.DataHoraUltimaAutenticacao = DateTime.Now;
@@ -86,14 +97,19 @@ public class UsuarioService : IUsuarioService
                 Cpf = (usuario as Tecnico)?.Cpf,
                 Token = token,
                 FotoUrl = usuario.FotoUrl,
+                UserName = usuario.UserName,
                 IsOnline = isOnline,
                 DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
             };
         }
         else
-            throw new UnauthorizedAccessException("CPF ou UserName deve ser fornecido.");
+        {
+            return new AutenticarUsuarioResponseDto
+            {
+                Mensagem = "CPF ou UserName deve ser fornecido"
+            };
+        }
     }
-
     public async Task<Usuario?> GetByEmailAsync(string email)
     {
         return await _usuarioRepository.ObterUsuarioPorEmailAsync(email); // Busca usuário por email

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ControlApp.Domain.Entities;
+﻿using ControlApp.Domain.Entities;
 using FluentValidation;
 
 namespace ControlApp.Domain.Validations

@@ -31,17 +31,16 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request); // Autentica o usuário
-            if (usuarioResponse == null)
-            {
-                return Unauthorized("CPF ou senha inválidos."); // Retorna 401 se falhar
-            }
-            var token = _tokenSecurity.CreateToken(usuarioResponse.UsuarioId, usuarioResponse.Role); // Gera token JWT
-            return Ok(new { Token = token, Usuario = usuarioResponse });
+            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request);
+            return Ok(usuarioResponse); // Retorna diretamente o usuarioResponse, que já contém o token
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized("Usuário inválido, username ou senha inválidos."); 
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message); // Retorna 400 com erro
+            return StatusCode(500, new { Message = "Erro interno no servidor", Detail = ex.Message }); // Retorna 500 para outros erros
         }
     }
 

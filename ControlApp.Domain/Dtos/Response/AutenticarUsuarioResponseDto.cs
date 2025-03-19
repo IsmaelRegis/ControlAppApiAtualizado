@@ -13,6 +13,7 @@ namespace ControlApp.Domain.Dtos.Response
         public string? FotoUrl { get; set; }
         public string? UserName { get; set; }
         public bool IsOnline { get; set; }
+        public string? Mensagem { get; set; }
         public DateTime DataHoraAutenticacao { get; set; }
     }
 }
