@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\ControlAppApiAtualizado\\ControlApp\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\configurations\\corsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\configurations\\corsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T12:14:29.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PontoController.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\PontoController.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\PontoController.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\PontoController.cs",
+              "RelativeToolTip": "ControlApp.API\\Controllers\\PontoController.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T12:14:27.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Program.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Program.cs",
+              "RelativeToolTip": "ControlApp.API\\Program.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAqwHcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T12:09:32.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CorsConfiguration.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Configurations\\CorsConfiguration.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Configurations\\CorsConfiguration.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Configurations\\CorsConfiguration.cs",
+              "RelativeToolTip": "ControlApp.API\\Configurations\\CorsConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T11:28:22.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAACcCAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T11:14:24.331Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

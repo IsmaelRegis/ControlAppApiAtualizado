@@ -108,6 +108,13 @@ app.UseCors("AgendaPolicy"); // Aplica política de CORS
 app.UseAuthentication(); // Habilita autenticação
 app.UseAuthorization(); // Habilita autorização
 app.MapControllers(); // Mapeia os controladores
-app.Urls.Add("http://0.0.0.0:5000");
+if (app.Environment.IsDevelopment())
+{
+    app.Urls.Add("http://0.0.0.0:5001"); // Porta diferente para desenvolvimento
+}
+else
+{
+    app.Urls.Add("http://0.0.0.0:5000"); // Porta para produção (ajuste conforme o ambiente real)
+}
 app.Run();
 #endregion
