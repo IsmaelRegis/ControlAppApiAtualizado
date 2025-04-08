@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.Infra.Data", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlApp.Infra.Security", "ControlApp.Infra.Security\ControlApp.Infra.Security.csproj", "{ACCC5925-0107-46AC-821B-5C81680B622E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Itens de solução", "4 - Itens de solução", "{19F97565-E1D5-40BF-949A-3E6F6FB536FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{916E4C7E-83E8-42ED-9993-889B77BC557A}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection

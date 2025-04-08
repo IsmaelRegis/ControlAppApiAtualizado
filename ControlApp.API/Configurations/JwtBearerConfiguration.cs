@@ -30,7 +30,7 @@ namespace ControlApp.API.Configurations
                     ValidateIssuer = true,              // Valida o emissor do token
                     ValidIssuer = "ControlApp",         // Define o emissor válido como "ControlApp"
                     ValidateAudience = true,            // Valida a audiência do token
-                    ValidAudience = "VibeService",      // Define a audiência válida como "VibeService"
+                    ValidAudiences = new[] { "VibeService", "CedaeApp" },  // Aceita múltiplas audiences
                     ValidateLifetime = false,           // Não valida o tempo de vida do token (expiração)
                     ValidateIssuerSigningKey = true,    // Valida a chave de assinatura do emissor
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenSettings.Key)), // Chave simétrica para assinatura

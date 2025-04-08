@@ -55,12 +55,14 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DATA_HORA");
 
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("FLOAT")
+                    b.Property<string>("Latitude")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
                         .HasColumnName("LATITUDE");
 
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("FLOAT")
+                    b.Property<string>("Longitude")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
                         .HasColumnName("LONGITUDE");
 
                     b.Property<double>("Precisao")
@@ -323,6 +325,10 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("CPF");
 
+                    b.Property<DateTime?>("DataEHoraLocalizacao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DATA_E_HORA_LOCALIZACAO");
+
                     b.Property<Guid?>("EmpresaId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("EMPRESA_ID");
@@ -366,6 +372,12 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("LONGITUDE_ATUAL");
+
+                    b.Property<string>("NomeDaEmpresa")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("NOME_EMPRESA");
 
                     b.Property<string>("NumeroMatricula")
                         .HasMaxLength(50)

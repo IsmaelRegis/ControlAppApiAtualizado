@@ -167,6 +167,88 @@
       ]
     },
     {
+      "Route": "images/14508f6b-dd2e-47ac-9550-f7acf20aab16.jfif",
+      "AssetFile": "images/14508f6b-dd2e-47ac-9550-f7acf20aab16.jfif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "100140"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/pjpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HOkEcxMY5Xg+zlHr2TcH1Sz7AYeIxhZHzBzwPXnVh84=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 13:56:10 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HOkEcxMY5Xg+zlHr2TcH1Sz7AYeIxhZHzBzwPXnVh84="
+        }
+      ]
+    },
+    {
+      "Route": "images/14508f6b-dd2e-47ac-9550-f7acf20aab16.oxav4jbtnt.jfif",
+      "AssetFile": "images/14508f6b-dd2e-47ac-9550-f7acf20aab16.jfif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "100140"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/pjpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HOkEcxMY5Xg+zlHr2TcH1Sz7AYeIxhZHzBzwPXnVh84=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 13:56:10 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oxav4jbtnt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HOkEcxMY5Xg+zlHr2TcH1Sz7AYeIxhZHzBzwPXnVh84="
+        },
+        {
+          "Name": "label",
+          "Value": "images/14508f6b-dd2e-47ac-9550-f7acf20aab16.jfif"
+        }
+      ]
+    },
+    {
       "Route": "images/2ab4b9dc-c0a2-4aff-ac75-3e4a4d1c64d2.jfif",
       "AssetFile": "images/2ab4b9dc-c0a2-4aff-ac75-3e4a4d1c64d2.jfif",
       "Selectors": [],

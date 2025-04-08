@@ -109,6 +109,30 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpPost("registrar-localizacao/{usuarioId}")]
+    public async Task<ActionResult> RegistrarLocalizacao(
+    [FromRoute] Guid usuarioId,
+    [FromQuery] string latitude,
+    [FromQuery] string longitude)
+    {
+        try
+        {
+            var resultado = await _usuarioService.AdicionarRegistroLocalizacaoAsync(usuarioId, latitude, longitude);
+            if (resultado)
+                return Ok("Localização registrada com sucesso.");
+            else
+                return BadRequest("Não foi possível registrar a localização.");
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+        }
+    }
+
     [Authorize(Roles = "Administrador")]
     [HttpDelete("delete/{id}")]
     public async Task<ActionResult> Delete([FromRoute] Guid id)

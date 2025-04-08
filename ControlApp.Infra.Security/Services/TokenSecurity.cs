@@ -10,28 +10,26 @@ namespace ControlApp.Infra.Security.Services
 {
     public class TokenSecurity : ITokenSecurity
     {
-        public string CreateToken(Guid usuarioId, string userRole)
+        // No TokenSecurity.cs, adicione um parâmetro para especificar a audience
+        public string CreateToken(Guid usuarioId, string userRole, string audience = "VibeService")
         {
-            var tokenHandler = new JwtSecurityTokenHandler(); // Cria o manipulador de tokens JWT
-            var key = Encoding.ASCII.GetBytes(JwtTokenSettings.Key); // Pega a chave secreta do settings
-
-            // Configura o token com as claims (ID e role), emissor, audiência e assinatura
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(JwtTokenSettings.Key);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, usuarioId.ToString()),
-                    new Claim(ClaimTypes.Role, userRole)
-                }),
+            new Claim(ClaimTypes.Name, usuarioId.ToString()),
+            new Claim(ClaimTypes.Role, userRole)
+        }),
                 Issuer = "ControlApp",
-                Audience = "VibeService",
+                Audience = audience,  // Agora usa o parâmetro
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor); // Gera o token
-            return tokenHandler.WriteToken(token); // Converte pra string e retorna
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

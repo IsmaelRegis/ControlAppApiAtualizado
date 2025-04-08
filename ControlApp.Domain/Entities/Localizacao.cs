@@ -9,8 +9,8 @@ namespace ControlApp.Domain.Entities
     public class Localizacao
     {
         public Guid  LocalizacaoId { get; set; }
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public string? Latitude { get; set; }
+        public string? Longitude { get; set; }
         public DateTime DataHora { get; set; } 
         public double Precisao { get; set; }
         public Guid TrajetoId { get; set; }

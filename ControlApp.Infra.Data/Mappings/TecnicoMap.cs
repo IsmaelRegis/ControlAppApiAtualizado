@@ -43,24 +43,33 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasColumnName("IS_ONLINE")
                 .HasDefaultValue(false);
 
+            builder.Property(t => t.DataEHoraLocalizacao)
+                .HasColumnName("DATA_E_HORA_LOCALIZACAO")
+                .IsRequired(false);
+
             builder.Property(t => t.LatitudeAtual)
                 .HasColumnName("LATITUDE_ATUAL")
                 .HasMaxLength(50)
                 .IsRequired(false);
 
-            builder.Property(t => t.LongitutdeAtual) // Corrigido o typo de "LongitutdeAtual"
+            builder.Property(t => t.LongitutdeAtual) 
                 .HasColumnName("LONGITUDE_ATUAL")
                 .HasMaxLength(50)
                 .IsRequired(false);
 
             builder.Property(t => t.NumeroMatricula)
-                .HasColumnName("NUMERO_MATRICULA") // Corrigido "NUMERO_MATRRICULA"
+                .HasColumnName("NUMERO_MATRICULA") 
                 .HasMaxLength(50)
                 .IsRequired(false);
 
             builder.Property(t => t.EmpresaId)
                 .HasColumnName("EMPRESA_ID")
                 .IsRequired(false);
+
+            builder.Property(e => e.NomeDaEmpresa)
+               .HasColumnName("NOME_EMPRESA")
+               .HasMaxLength(255)
+               .IsRequired();
 
             // Relacionamento com Empresa
             builder.HasOne(t => t.Empresa)

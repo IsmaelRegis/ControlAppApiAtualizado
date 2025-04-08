@@ -351,3 +351,9 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ControlApp
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ref\ControlApp.API.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Debug\net8.0\ControlApp.API.sourcelink.json
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\.filenesting.json
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\DnsClient.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\SharpCompress.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\Snappier.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Debug\net8.0\ZstdSharp.dll

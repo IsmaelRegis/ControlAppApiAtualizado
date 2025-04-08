@@ -6,6 +6,8 @@ using ControlApp.Infra.Data.Contexts;
 using ControlApp.Infra.Data.Seeders;
 using ControlApp.Infra.Data.Identity;
 using Microsoft.AspNetCore.Identity;
+/*using ControlApp.Infra.Data.MongoDB.Configurations;
+using ControlApp.Infra.Data.Services;*/
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +18,17 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); // Adiciona conversor para enums como strings no JSON
     });
 
+// Configurações do banco de dados SQL Server
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); // Configura o contexto do banco com SQL Server
+
+/*// Configurações do MongoDB
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.AddSingleton<MongoDbContext>();
+
+// Configurar os mapeamentos do MongoDB
+MongoDbConfig.ConfigureMongoDbMappings();*/
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
@@ -88,18 +99,32 @@ app.UseFileServer(new FileServerOptions
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
+    // Migração para SQL Server
     var dbContext = services.GetRequiredService<DataContext>();
     dbContext.Database.Migrate(); // Aplica migrações ao banco de dados
 
     var dataSeeder = services.GetRequiredService<DataSeeder>();
     await dataSeeder.SeedAsync(); // Executa o seeding de dados iniciais
+
+    /*// Sincronização inicial com MongoDB
+    try
+    {
+        var syncService = services.GetRequiredService<DatabaseSyncService>();
+        await syncService.SincronizarTodosAsync();
+        Console.WriteLine("Sincronização inicial com MongoDB concluída com sucesso");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Erro durante a sincronização inicial com MongoDB: {ex.Message}");
+    }*/
 }
 #endregion
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(); // Habilita Swagger em ambiente de desenvolvimento
     app.UseSwaggerUI(); // Habilita interface do Swagger
-
 }
 
 #region Pipeline da Aplicação
@@ -108,13 +133,31 @@ app.UseCors("AgendaPolicy"); // Aplica política de CORS
 app.UseAuthentication(); // Habilita autenticação
 app.UseAuthorization(); // Habilita autorização
 app.MapControllers(); // Mapeia os controladores
-if (app.Environment.IsDevelopment())
+
+#region Configuração de URLs
+// Verifica se a aplicação está sendo executada no Docker
+string aspNetCoreUrls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
+bool isRunningInDocker = !string.IsNullOrEmpty(aspNetCoreUrls);
+
+// Se não estiver rodando no Docker, configure as URLs manualmente
+if (!isRunningInDocker)
 {
-    app.Urls.Add("http://0.0.0.0:5001"); // Porta diferente para desenvolvimento
+    if (app.Environment.IsDevelopment())
+    {
+        app.Urls.Add("http://0.0.0.0:5001"); // Porta para desenvolvimento local
+        Console.WriteLine("Aplicação configurada para executar na porta 5001 em ambiente de desenvolvimento");
+    }
+    else
+    {
+        app.Urls.Add("http://0.0.0.0:5000"); // Porta para produção local
+        Console.WriteLine("Aplicação configurada para executar na porta 5000 em ambiente de produção");
+    }
 }
 else
 {
-    app.Urls.Add("http://0.0.0.0:5000"); // Porta para produção (ajuste conforme o ambiente real)
+    Console.WriteLine($"Executando no Docker com ASPNETCORE_URLS={aspNetCoreUrls}");
 }
+#endregion
+
 app.Run();
 #endregion

@@ -1689,6 +1689,10 @@
           "empresa": {
             "$ref": "#/components/schemas/EmpresaResponseDto"
           },
+          "nomeDaEmpresa": {
+            "type": "string",
+            "nullable": true
+          },
           "cpf": {
             "type": "string",
             "nullable": true

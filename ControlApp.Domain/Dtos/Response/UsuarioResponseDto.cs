@@ -26,8 +26,11 @@ namespace ControlApp.Domain.Dtos.Response
         public string? LatitudeAtual { get; set; }
         public string? LongitudeAtual { get; set; }
         public DateTime? DataHoraUltimaAutenticacao { get; set; }
+        public DateTime DataEHoraLocalizacao { get; set; }
         public string? NumeroMatricula { get; set; }
         public Guid? EmpresaId { get; set; }
         public EmpresaResponseDto? Empresa { get; set; }
+        public string? NomeDaEmpresa { get; set; }
+        public List<LocalizacaoResponseDto>? Localizacoes { get; set; }
     }
 }

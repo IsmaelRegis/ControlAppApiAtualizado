@@ -8,6 +8,6 @@ namespace ControlApp.Domain.Interfaces.Security
 {
     public interface ITokenSecurity
     {
-        string CreateToken(Guid usuarioId, string userRole); 
+        string CreateToken(Guid usuarioId, string userRole, string audience = "VibeService");
     }
 }

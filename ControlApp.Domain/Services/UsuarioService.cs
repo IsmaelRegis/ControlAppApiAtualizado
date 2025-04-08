@@ -20,9 +20,11 @@ public class UsuarioService : IUsuarioService
     private readonly CryptoSHA256 _cryptoSHA256;
     private readonly ITecnicoRepository _tecnicoRepository;
     private readonly IEmpresaRepository _empresaRepository;
+    private readonly ITrajetoRepository _trajetoRepository;
+    private readonly ILocalizacaoRepository _localizacaoRepository;
 
     #region Construtor
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository)
     {
         _usuarioRepository = usuarioRepository;
         _tokenSecurity = tokenSecurity;
@@ -32,6 +34,8 @@ public class UsuarioService : IUsuarioService
         _cryptoSHA256 = new CryptoSHA256();
         _tecnicoRepository = tecnicoRepository;
         _empresaRepository = empresaRepository;
+        _trajetoRepository = trajetoRepository;
+        _localizacaoRepository = localizacaoRepository;
     }
     #endregion
 
@@ -320,6 +324,29 @@ public class UsuarioService : IUsuarioService
                 }
             }
 
+            // Buscar o trajeto mais recente do técnico
+            List<LocalizacaoResponseDto>? localizacoes = null;
+            if (tecnico != null)
+            {
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                if (trajetos != null && trajetos.Any())
+                {
+                    var ultimoTrajeto = trajetos.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (ultimoTrajeto != null)
+                    {
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(ultimoTrajeto.Id);
+                        localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+                    }
+                }
+            }
+
             result.Add(new UsuarioResponseDto
             {
                 UsuarioId = usuario.UsuarioId,
@@ -338,10 +365,13 @@ public class UsuarioService : IUsuarioService
                 IsOnline = tecnico?.IsOnline ?? false,
                 LatitudeAtual = tecnico?.LatitudeAtual,
                 LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
                 DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
                 NumeroMatricula = tecnico?.NumeroMatricula,
                 EmpresaId = tecnico?.EmpresaId,
-                Empresa = empresaDto
+                NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+                Empresa = empresaDto,
+                Localizacoes = localizacoes
             });
         }
         return result;
@@ -374,6 +404,29 @@ public class UsuarioService : IUsuarioService
             }
         }
 
+        // Buscar o trajeto mais recente do técnico
+        List<LocalizacaoResponseDto>? localizacoes = null;
+        if (tecnico != null)
+        {
+            var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+            if (trajetos != null && trajetos.Any())
+            {
+                var ultimoTrajeto = trajetos.OrderByDescending(t => t.Data).FirstOrDefault();
+                if (ultimoTrajeto != null)
+                {
+                    var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(ultimoTrajeto.Id);
+                    localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                    {
+                        LocalizacaoId = l.LocalizacaoId,
+                        Latitude = l.Latitude,
+                        Longitude = l.Longitude,
+                        DataHora = l.DataHora,
+                        Precisao = l.Precisao
+                    }).ToList();
+                }
+            }
+        }
+
         return new UsuarioResponseDto
         {
             UsuarioId = usuario.UsuarioId,
@@ -392,10 +445,13 @@ public class UsuarioService : IUsuarioService
             IsOnline = tecnico?.IsOnline ?? false,
             LatitudeAtual = tecnico?.LatitudeAtual,
             LongitudeAtual = tecnico?.LongitutdeAtual,
+            DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
             DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
             NumeroMatricula = tecnico?.NumeroMatricula,
             EmpresaId = tecnico?.EmpresaId,
-            Empresa = empresaDto // Inclui os dados da empresa, com NomeDaEmpresa
+            Empresa = empresaDto, // Inclui os dados da empresa, com NomeDaEmpresa
+            NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+            Localizacoes = localizacoes
         };
         #endregion
     }
@@ -449,6 +505,84 @@ public class UsuarioService : IUsuarioService
             throw new InvalidOperationException("Apenas técnicos podem ter a localização atualizada.");
     }
 
+    public async Task<bool> AdicionarRegistroLocalizacaoAsync(Guid usuarioId, string latitude, string longitude)
+    {
+        try
+        {
+            var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
+            if (usuario == null)
+                throw new InvalidOperationException("Usuário não encontrado.");
+
+            if (usuario is Tecnico tecnico)
+            {
+                // Atualiza a localização atual do técnico
+                tecnico.LatitudeAtual = latitude;
+                tecnico.LongitutdeAtual = longitude;
+                tecnico.DataEHoraLocalizacao = DateTime.Now;
+
+                // Salva as alterações do técnico primeiro
+                await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId);
+
+                // Verifica se o técnico tem um trajeto ativo
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                Guid trajetoId;
+
+                // Se não existir trajeto ou a lista estiver vazia, cria um novo
+                if (trajetos == null || !trajetos.Any())
+                {
+                    var novoTrajeto = new Trajeto
+                    {
+                        Id = Guid.NewGuid(),
+                        Data = DateTime.Now,
+                        UsuarioId = tecnico.UsuarioId,
+                        Status = "Em andamento",
+                        // Valores padrão para campos obrigatórios
+                        DistanciaTotalKm = 0,
+                        DuracaoTotal = TimeSpan.Zero
+                    };
+
+                    await _trajetoRepository.AddAsync(novoTrajeto);
+                    trajetoId = novoTrajeto.Id;
+                }
+                else
+                {
+                    // Pega o primeiro trajeto (mais recente)
+                    var trajetoAtivo = trajetos.FirstOrDefault();
+                    trajetoId = trajetoAtivo?.Id ?? Guid.Empty;
+
+                    if (trajetoId == Guid.Empty)
+                        return false; // Não conseguiu obter um ID de trajeto válido
+                }
+
+                // Cria uma nova localização
+                var localizacao = new Localizacao
+                {
+                    LocalizacaoId = Guid.NewGuid(),
+                    Latitude = latitude,
+                    Longitude = longitude,
+                    DataHora = DateTime.Now,
+                    Precisao = 0, // Valor padrão
+                    TrajetoId = trajetoId
+                };
+
+                // Adiciona a localização
+                return await _localizacaoRepository.AdicionarLocalizacaoAsync(localizacao);
+            }
+            else
+            {
+                throw new InvalidOperationException("Apenas técnicos podem ter a localização registrada.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log do erro para debug
+            Console.WriteLine($"Erro ao registrar localização: {ex.Message}");
+            if (ex.InnerException != null)
+                Console.WriteLine($"Exceção interna: {ex.InnerException.Message}");
+
+            return false; // Retorna false em vez de relançar a exceção para evitar o erro 500
+        }
+    }
     Task<Usuario?> IBaseService<Usuario>.GetByIdAsync(Guid id)
     {
         throw new NotImplementedException(); // Método não implementado

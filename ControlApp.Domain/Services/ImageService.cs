@@ -27,24 +27,25 @@ namespace ControlApp.Domain.Services
         {
             if (file == null || file.Length == 0)
             {
-                throw new ArgumentException("Arquivo inválido."); // Lança erro se o arquivo estiver vazio ou nulo
+                throw new ArgumentException("Arquivo inválido.");
             }
 
-            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName); // Cria um nome único pra imagem com a extensão original
-            var filePath = Path.Combine(_uploadDirectory, fileName); // Monta o caminho completo pra salvar a imagem
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(_uploadDirectory, fileName);
 
             try
             {
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await file.CopyToAsync(stream); // Salva a imagem no caminho definido
+                    await file.CopyToAsync(stream);
                 }
+                Console.WriteLine($"Imagem salva em: {filePath}"); // Adicione este log
             }
             catch (Exception ex)
             {
-                throw new Exception($"Erro ao salvar a imagem: {ex.Message}"); // Lança erro se algo der errado no salvamento
+                throw new Exception($"Erro ao salvar a imagem: {ex.Message}");
             }
-            return $"/images/{fileName}"; // Retorna o caminho pra acessar a imagem
+            return $"/images/{fileName}";
         }
         #endregion
     }

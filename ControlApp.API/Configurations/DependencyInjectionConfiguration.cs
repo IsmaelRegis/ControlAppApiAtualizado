@@ -20,11 +20,44 @@ namespace ControlApp.API.Configurations
              * Configura as dependências da aplicação, registrando serviços, 
              * repositórios, validadores e classes de segurança no contêiner de DI.
              */
-
             #region Validadores
             // Registro de validadores
             services.AddTransient<PontoValidator>(); // Validador para a entidade Ponto
             #endregion
+
+            /*#region Repositórios do MongoDB
+            // Registro dos repositórios base do MongoDB
+            services.AddScoped<BaseRepository<Usuario>>(provider => {
+                var context = provider.GetRequiredService<MongoDbContext>();
+                return new BaseRepository<Usuario>(context, "usuarios");
+            });
+
+            services.AddScoped<BaseRepository<Ponto>>(provider => {
+                var context = provider.GetRequiredService<MongoDbContext>();
+                return new BaseRepository<Ponto>(context, "pontos");
+            });
+
+            services.AddScoped<BaseRepository<Trajeto>>(provider => {
+                var context = provider.GetRequiredService<MongoDbContext>();
+                return new BaseRepository<Trajeto>(context, "trajetos");
+            });
+
+            services.AddScoped<BaseRepository<Localizacao>>(provider => {
+                var context = provider.GetRequiredService<MongoDbContext>();
+                return new BaseRepository<Localizacao>(context, "localizacoes");
+            });
+
+            services.AddScoped<BaseRepository<Empresa>>(provider => {
+                var context = provider.GetRequiredService<MongoDbContext>();
+                return new BaseRepository<Empresa>(context, "empresas");
+            });
+
+            // Serviço de sincronização de dados entre SQL Server e MongoDB
+            services.AddScoped<DatabaseSyncService>();
+
+            // Adiciona o serviço de background para sincronização periódica
+            services.AddHostedService<DatabaseSyncBackgroundService>();
+            #endregion*/
 
             #region Repositórios
             // Registro de repositórios com suas interfaces correspondentes

@@ -17,6 +17,7 @@ namespace ControlApp.Domain.Interfaces.Services
         Task<AtualizarUsuarioResponseDto> UpdateUsuarioAsync(Guid usuarioId, AtualizarUsuarioRequestDto requestDto);
         Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto);
         Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude);
+        Task<bool> AdicionarRegistroLocalizacaoAsync(Guid usuarioId, string latitude, string longitude);
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);
         Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync();
         Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto);

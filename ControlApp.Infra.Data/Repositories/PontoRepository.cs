@@ -6,7 +6,9 @@ using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Infra.Data.Contexts;
+//using ControlApp.Infra.Data.MongoDB.Repositories;
 using Microsoft.EntityFrameworkCore;
+//using MongoDB.Driver;
 
 namespace ControlApp.Infra.Data.Repositories
 {
@@ -14,12 +16,26 @@ namespace ControlApp.Infra.Data.Repositories
     {
         private readonly DataContext _context;
         private readonly ILocalizacaoRepository _localizacaoRepository;
+        //private readonly BaseRepository<Ponto> _mongoRepository;
 
-        public PontoRepository(DataContext context, ILocalizacaoRepository localizacaoRepository)
+        /*public PontoRepository(
+            DataContext context,
+            ILocalizacaoRepository localizacaoRepository,
+            BaseRepository<Ponto> mongoRepository)
+        {
+            _context = context;
+            _localizacaoRepository = localizacaoRepository;
+            _mongoRepository = mongoRepository;
+        }*/
+
+        public PontoRepository(
+            DataContext context,
+            ILocalizacaoRepository localizacaoRepository)
         {
             _context = context;
             _localizacaoRepository = localizacaoRepository;
         }
+
         public async Task AtualizarPontoAsync(Guid id, Ponto pontoAtualizado)
         {
             try
@@ -46,6 +62,9 @@ namespace ControlApp.Infra.Data.Repositories
 
                 // Salva as alterações no banco de dados
                 await _context.SaveChangesAsync();
+
+                /*// Atualiza também no MongoDB
+                await _mongoRepository.AtualizarAsync(id, pontoAtualizado);*/
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -72,8 +91,13 @@ namespace ControlApp.Infra.Data.Repositories
 
         public async Task<Ponto> CriarPontoAsync(Ponto ponto)
         {
+            // Salva no SQL Server
             await _context.Pontos.AddAsync(ponto);
             await _context.SaveChangesAsync();
+
+            /*// Salva no MongoDB
+            await _mongoRepository.CriarAsync(ponto);*/
+
             return ponto;
         }
 
@@ -85,29 +109,54 @@ namespace ControlApp.Infra.Data.Repositories
                 ponto.Ativo = false;
                 _context.Pontos.Update(ponto);
                 await _context.SaveChangesAsync();
+
+                /*// Atualiza no MongoDB
+                await _mongoRepository.AtualizarAsync(id, ponto);*/
             }
         }
 
         public async Task<Ponto?> ObterPontoPorIdAsync(Guid id)
         {
+            /*// Primeiro tenta buscar no MongoDB
+            var pontoMongo = await _mongoRepository.ObterPorIdAsync(id);
+            if (pontoMongo != null) return pontoMongo;*/
+
+            // Busca no SQL Server
             return await _context.Pontos.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-
         public async Task<ICollection<Ponto>> ObterPontosPorPeriodoAsync(DateTime inicio, DateTime fim)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.InicioExpediente >= inicio && p.FimExpediente <= fim
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
                 .Where(p => p.InicioExpediente >= inicio && p.FimExpediente <= fim)
                 .ToListAsync();
         }
 
-
         public async Task<ICollection<Ponto>> ObterPontosPorTecnicoIdAsync(Guid usuarioId)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.UsuarioId == usuarioId
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
                 .Where(p => p.UsuarioId == usuarioId)
                 .ToListAsync();
         }
+
         public async Task AdicionarLocalizacoesAoTrajetoAsync(Guid pontoId, List<Localizacao> localizacoes)
         {
             var ponto = await _context.Pontos.FindAsync(pontoId);
@@ -138,6 +187,9 @@ namespace ControlApp.Infra.Data.Repositories
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
+
+                /*// Atualiza o ponto no MongoDB
+                await _mongoRepository.AtualizarAsync(pontoId, ponto);*/
             }
             catch (Exception)
             {
@@ -181,6 +233,9 @@ namespace ControlApp.Infra.Data.Repositories
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
+
+                /*// Atualiza o ponto no MongoDB
+                await _mongoRepository.AtualizarAsync(pontoId, ponto);*/
             }
             catch (Exception)
             {
@@ -191,19 +246,47 @@ namespace ControlApp.Infra.Data.Repositories
 
         public async Task<ICollection<Ponto>> ObterPontosPorTipoAsync(Guid usuarioId, TipoPonto tipoPonto)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.UsuarioId == usuarioId && p.TipoPonto == tipoPonto
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
                 .Where(p => p.UsuarioId == usuarioId && p.TipoPonto == tipoPonto)
                 .ToListAsync();
         }
+
         public async Task<ICollection<Ponto>> ObterPontoPorUsuarioId(Guid usuarioId)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.UsuarioId == usuarioId && p.Ativo
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
-                .Where(p => p.UsuarioId == usuarioId && p.Ativo) 
+                .Where(p => p.UsuarioId == usuarioId && p.Ativo)
                 .ToListAsync();
         }
 
         public async Task<ICollection<Ponto>> ObterPontosPorUsuarioIdETipo(Guid usuarioId, TipoPonto tipoPonto)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.UsuarioId == usuarioId && p.TipoPonto == tipoPonto
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
                 .Where(p => p.UsuarioId == usuarioId && p.TipoPonto == tipoPonto)
                 .ToListAsync();
@@ -211,16 +294,32 @@ namespace ControlApp.Infra.Data.Repositories
 
         public async Task<ICollection<Ponto>> ObterPontosPorUsuarioEPeriodoAsync(Guid usuarioId, DateTime inicio, DateTime fim)
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterPorFiltroAsync(
+                p => p.UsuarioId == usuarioId && p.InicioExpediente >= inicio && p.InicioExpediente < fim
+            );
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Pontos
                 .Where(p => p.UsuarioId == usuarioId && p.InicioExpediente >= inicio && p.InicioExpediente < fim)
                 .ToListAsync();
         }
+
         public async Task<ICollection<Ponto>> ObterTodosPontosAsync()
         {
+            /*// Tenta buscar no MongoDB primeiro
+            var pontosMongo = await _mongoRepository.ObterTodosAsync();
+
+            // Se encontrar no MongoDB, retorna
+            if (pontosMongo.Any()) return pontosMongo.ToList();*/
+
+            // Busca no SQL Server
             return await _context.Set<Ponto>()
                 .Include(p => p.Tecnico) // Garante que o técnico seja carregado
                 .ToListAsync();
         }
-
     }
 }
