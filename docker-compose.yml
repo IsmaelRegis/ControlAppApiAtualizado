@@ -4,7 +4,7 @@ services:
     image: ${DOCKER_REGISTRY-}controlappapi
     build:
       context: .
-      dockerfile: './1-API/ControlApp.API/Dockerfile'
+      dockerfile: ControlApp.API/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -29,10 +29,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     networks:
       - controlapp-network
-
 networks:
   controlapp-network:
     driver: bridge
-
 volumes:
   mongodb_data:

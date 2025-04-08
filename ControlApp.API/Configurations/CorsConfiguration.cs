@@ -24,7 +24,6 @@
                             "http://cedae.vibetex.com.br",
                             "http://69.62.104.13",
                             "https://69.62.104.13"
-
                         )
                         .AllowAnyMethod()   // Permite todos os métodos HTTP (GET, POST, PUT, etc.)
                         .AllowAnyHeader();  // Permite todos os cabeçalhos nas requisições
