@@ -9,6 +9,7 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\BouncyCastle.Cryptography.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Cogito.Extensions.Configuration.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\DnsClient.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\FluentValidation.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\itextsharp.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -47,7 +48,11 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.OpenApi.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Bson.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Driver.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\SharpCompress.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Snappier.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -62,6 +67,7 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\System.Security.Cryptography.Xml.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\System.Security.Permissions.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\System.Windows.Extensions.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\ZstdSharp.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll

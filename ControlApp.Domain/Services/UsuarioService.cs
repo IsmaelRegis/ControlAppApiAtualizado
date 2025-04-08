@@ -42,77 +42,40 @@ public class UsuarioService : IUsuarioService
     #region Métodos de Autenticação e Gestão de Usuários
     public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto)
     {
-        // Tenta autenticar por UserName ou CPF
-        if (!string.IsNullOrWhiteSpace(requestDto.UserName))
+        // Verifica se o UserName foi fornecido
+        if (string.IsNullOrWhiteSpace(requestDto.UserName))
         {
-            var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
-            if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-            {
-                return new AutenticarUsuarioResponseDto
-                {
-                    Mensagem = "Username ou senha inválidos"
-                };
-            }
-
-            // Marca técnico como online e atualiza a última autenticação
-            bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
-            usuario.DataHoraUltimaAutenticacao = DateTime.Now;
-            await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
-
-            var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString()); // Gera o token JWT
-
-            return new AutenticarUsuarioResponseDto
-            {
-                UsuarioId = usuario.UsuarioId,
-                Nome = usuario.Nome,
-                Email = usuario.Email,
-                Role = usuario.Role.ToString(),
-                Cpf = (usuario as Tecnico)?.Cpf,
-                Token = token,
-                FotoUrl = usuario.FotoUrl,
-                UserName = usuario.UserName,
-                IsOnline = isOnline,
-                DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
-            };
+            throw new UnauthorizedAccessException("Username deve ser fornecido");
         }
-        else if (!string.IsNullOrWhiteSpace(requestDto.Cpf))
+
+        // Autenticar por UserName
+        var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
+        if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
         {
-            var usuario = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
-            if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
-            {
-                return new AutenticarUsuarioResponseDto
-                {
-                    Mensagem = "Username ou senha inválidos"
-                };
-            }
-
-            bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
-            usuario.DataHoraUltimaAutenticacao = DateTime.Now;
-            await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
-
-            var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
-
-            return new AutenticarUsuarioResponseDto
-            {
-                UsuarioId = usuario.UsuarioId,
-                Nome = usuario.Nome,
-                Email = usuario.Email,
-                Role = usuario.Role.ToString(),
-                Cpf = (usuario as Tecnico)?.Cpf,
-                Token = token,
-                FotoUrl = usuario.FotoUrl,
-                UserName = usuario.UserName,
-                IsOnline = isOnline,
-                DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
-            };
+            throw new UnauthorizedAccessException("Username ou senha inválidos");
         }
-        else
+
+        // Marca técnico como online e atualiza a última autenticação
+        bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
+        usuario.DataHoraUltimaAutenticacao = DateTime.Now;
+        await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
+
+        // Gera o token JWT
+        var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
+
+        return new AutenticarUsuarioResponseDto
         {
-            return new AutenticarUsuarioResponseDto
-            {
-                Mensagem = "CPF ou UserName deve ser fornecido"
-            };
-        }
+            UsuarioId = usuario.UsuarioId,
+            Nome = usuario.Nome,
+            Email = usuario.Email,
+            Role = usuario.Role.ToString(),
+            Cpf = (usuario as Tecnico)?.Cpf,
+            Token = token,
+            FotoUrl = usuario.FotoUrl,
+            UserName = usuario.UserName,
+            IsOnline = isOnline,
+            DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
+        };
     }
     public async Task<Usuario?> GetByEmailAsync(string email)
     {

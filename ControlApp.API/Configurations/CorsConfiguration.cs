@@ -17,6 +17,9 @@
                 {
                     builder.WithOrigins(
                             "http://localhost:4200",
+                            "http://69.62.104.13:5000",
+                            "https://69.62.104.13:5000",
+                            "http://localhost:4200",
                             "https://cedae.vibetex.com.br",
                             "http://cedae.vibetex.com.br",
                             "http://69.62.104.13",

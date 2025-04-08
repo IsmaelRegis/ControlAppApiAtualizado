@@ -7,80 +7,8 @@
       "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\configurations\\corsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\repositories\\localizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\localizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\trajetomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\trajetomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\tecnicomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\tecnicomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\localizacaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\localizacaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\repositories\\tecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\tecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\repositories\\trajetorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\trajetorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\trajeto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\trajeto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\localizacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\localizacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\dtos\\response\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\dtos\\response\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\interfaces\\repositories\\ilocalizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\repositories\\ilocalizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\controlappapiatualizado\\controlapp\\controlapp.domain\\dtos\\response\\localizacaoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\dtos\\response\\localizacaoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAAK0CAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T16:04:26.172Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -104,256 +45,9 @@
               "RelativeDocumentMoniker": "ControlApp.API\\Configurations\\CorsConfiguration.cs",
               "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Configurations\\CorsConfiguration.cs",
               "RelativeToolTip": "ControlApp.API\\Configurations\\CorsConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:24:52.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\appsettings.json",
-              "RelativeDocumentMoniker": "ControlApp.API\\appsettings.json",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\appsettings.json",
-              "RelativeToolTip": "ControlApp.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-08T14:24:24.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TrajetoMap.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\TrajetoMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\TrajetoMap.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\TrajetoMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\TrajetoMap.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwC4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:19:16.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsuarioMap.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwD0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:19:15.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TecnicoMap.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\TecnicoMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\TecnicoMap.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\TecnicoMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\TecnicoMap.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAgwFAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:19:07.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TecnicoRepository.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAAANYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:18:49.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LocalizacaoRepository.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAqwDMAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:13:05.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAABwCAAAAAAAAAAAwwEgCAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T12:45:36.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TrajetoRepository.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\TrajetoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\TrajetoRepository.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Repositories\\TrajetoRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\TrajetoRepository.cs",
-              "ViewState": "AgIAAMsAAAAAAAAAAAAgwO8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:18:37.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Usuario.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Usuario.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Usuario.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:16:35.965Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAowHQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T12:58:12.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Tecnico.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Tecnico.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Tecnico.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Tecnico.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\Tecnico.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAowB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:05:49.583Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Localizacao.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Localizacao.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Localizacao.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Localizacao.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\Localizacao.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:05:34.067Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LocalizacaoMap.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:21:19.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ILocalizacaoRepository.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Repositories\\ILocalizacaoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Repositories\\ILocalizacaoRepository.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Repositories\\ILocalizacaoRepository.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Repositories\\ILocalizacaoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:12:16.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Trajeto.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Trajeto.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Trajeto.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\Trajeto.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\Trajeto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:07:39.2Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IUsuarioService.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAUwBMAAABmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:01:45.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "PontoController.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\PontoController.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\PontoController.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\PontoController.cs",
-              "RelativeToolTip": "ControlApp.API\\Controllers\\PontoController.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAA8wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T12:57:42.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UsuarioResponseDto.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Dtos\\Response\\UsuarioResponseDto.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA8wBkAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:31:18.876Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "LocalizacaoResponseDto.cs",
-              "DocumentMoniker": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\LocalizacaoResponseDto.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Dtos\\Response\\LocalizacaoResponseDto.cs",
-              "ToolTip": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Dtos\\Response\\LocalizacaoResponseDto.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Dtos\\Response\\LocalizacaoResponseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T13:41:58.467Z",
+              "WhenOpened": "2025-04-08T16:00:38.967Z",
               "EditorCaption": ""
             }
           ]

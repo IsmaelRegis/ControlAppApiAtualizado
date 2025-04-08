@@ -9,7 +9,6 @@ namespace ControlApp.Domain.Dtos.Request
     public class AutenticarUsuarioRequestDto
     {
         public string? Senha { get; set; }
-        public string? Cpf { get; set; }
         public string? UserName { get; set; }
     }
 }
