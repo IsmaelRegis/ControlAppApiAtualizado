@@ -70,5 +70,26 @@ namespace ControlApp.Infra.Data.Repositories
                 return false;
             }
         }
+
+        public async Task<bool> ExcluirLocalizacoesPorTrajetoIdAsync(Guid trajetoId)
+        {
+            try
+            {
+                // Implementação dependendo do seu ORM (Entity Framework, Dapper, etc.)
+                // Por exemplo, com Entity Framework:
+                var localizacoes = await _context.Localizacoes
+                    .Where(l => l.TrajetoId == trajetoId)
+                    .ToListAsync();
+
+                _context.Localizacoes.RemoveRange(localizacoes);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

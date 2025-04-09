@@ -9,8 +9,9 @@ namespace ControlApp.Domain.Interfaces.Repositories
 {
     public interface ILocalizacaoRepository
     {
-        Task<Localizacao?> GetByIdAsync(Guid id); // Útil para buscar uma localização específica por ID
-        Task<IEnumerable<Localizacao>> ObterLocalizacoesPorTrajetoIdAsync(Guid trajetoId); // Busca por TrajetoId
+        Task<Localizacao?> GetByIdAsync(Guid id); 
+        Task<IEnumerable<Localizacao>> ObterLocalizacoesPorTrajetoIdAsync(Guid trajetoId); 
+        Task<bool> ExcluirLocalizacoesPorTrajetoIdAsync(Guid trajetoId);
         Task<bool> AdicionarLocalizacaoAsync(Localizacao localizacao);
     }
 }

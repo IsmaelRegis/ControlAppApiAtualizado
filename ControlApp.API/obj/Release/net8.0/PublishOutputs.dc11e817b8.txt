@@ -51,6 +51,7 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Bson.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Driver.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\RabbitMQ.Client.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\SharpCompress.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Snappier.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll

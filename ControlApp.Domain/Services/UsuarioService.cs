@@ -267,6 +267,11 @@ public class UsuarioService : IUsuarioService
 
         #region Mapeamento
         var result = new List<UsuarioResponseDto>();
+
+        // Obtenha a data atual no horário de Brasília
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
+
         foreach (var usuario in usuarios)
         {
             var tecnico = usuario as Tecnico;
@@ -287,17 +292,19 @@ public class UsuarioService : IUsuarioService
                 }
             }
 
-            // Buscar o trajeto mais recente do técnico
+            // Buscar o trajeto do dia atual do técnico
             List<LocalizacaoResponseDto>? localizacoes = null;
             if (tecnico != null)
             {
                 var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
-                if (trajetos != null && trajetos.Any())
+                var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+
+                if (trajetosDoDia != null && trajetosDoDia.Any())
                 {
-                    var ultimoTrajeto = trajetos.OrderByDescending(t => t.Data).FirstOrDefault();
-                    if (ultimoTrajeto != null)
+                    var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (trajetoAtual != null)
                     {
-                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(ultimoTrajeto.Id);
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
                         localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
                         {
                             LocalizacaoId = l.LocalizacaoId,
@@ -340,6 +347,7 @@ public class UsuarioService : IUsuarioService
         return result;
         #endregion
     }
+
     public async Task<UsuarioResponseDto?> GetByIdAsync(Guid id)
     {
         #region Busca de Técnico
@@ -350,6 +358,10 @@ public class UsuarioService : IUsuarioService
 
         #region Mapeamento
         var tecnico = usuario as Tecnico;
+
+        // Obtenha a data atual no horário de Brasília
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
 
         // Busca a empresa associada, se houver EmpresaId
         EmpresaResponseDto? empresaDto = null;
@@ -367,17 +379,19 @@ public class UsuarioService : IUsuarioService
             }
         }
 
-        // Buscar o trajeto mais recente do técnico
+        // Buscar o trajeto do dia atual do técnico
         List<LocalizacaoResponseDto>? localizacoes = null;
         if (tecnico != null)
         {
             var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
-            if (trajetos != null && trajetos.Any())
+            var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+
+            if (trajetosDoDia != null && trajetosDoDia.Any())
             {
-                var ultimoTrajeto = trajetos.OrderByDescending(t => t.Data).FirstOrDefault();
-                if (ultimoTrajeto != null)
+                var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                if (trajetoAtual != null)
                 {
-                    var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(ultimoTrajeto.Id);
+                    var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
                     localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
                     {
                         LocalizacaoId = l.LocalizacaoId,
@@ -418,7 +432,6 @@ public class UsuarioService : IUsuarioService
         };
         #endregion
     }
-
     public async Task<bool> ExistsAsync(Guid id)
     {
         return await _usuarioRepository.ObterUsuarioPorIdAsync(id) != null; // Verifica se o usuário existe
@@ -478,24 +491,44 @@ public class UsuarioService : IUsuarioService
 
             if (usuario is Tecnico tecnico)
             {
-                // Verifica se o técnico tem um trajeto ativo
-                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
-                Guid trajetoId;
-
                 // Usando TimeZoneInfo para obter a data/hora atual no horário de Brasília
                 TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
                 DateTime dataHoraLocal = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone);
 
-                // Se não existir trajeto ou a lista estiver vazia, cria um novo
-                if (trajetos == null || !trajetos.Any())
+                // Verificar se há trajetos de dias anteriores e excluir suas localizações
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+
+                // Limpar localizações e trajetos de dias anteriores
+                if (trajetos != null && trajetos.Any())
+                {
+                    foreach (var trajeto in trajetos)
+                    {
+                        // Se o trajeto for de um dia anterior ao atual
+                        if (trajeto.Data.Date < dataHoraLocal.Date)
+                        {
+                            // Excluir localizações deste trajeto
+                            await _localizacaoRepository.ExcluirLocalizacoesPorTrajetoIdAsync(trajeto.Id);
+
+                            // Opcional: Você pode decidir manter o trajeto, mas sem localizações
+                            // Ou excluir o trajeto completo:
+                            // await _trajetoRepository.DeleteAsync(trajeto.Id);
+                        }
+                    }
+                }
+
+                // Verifica se já existe um trajeto para hoje
+                var trajetoHoje = trajetos?.FirstOrDefault(t => t.Data.Date == dataHoraLocal.Date);
+                Guid trajetoId;
+
+                // Se não existir trajeto para hoje, cria um novo
+                if (trajetoHoje == null)
                 {
                     var novoTrajeto = new Trajeto
                     {
                         Id = Guid.NewGuid(),
-                        Data = dataHoraLocal, // Usando o horário local
+                        Data = dataHoraLocal,
                         UsuarioId = tecnico.UsuarioId,
                         Status = "Em andamento",
-                        // Valores padrão para campos obrigatórios
                         DistanciaTotalKm = 0,
                         DuracaoTotal = TimeSpan.Zero
                     };
@@ -505,12 +538,8 @@ public class UsuarioService : IUsuarioService
                 }
                 else
                 {
-                    // Pega o primeiro trajeto (mais recente)
-                    var trajetoAtivo = trajetos.FirstOrDefault();
-                    trajetoId = trajetoAtivo?.Id ?? Guid.Empty;
-
-                    if (trajetoId == Guid.Empty)
-                        return false; // Não conseguiu obter um ID de trajeto válido
+                    // Usa o trajeto existente para hoje
+                    trajetoId = trajetoHoje.Id;
                 }
 
                 // Cria uma nova localização
@@ -519,8 +548,8 @@ public class UsuarioService : IUsuarioService
                     LocalizacaoId = Guid.NewGuid(),
                     Latitude = latitude,
                     Longitude = longitude,
-                    DataHora = dataHoraLocal, // Usando o horário local
-                    Precisao = 0, // Valor padrão
+                    DataHora = dataHoraLocal,
+                    Precisao = 0,
                     TrajetoId = trajetoId
                 };
 
@@ -534,12 +563,11 @@ public class UsuarioService : IUsuarioService
         }
         catch (Exception ex)
         {
-            // Log do erro para debug
             Console.WriteLine($"Erro ao registrar localização: {ex.Message}");
             if (ex.InnerException != null)
                 Console.WriteLine($"Exceção interna: {ex.InnerException.Message}");
 
-            return false; // Retorna false em vez de relançar a exceção para evitar o erro 500
+            return false;
         }
     }
     Task<Usuario?> IBaseService<Usuario>.GetByIdAsync(Guid id)
