@@ -478,17 +478,13 @@ public class UsuarioService : IUsuarioService
 
             if (usuario is Tecnico tecnico)
             {
-                // Atualiza a localização atual do técnico
-                tecnico.LatitudeAtual = latitude;
-                tecnico.LongitutdeAtual = longitude;
-                tecnico.DataEHoraLocalizacao = DateTime.Now;
-
-                // Salva as alterações do técnico primeiro
-                await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId);
-
                 // Verifica se o técnico tem um trajeto ativo
                 var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
                 Guid trajetoId;
+
+                // Usando TimeZoneInfo para obter a data/hora atual no horário de Brasília
+                TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+                DateTime dataHoraLocal = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone);
 
                 // Se não existir trajeto ou a lista estiver vazia, cria um novo
                 if (trajetos == null || !trajetos.Any())
@@ -496,7 +492,7 @@ public class UsuarioService : IUsuarioService
                     var novoTrajeto = new Trajeto
                     {
                         Id = Guid.NewGuid(),
-                        Data = DateTime.Now,
+                        Data = dataHoraLocal, // Usando o horário local
                         UsuarioId = tecnico.UsuarioId,
                         Status = "Em andamento",
                         // Valores padrão para campos obrigatórios
@@ -523,7 +519,7 @@ public class UsuarioService : IUsuarioService
                     LocalizacaoId = Guid.NewGuid(),
                     Latitude = latitude,
                     Longitude = longitude,
-                    DataHora = DateTime.Now,
+                    DataHora = dataHoraLocal, // Usando o horário local
                     Precisao = 0, // Valor padrão
                     TrajetoId = trajetoId
                 };

@@ -27,4 +27,8 @@
     <ProjectReference Include="..\ControlApp.Domain\ControlApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Messaging\" />
+  </ItemGroup>
+
 </Project>

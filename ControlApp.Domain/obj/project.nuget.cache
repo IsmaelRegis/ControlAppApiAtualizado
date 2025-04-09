@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CahY7rqLftQ=",
+  "dgSpecHash": "jaYyfP9eA4o=",
   "success": true,
   "projectFilePath": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj",
   "expectedPackageFiles": [
@@ -21,7 +21,10 @@
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "C:\\Users\\VTSuporte\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512"
+    "C:\\Users\\VTSuporte\\.nuget\\packages\\rabbitmq.client\\7.1.2\\rabbitmq.client.7.1.2.nupkg.sha512",
+    "C:\\Users\\VTSuporte\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\VTSuporte\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\VTSuporte\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
   ],
   "logs": [
     {
