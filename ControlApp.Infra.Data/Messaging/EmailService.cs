@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System;
 using System.Threading.Tasks;
@@ -13,27 +14,57 @@ namespace ControlApp.Infra.Data.Messaging
         private readonly string _smtpPassword;
         private readonly string _senderEmail;
         private readonly string _senderName;
+        private readonly bool _emailEnabled;
 
-        public EmailService()
+        public EmailService(IConfiguration configuration = null)
         {
-            // Configuração do SendGrid
-            _smtpServer = "smtp.sendgrid.net";
+            // Configuração padrão - desabilitada
+            _emailEnabled = false;
+            _smtpServer = "smtp.example.com";
             _smtpPort = 587;
-            _smtpUsername = "apikey"; // Sempre use "apikey" para o SendGrid
-            _smtpPassword = "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"; // Cole sua chave API do SendGrid aqui
-            _senderEmail = "ismael.l.regis@gmail.com"; // Seu email verificado
+            _smtpUsername = "";
+            _smtpPassword = "";
+            _senderEmail = "no-reply@example.com";
             _senderName = "Vibetex";
 
-            Console.WriteLine("Serviço de e-mail real inicializado com SendGrid");
+            // Se fornecer configuração, tenta habilitar o serviço
+            if (configuration != null)
+            {
+                var emailSettings = configuration.GetSection("EmailSettings");
+                if (emailSettings != null && !string.IsNullOrEmpty(emailSettings["SmtpPassword"]))
+                {
+                    _smtpServer = emailSettings["SmtpServer"];
+                    _smtpPort = int.Parse(emailSettings["SmtpPort"] ?? "587");
+                    _smtpUsername = emailSettings["SmtpUsername"];
+                    _smtpPassword = emailSettings["SmtpPassword"];
+                    _senderEmail = emailSettings["SenderEmail"];
+                    _senderName = emailSettings["SenderName"];
+                    _emailEnabled = true;
+                    Console.WriteLine("Serviço de e-mail inicializado com sucesso");
+                }
+                else
+                {
+                    Console.WriteLine("Configurações de e-mail incompletas ou ausentes. Serviço de e-mail desabilitado.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Serviço de e-mail inicializado em modo desabilitado");
+            }
         }
 
         public async Task SendWelcomeEmailAsync(string recipientEmail, string recipientName)
         {
+            if (!_emailEnabled)
+            {
+                Console.WriteLine($"[SIMULAÇÃO] E-mail de boas-vindas para {recipientName} ({recipientEmail}) seria enviado, mas o serviço está desabilitado.");
+                return;
+            }
+
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_senderName, _senderEmail));
             message.To.Add(new MailboxAddress(recipientName, recipientEmail));
             message.Subject = "Bem-vindo ao Vibetex!";
-
             var bodyBuilder = new BodyBuilder
             {
                 HtmlBody = $@"
@@ -46,13 +77,10 @@ namespace ControlApp.Infra.Data.Messaging
                         </body>
                     </html>"
             };
-
             message.Body = bodyBuilder.ToMessageBody();
-
             try
             {
                 Console.WriteLine($"Tentando enviar e-mail para {recipientEmail}...");
-
                 using (var client = new SmtpClient())
                 {
                     await client.ConnectAsync(_smtpServer, _smtpPort, MailKit.Security.SecureSocketOptions.StartTls);
@@ -60,7 +88,6 @@ namespace ControlApp.Infra.Data.Messaging
                     await client.SendAsync(message);
                     await client.DisconnectAsync(true);
                 }
-
                 Console.WriteLine($"E-mail enviado com sucesso para {recipientEmail}");
             }
             catch (Exception ex)
@@ -68,7 +95,6 @@ namespace ControlApp.Infra.Data.Messaging
                 Console.WriteLine($"Erro ao enviar e-mail: {ex.Message}");
                 if (ex.InnerException != null)
                     Console.WriteLine($"Causa: {ex.InnerException.Message}");
-
                 // Decidimos não lançar a exceção para não interromper o fluxo
                 // Se quiser que falhas de e-mail retornem a mensagem à fila, descomente:
                 // throw;
