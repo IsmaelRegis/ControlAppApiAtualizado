@@ -6,6 +6,14 @@
     "Children": {
       "images": {
         "Children": {
+          "02c4ad31-2878-46bf-a1e5-efe7a0f87f5b.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "images/02c4ad31-2878-46bf-a1e5-efe7a0f87f5b.jpg"
+            },
+            "Patterns": null
+          },
           "067aee69-bef3-4b4d-9467-eded73cbac17.png": {
             "Children": null,
             "Asset": {
@@ -339,6 +347,14 @@
             "Asset": {
               "ContentRootIndex": 0,
               "SubPath": "images/d9e02aa4-0e2c-4e6e-9867-42ed29b94caa.jpg"
+            },
+            "Patterns": null
+          },
+          "dc084f16-0e70-4775-88f9-61040810d48b.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "images/dc084f16-0e70-4775-88f9-61040810d48b.jpg"
             },
             "Patterns": null
           },

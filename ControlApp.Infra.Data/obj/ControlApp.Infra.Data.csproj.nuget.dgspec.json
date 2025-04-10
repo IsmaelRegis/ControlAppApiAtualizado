@@ -67,10 +67,6 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "RabbitMQ.Client": {
-              "target": "Package",
-              "version": "[7.1.2, )"
-            },
             "iTextSharp": {
               "target": "Package",
               "version": "[5.5.13.4, )"
@@ -151,6 +147,10 @@
               "target": "Package",
               "version": "[4.0.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.11.0, )"
+            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -182,6 +182,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.3.0, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

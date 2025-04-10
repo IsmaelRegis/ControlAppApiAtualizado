@@ -182,3 +182,5 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\SharpCom
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\Snappier.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\ZstdSharp.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\RabbitMQ.Client.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\MailKit.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\bin\Release\net8.0\MimeKit.dll

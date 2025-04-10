@@ -11,6 +11,7 @@ namespace ControlApp.Domain.Entities
         public Guid EmpresaId { get; set; }
         public bool Ativo { get; set; } = true;
         public string? NomeDaEmpresa { get; set; }
+        public DateTime? DataCriacao { get; set; }
         public Endereco? Endereco { get; set; }
         public ICollection<Tecnico> Tecnicos { get; set; } = new List<Tecnico>();
     }

@@ -11,6 +11,7 @@ namespace ControlApp.Domain.Dtos.Response
         public Guid EmpresaId { get; set; }
         public bool Ativo { get; set; }
         public string? NomeDaEmpresa { get; set; }
+        public DateTime? DataCriacao { get; set; }
         public EnderecoDto? Endereco { get; set; }
         public List<TecnicoResponseDto>? Tecnicos { get; set; }
     }

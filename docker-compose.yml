@@ -14,6 +14,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
       - mongodb
+      - rabbitmq
     networks:
       - controlapp-network
       
@@ -29,8 +30,25 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     networks:
       - controlapp-network
+      
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - controlapp-network
+
 networks:
   controlapp-network:
     driver: bridge
+    
 volumes:
   mongodb_data:
+  rabbitmq_data:

@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\012ecd18-8b8b-4925-9171-2171e90db35f.jpg",
+      "PackagePath": "staticwebassets\\images\\012ecd18-8b8b-4925-9171-2171e90db35f.jpg"
+    },
+    {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\02c4ad31-2878-46bf-a1e5-efe7a0f87f5b.jpg",
+      "PackagePath": "staticwebassets\\images\\02c4ad31-2878-46bf-a1e5-efe7a0f87f5b.jpg"
+    },
+    {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\067aee69-bef3-4b4d-9467-eded73cbac17.png",
       "PackagePath": "staticwebassets\\images\\067aee69-bef3-4b4d-9467-eded73cbac17.png"
     },
@@ -167,6 +175,14 @@
     {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\d9e02aa4-0e2c-4e6e-9867-42ed29b94caa.jpg",
       "PackagePath": "staticwebassets\\images\\d9e02aa4-0e2c-4e6e-9867-42ed29b94caa.jpg"
+    },
+    {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\dc084f16-0e70-4775-88f9-61040810d48b.jpg",
+      "PackagePath": "staticwebassets\\images\\dc084f16-0e70-4775-88f9-61040810d48b.jpg"
+    },
+    {
+      "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\dc5f0597-3051-49bb-9d3c-e502a6a725e0.jpg",
+      "PackagePath": "staticwebassets\\images\\dc5f0597-3051-49bb-9d3c-e502a6a725e0.jpg"
     },
     {
       "Id": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\wwwroot\\images\\de8bff0c-10f9-4c76-b8df-62a0b9d56388.png",

@@ -21,6 +21,11 @@ namespace ControlApp.Infra.Data.Mappings
                    .HasColumnName("ATIVO")
                    .HasDefaultValue(true);
 
+
+            builder.Property(t => t.DataCriacao)
+                   .HasColumnName("DATA_CRIACAO")
+                   .IsRequired();
+
             builder.OwnsOne(e => e.Endereco, endereco =>
             {
                 endereco.Property(x => x.Cep)

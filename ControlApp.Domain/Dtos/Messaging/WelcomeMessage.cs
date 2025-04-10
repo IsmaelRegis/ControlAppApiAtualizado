@@ -13,6 +13,6 @@ namespace ControlApp.Domain.Dtos.Messaging
         public string? Nome { get; set; }
         public string? Email { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
-        public string Mensagem { get; set; } = "Bem-vindo ao ControlApp! Estamos felizes em tê-lo conosco.";
+        public string Mensagem { get; set; } = "Seu perfil no Vibetex foi cadastrado com sucesso!";
     }
 }

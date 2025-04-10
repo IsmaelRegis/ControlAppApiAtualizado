@@ -1,7 +1,9 @@
-﻿using ControlApp.Domain.Dtos.Request;
+﻿using ControlApp.Domain.Dtos.Messaging;
+using ControlApp.Domain.Dtos.Request;
 using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
+using ControlApp.Domain.Interfaces.Messages;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
@@ -22,9 +24,10 @@ public class UsuarioService : IUsuarioService
     private readonly IEmpresaRepository _empresaRepository;
     private readonly ITrajetoRepository _trajetoRepository;
     private readonly ILocalizacaoRepository _localizacaoRepository;
+    private readonly IMessageBusService _messageBusService;
 
     #region Construtor
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, IMessageBusService messageBusService)
     {
         _usuarioRepository = usuarioRepository;
         _tokenSecurity = tokenSecurity;
@@ -36,6 +39,7 @@ public class UsuarioService : IUsuarioService
         _empresaRepository = empresaRepository;
         _trajetoRepository = trajetoRepository;
         _localizacaoRepository = localizacaoRepository;
+        _messageBusService = messageBusService;
     }
     #endregion
 
@@ -173,6 +177,25 @@ public class UsuarioService : IUsuarioService
                 };
             }
         }
+
+        try
+        {
+            // Publica mensagem de boas-vindas para o RabbitMQ
+            _messageBusService.PublishWelcomeMessage(new WelcomeMessage
+            {
+                UsuarioId = tecnico.UsuarioId,
+                Nome = tecnico.Nome,
+                Email = tecnico.Email,
+                DataCriacao = DateTime.Now,
+                Mensagem = "Seu perfil no Vibetex foi cadastrado com sucesso!"
+            });
+        }
+        catch (Exception ex)
+        {
+            // Log do erro, mas não impede o fluxo normal da aplicação
+            Console.WriteLine($"Erro ao publicar mensagem de boas-vindas: {ex.Message}");
+        }
+
 
         return new CriarUsuarioResponseDto
         {
@@ -593,6 +616,7 @@ public class UsuarioService : IUsuarioService
         {
             EmpresaId = Guid.NewGuid(),
             NomeDaEmpresa = requestDto.NomeDaEmpresa,
+            DataCriacao = DateTime.Now,
             Ativo = true
         };
 
@@ -615,6 +639,7 @@ public class UsuarioService : IUsuarioService
             EmpresaId = empresa.EmpresaId,
             NomeDaEmpresa = empresa.NomeDaEmpresa,
             Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
             Endereco = empresa.Endereco == null ? null : new EnderecoDto
             {
                 Cep = empresa.Endereco.Cep,
@@ -640,6 +665,7 @@ public class UsuarioService : IUsuarioService
             EmpresaId = empresa.EmpresaId,
             NomeDaEmpresa = empresa.NomeDaEmpresa,
             Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
             Endereco = new EnderecoDto
             {
                 Cep = empresa.Endereco?.Cep,
@@ -668,6 +694,7 @@ public class UsuarioService : IUsuarioService
             EmpresaId = e.EmpresaId,
             NomeDaEmpresa = e.NomeDaEmpresa,
             Ativo = e.Ativo,
+            DataCriacao = e.DataCriacao,
             Endereco = new EnderecoDto
             {
                 Cep = e.Endereco?.Cep,
@@ -717,6 +744,7 @@ public class UsuarioService : IUsuarioService
             EmpresaId = empresa.EmpresaId,
             NomeDaEmpresa = empresa.NomeDaEmpresa,
             Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
             Endereco = empresa.Endereco == null ? null : new EnderecoDto
             {
                 Cep = empresa.Endereco.Cep,

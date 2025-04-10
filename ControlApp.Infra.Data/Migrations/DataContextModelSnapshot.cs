@@ -34,6 +34,11 @@ namespace ControlApp.Infra.Data.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("ATIVO");
 
+                    b.Property<DateTime?>("DataCriacao")
+                        .IsRequired()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DATA_CRIACAO");
+
                     b.Property<string>("NomeDaEmpresa")
                         .IsRequired()
                         .HasMaxLength(255)

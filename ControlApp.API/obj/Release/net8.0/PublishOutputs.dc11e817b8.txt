@@ -12,6 +12,7 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\DnsClient.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\FluentValidation.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\itextsharp.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MailKit.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -48,6 +49,7 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\O
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.OpenApi.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MimeKit.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Bson.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\MongoDB.Driver.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.API\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll

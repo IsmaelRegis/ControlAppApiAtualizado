@@ -3,9 +3,11 @@ using ControlApp.Domain.Interfaces.Identity;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
+using ControlApp.Domain.Interfaces.Messages;
 using ControlApp.Domain.Services;
 using ControlApp.Domain.Validations;
 using ControlApp.Infra.Data.Repositories;
+using ControlApp.Infra.Data.Messaging;
 using ControlApp.Infra.Security.Services;
 
 namespace ControlApp.API.Configurations
@@ -80,6 +82,12 @@ namespace ControlApp.API.Configurations
             services.AddTransient<ITokenSecurity, TokenSecurity>(); // Serviço de geração e validação de tokens
             services.AddScoped<CryptoSHA256>();                     // Serviço de criptografia SHA256 (escopo único)
             services.AddScoped<CryptoAes>();                        // Serviço de criptografia AES (escopo único)
+            #endregion
+
+            #region Serviços de Mensagens
+            // Registro do serviço de mensagens RabbitMQ
+            services.AddSingleton<IMessageBusService, RabbitMQMessageBusService>();
+            services.AddHostedService<WelcomeMessageBackgroundService>();
             #endregion
 
             #region Regras de Negócio
