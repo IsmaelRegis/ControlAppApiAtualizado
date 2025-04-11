@@ -502,6 +502,32 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "RegistrarLocalizacao",
+    "RelativePath": "controlapp/usuario/registrar-localizacao/{usuarioId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "latitude",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "longitude",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "GetTecnicos",
     "RelativePath": "controlapp/usuario/tecnicos",
     "HttpMethod": "GET",

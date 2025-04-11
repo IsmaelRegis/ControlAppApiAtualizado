@@ -812,6 +812,43 @@
         }
       }
     },
+    "/controlapp/usuario/registrar-localizacao/{usuarioId}": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/controlapp/usuario/delete/{id}": {
       "delete": {
         "tags": [
@@ -1038,10 +1075,6 @@
         "type": "object",
         "properties": {
           "senha": {
-            "type": "string",
-            "nullable": true
-          },
-          "cpf": {
             "type": "string",
             "nullable": true
           },
@@ -1289,6 +1322,11 @@
             "type": "string",
             "nullable": true
           },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "endereco": {
             "$ref": "#/components/schemas/EnderecoDto"
           },
@@ -1366,6 +1404,32 @@
           "estado": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalizacaoResponseDto": {
+        "type": "object",
+        "properties": {
+          "localizacaoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataHora": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "precisao": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -1682,6 +1746,10 @@
             "format": "date-time",
             "nullable": true
           },
+          "dataEHoraLocalizacao": {
+            "type": "string",
+            "format": "date-time"
+          },
           "empresaId": {
             "type": "string",
             "format": "uuid"
@@ -1691,6 +1759,13 @@
           },
           "nomeDaEmpresa": {
             "type": "string",
+            "nullable": true
+          },
+          "localizacoes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocalizacaoResponseDto"
+            },
             "nullable": true
           },
           "cpf": {

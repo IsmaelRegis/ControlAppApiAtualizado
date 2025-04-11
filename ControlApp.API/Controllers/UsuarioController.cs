@@ -154,7 +154,6 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("tecnicos")]
-    [Authorize(Roles = "Colaborador")]
     public async Task<IActionResult> GetTecnicos()
     {
         var tecnicos = await _usuarioService.GetAllTecnicosAsync(); // Lista todos os técnicos

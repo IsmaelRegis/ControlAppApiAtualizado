@@ -16,16 +16,19 @@
                 options.AddPolicy("AgendaPolicy", builder =>
                 {
                     builder.WithOrigins(
-                            "http://localhost:4200",
-                            "http://69.62.104.13:5000",
-                            "https://69.62.104.13:5000",
-                            "http://localhost:4200",
-                            "https://cedae.vibetex.com.br",
-                            "http://cedae.vibetex.com.br",
-                            "http://69.62.104.13",
-                            "https://69.62.104.13"
-                        )
-                        .AllowAnyMethod()   // Permite todos os métodos HTTP (GET, POST, PUT, etc.)
+                      "http://69.62.104.13:6000",
+                      "https://69.62.104.13:6000",
+                      "http://69.62.104.13:5141",
+                      "https://69.62.104.13:5141",
+                      "http://localhost:4200",
+                      "https://cedae.vibetex.com.br",
+                      "http://cedae.vibetex.com.br",
+                      "http://69.62.104.13",
+                      "https://69.62.104.13",
+                      "https://cedae.homologacao.vibetex.com.br",
+                      "http://cedae.homologacao.vibetex.com.br"
+                  )
+                       .AllowAnyMethod()   // Permite todos os métodos HTTP (GET, POST, PUT, etc.)
                         .AllowAnyHeader();  // Permite todos os cabeçalhos nas requisições
                 });
             });
