@@ -1,16 +1,11 @@
-﻿using ControlApp.Domain.Dtos.Messaging;
-using ControlApp.Domain.Dtos.Request;
+﻿using ControlApp.Domain.Dtos.Request;
 using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
-using ControlApp.Domain.Interfaces.Messages;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
 using ControlApp.Domain.Validations;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class UsuarioService : IUsuarioService
 {
@@ -24,10 +19,10 @@ public class UsuarioService : IUsuarioService
     private readonly IEmpresaRepository _empresaRepository;
     private readonly ITrajetoRepository _trajetoRepository;
     private readonly ILocalizacaoRepository _localizacaoRepository;
-    private readonly IMessageBusService _messageBusService;
+    private readonly ITokenManager _tokenManager;
 
     #region Construtor
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, IMessageBusService messageBusService)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, ITokenManager tokenManager)
     {
         _usuarioRepository = usuarioRepository;
         _tokenSecurity = tokenSecurity;
@@ -39,33 +34,37 @@ public class UsuarioService : IUsuarioService
         _empresaRepository = empresaRepository;
         _trajetoRepository = trajetoRepository;
         _localizacaoRepository = localizacaoRepository;
-        _messageBusService = messageBusService;
+        _tokenManager = tokenManager;
     }
     #endregion
 
     #region Métodos de Autenticação e Gestão de Usuários
-    public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto)
+    public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto, string deviceInfo = null, string audience = "VibeService")
     {
         // Verifica se o UserName foi fornecido
         if (string.IsNullOrWhiteSpace(requestDto.UserName))
         {
             throw new UnauthorizedAccessException("Username deve ser fornecido");
         }
-
         // Autenticar por UserName
         var usuario = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
         if (usuario == null || !_cryptoSHA256.VerifyPassword(requestDto.Senha, usuario.Senha))
         {
             throw new UnauthorizedAccessException("Username ou senha inválidos");
         }
-
         // Marca técnico como online e atualiza a última autenticação
         bool isOnline = usuario is Tecnico tecnico ? (tecnico.IsOnline = true) : false;
-        usuario.DataHoraUltimaAutenticacao = DateTime.Now;
+        // Obtém o horário atual do Brasil (Brasília - GMT-3)
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime horarioBrasilia = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone);
+        usuario.DataHoraUltimaAutenticacao = horarioBrasilia;
         await _usuarioRepository.AtualizarUsuarioAsync(usuario.UsuarioId);
 
-        // Gera o token JWT
-        var token = _tokenSecurity.CreateToken(usuario.UsuarioId, usuario.Role.ToString());
+        var token = await _tokenManager.GenerateTokenAsync(
+            usuario.UsuarioId,
+            usuario.Role.ToString(),
+            deviceInfo,
+            audience);
 
         return new AutenticarUsuarioResponseDto
         {
@@ -176,24 +175,6 @@ public class UsuarioService : IUsuarioService
                     }).ToList()
                 };
             }
-        }
-
-        try
-        {
-            // Publica mensagem de boas-vindas para o RabbitMQ
-            _messageBusService.PublishWelcomeMessage(new WelcomeMessage
-            {
-                UsuarioId = tecnico.UsuarioId,
-                Nome = tecnico.Nome,
-                Email = tecnico.Email,
-                DataCriacao = DateTime.Now,
-                Mensagem = "Seu perfil no Vibetex foi cadastrado com sucesso!"
-            });
-        }
-        catch (Exception ex)
-        {
-            // Log do erro, mas não impede o fluxo normal da aplicação
-            Console.WriteLine($"Erro ao publicar mensagem de boas-vindas: {ex.Message}");
         }
 
 

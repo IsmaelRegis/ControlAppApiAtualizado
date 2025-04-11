@@ -6,6 +6,7 @@ using ControlApp.Infra.Data.Contexts;
 using ControlApp.Infra.Data.Seeders;
 using ControlApp.Infra.Data.Identity;
 using Microsoft.AspNetCore.Identity;
+using ControlApp.API.Middlewares;
 /*using ControlApp.Infra.Data.MongoDB.Configurations;
 using ControlApp.Infra.Data.Services;*/
 
@@ -131,6 +132,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting(); // Configura roteamento
 app.UseCors("AgendaPolicy"); // Aplica política de CORS
 app.UseAuthentication(); // Habilita autenticação
+app.UseActiveTokenValidation(); // Adiciona middleware de validação de token ativo
 app.UseAuthorization(); // Habilita autorização
 app.MapControllers(); // Mapeia os controladores
 

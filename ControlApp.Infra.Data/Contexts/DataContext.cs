@@ -16,13 +16,13 @@ namespace ControlApp.Infra.Data.Contexts
         public DbSet<Trajeto> Trajetos { get; set; }      // Define a tabela de trajetos
         public DbSet<Localizacao> Localizacoes { get; set; } // Define a tabela de localizações
         public DbSet<Empresa> Empresas { get; set; }      // Define a tabela de empresas, adicionada pra suportar essa entidade
+        public DbSet<UserToken> UserTokens { get; set; }  // Define a tabela de tokens de usuários
         #endregion
 
         #region Configuração do Modelo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             // Aplica os mapeamentos pras entidades, dizendo como elas devem ser no banco
             modelBuilder.ApplyConfiguration(new PontoMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
@@ -30,6 +30,7 @@ namespace ControlApp.Infra.Data.Contexts
             modelBuilder.ApplyConfiguration(new LocalizacaoMap());
             modelBuilder.ApplyConfiguration(new EmpresaMap());
             modelBuilder.ApplyConfiguration(new TecnicoMap());
+            modelBuilder.ApplyConfiguration(new UserTokenMap()); // Adiciona o mapeamento do UserToken
         }
         #endregion
     }

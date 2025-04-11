@@ -31,12 +31,17 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request);
+            // Capturar o User-Agent do cabeçalho da requisição
+            string deviceInfo = Request.Headers["User-Agent"].ToString();
+
+            // Determinar a audience automaticamente
+            string audience = "VibeService"; // Valor padrão
+            var usuarioResponse = await _usuarioService.AuthenticateUsuarioAsync(request, deviceInfo, audience);
             return Ok(usuarioResponse); // Retorna diretamente o usuarioResponse, que já contém o token
         }
         catch (UnauthorizedAccessException)
         {
-            return Unauthorized("Usuário inválido, username ou senha inválidos."); 
+            return Unauthorized("Usuário inválido, username ou senha inválidos.");
         }
         catch (Exception ex)
         {
@@ -149,6 +154,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("tecnicos")]
+    [Authorize(Roles = "Colaborador")]
     public async Task<IActionResult> GetTecnicos()
     {
         var tecnicos = await _usuarioService.GetAllTecnicosAsync(); // Lista todos os técnicos

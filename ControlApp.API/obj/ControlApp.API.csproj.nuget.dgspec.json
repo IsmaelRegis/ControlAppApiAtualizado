@@ -356,6 +356,9 @@
             "projectReferences": {
               "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj": {
                 "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj"
+              },
+              "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj": {
+                "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj"
               }
             }
           }

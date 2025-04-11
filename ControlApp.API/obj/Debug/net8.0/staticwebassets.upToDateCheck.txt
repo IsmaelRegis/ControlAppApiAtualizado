@@ -23,6 +23,7 @@ wwwroot\images\5f8d3ede-6013-4a01-8305-40299ac2886d.jpg
 wwwroot\images\6964f906-a95b-47c2-a42f-7111104e24a8.jpg
 wwwroot\images\6f03150e-e652-4840-aebf-c0a3a2236367.jfif
 wwwroot\images\76a7e2de-b7b4-4580-8de5-040178d9a638.jfif
+wwwroot\images\77bef232-3d30-4150-82dd-9a951137bfcb.jpg
 wwwroot\images\85019764-e144-40ef-b1c9-df0918d42da7.png
 wwwroot\images\91a3c685-29b8-4bb6-baeb-08ad7bc745bc.jpg
 wwwroot\images\a6666e21-c280-4476-849e-2c5987942b2b.jfif

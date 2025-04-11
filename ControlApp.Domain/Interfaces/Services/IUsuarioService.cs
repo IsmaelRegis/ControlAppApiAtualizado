@@ -15,7 +15,7 @@ namespace ControlApp.Domain.Interfaces.Services
         Task ChangePasswordAsync(Guid usuarioId, string novaSenha);
         Task<CriarUsuarioResponseDto> CreateUsuarioAsync(CriarUsuarioRequestDto requestDto);
         Task<AtualizarUsuarioResponseDto> UpdateUsuarioAsync(Guid usuarioId, AtualizarUsuarioRequestDto requestDto);
-        Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto);
+        Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto,string deviceInfo = null,string audience = "VibeService");
         Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude);
         Task<bool> AdicionarRegistroLocalizacaoAsync(Guid usuarioId, string latitude, string longitude);
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ControlApp.Domain\ControlApp.Domain.csproj" />
+    <ProjectReference Include="..\ControlApp.Infra.Data\ControlApp.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

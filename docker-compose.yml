@@ -17,7 +17,7 @@ services:
       - rabbitmq
     networks:
       - controlapp-network
-      
+
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -30,7 +30,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     networks:
       - controlapp-network
-      
+
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -44,11 +44,11 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
       - controlapp-network
-
 networks:
   controlapp-network:
     driver: bridge
-    
+
 volumes:
   mongodb_data:
   rabbitmq_data:
+

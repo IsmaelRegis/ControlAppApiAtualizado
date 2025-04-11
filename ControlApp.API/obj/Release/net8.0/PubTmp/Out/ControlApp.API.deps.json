@@ -1175,6 +1175,7 @@
       "ControlApp.Infra.Security/1.0.0": {
         "dependencies": {
           "ControlApp.Domain": "1.0.0",
+          "ControlApp.Infra.Data": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.12"
         },
         "runtime": {

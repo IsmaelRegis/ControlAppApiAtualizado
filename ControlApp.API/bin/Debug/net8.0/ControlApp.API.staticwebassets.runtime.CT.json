@@ -6,6 +6,14 @@
     "Children": {
       "images": {
         "Children": {
+          "012ecd18-8b8b-4925-9171-2171e90db35f.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "images/012ecd18-8b8b-4925-9171-2171e90db35f.jpg"
+            },
+            "Patterns": null
+          },
           "02c4ad31-2878-46bf-a1e5-efe7a0f87f5b.jpg": {
             "Children": null,
             "Asset": {
@@ -198,6 +206,14 @@
             },
             "Patterns": null
           },
+          "77bef232-3d30-4150-82dd-9a951137bfcb.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "images/77bef232-3d30-4150-82dd-9a951137bfcb.jpg"
+            },
+            "Patterns": null
+          },
           "85019764-e144-40ef-b1c9-df0918d42da7.png": {
             "Children": null,
             "Asset": {
@@ -355,6 +371,14 @@
             "Asset": {
               "ContentRootIndex": 0,
               "SubPath": "images/dc084f16-0e70-4775-88f9-61040810d48b.jpg"
+            },
+            "Patterns": null
+          },
+          "dc5f0597-3051-49bb-9d3c-e502a6a725e0.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "images/dc5f0597-3051-49bb-9d3c-e502a6a725e0.jpg"
             },
             "Patterns": null
           },
