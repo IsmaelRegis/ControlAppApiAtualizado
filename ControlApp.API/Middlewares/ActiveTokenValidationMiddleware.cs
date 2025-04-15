@@ -29,14 +29,12 @@ namespace ControlApp.API.Middlewares
                     if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
                     {
                         string token = authHeader.Substring("Bearer ".Length).Trim();
-
                         // Obtém o ID do usuário das claims
                         var userIdClaim = context.User.FindFirst(ClaimTypes.Name);
                         if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out Guid userId))
                         {
                             // Valida se o token é ativo para este usuário
                             bool isTokenValid = await tokenManager.ValidateTokenAsync(token, userId);
-
                             if (!isTokenValid)
                             {
                                 // Token não está ativo, retorna código 440 (Login Conflict)
@@ -49,7 +47,6 @@ namespace ControlApp.API.Middlewares
                     }
                 }
             }
-
             // Continua a execução da pipeline
             await _next(context);
         }

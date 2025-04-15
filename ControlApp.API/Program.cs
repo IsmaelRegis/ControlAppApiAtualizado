@@ -39,6 +39,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 #region Configurações Adicionais
 builder.Services.AddRouting(options => options.LowercaseUrls = true); // Configura URLs em minúsculas
 builder.Services.AddScoped<DataSeeder>(); // Registra o seeder de dados como scoped
+builder.Services.AddHostedService<TokenCleanupService>();
 #endregion
 
 #region Configuração do Swagger

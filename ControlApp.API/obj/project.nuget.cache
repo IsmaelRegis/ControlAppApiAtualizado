@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FxU4Ep4gyJI=",
+  "dgSpecHash": "qfxq/MHotZo=",
   "success": true,
-  "projectFilePath": "C:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\ControlApp.API.csproj",
+  "projectFilePath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\ControlApp.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VTSuporte\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -81,7 +81,6 @@
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.net.http.headers\\2.3.0\\microsoft.net.http.headers.2.3.0.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.openapi\\1.6.14\\microsoft.openapi.1.6.14.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
-    "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\VTSuporte\\.nuget\\packages\\mimekit\\4.11.0\\mimekit.4.11.0.nupkg.sha512",

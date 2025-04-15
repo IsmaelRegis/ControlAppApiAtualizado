@@ -9,7 +9,6 @@ namespace ControlApp.Infra.Data.Mappings
         public void Configure(EntityTypeBuilder<UserToken> builder)
         {
             builder.ToTable("USER_TOKENS");
-
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.Id)
@@ -29,6 +28,10 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasColumnName("CREATED_AT")
                 .IsRequired();
 
+            builder.Property(t => t.ExpiresAt) // Nova propriedade
+                .HasColumnName("EXPIRES_AT")
+                .IsRequired();
+            
             builder.Property(t => t.IsActive)
                 .HasColumnName("IS_ACTIVE")
                 .HasDefaultValue(true)
@@ -44,6 +47,9 @@ namespace ControlApp.Infra.Data.Mappings
 
             // Cria um índice para consulta por token
             builder.HasIndex(t => t.Token);
+
+            // Adiciona índice para ExpiresAt para melhorar performance ao buscar tokens expirados
+            builder.HasIndex(t => t.ExpiresAt);
         }
     }
 }

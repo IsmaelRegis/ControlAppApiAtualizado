@@ -153,6 +153,7 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [Authorize(Roles = "Colaborador")]
     [HttpGet("tecnicos")]
     public async Task<IActionResult> GetTecnicos()
     {

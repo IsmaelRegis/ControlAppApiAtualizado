@@ -24,3 +24,16 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\refint\
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ref\ControlApp.Domain.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.sourcelink.json
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\bin\Debug\net8.0\ControlApp.Domain.deps.json
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\bin\Debug\net8.0\ControlApp.Domain.dll
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\bin\Debug\net8.0\ControlApp.Domain.pdb
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.csproj.AssemblyReference.cache
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.AssemblyInfoInputs.cache
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.AssemblyInfo.cs
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.csproj.CoreCompileInputs.cache
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.sourcelink.json
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.dll
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\refint\ControlApp.Domain.dll
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ControlApp.Domain.pdb
+D:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Debug\net8.0\ref\ControlApp.Domain.dll
