@@ -1,78 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ControlAppApiAtualizado\\ControlApp\\",
+  "WorkspaceRootPath": "D:\\ControlAppApiAtualizado\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\usertokenmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\usertokenmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\configurations\\dependencyinjectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\configurations\\dependencyinjectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.security\\services\\tokencleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokencleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\migrations\\20250414131035_usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\migrations\\20250414131035_usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.domain\\entities\\usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\usertoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.data\\mappings\\localizacaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\localizacaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\middlewares\\activetokenvalidationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\middlewares\\activetokenvalidationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.infra.security\\services\\tokensecurity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokensecurity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\controlapp.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controlapp.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\interfaces\\repositories\\itecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\repositories\\itecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{916E4C7E-83E8-42ED-9993-889B77BC557A}|Itens de Solu\u00E7\u00E3o{916E4C7E-83E8-42ED-9993-889B77BC557A}|D:\\ControlAppApiAtualizado\\ControlApp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{916E4C7E-83E8-42ED-9993-889B77BC557A}|Itens de Solu\u00E7\u00E3o{916E4C7E-83E8-42ED-9993-889B77BC557A}|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\tecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp\\controlapp.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -91,219 +55,119 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAALAAAAAAAAAAAAAcwMYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:23:45.834Z",
+              "WhenOpened": "2025-04-24T17:27:40.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAANICAAAAAAAAAAAswPYCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T17:27:22.368Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\appsettings.json",
-              "RelativeDocumentMoniker": "ControlApp.API\\appsettings.json",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\appsettings.json",
-              "RelativeToolTip": "ControlApp.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-14T13:20:19.335Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TokenCleanupService.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenCleanupService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Services\\TokenCleanupService.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenCleanupService.cs",
-              "RelativeToolTip": "ControlApp.Infra.Security\\Services\\TokenCleanupService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowC8AAAASAAAAAAAAAA==",
+              "Title": "IUsuarioService.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwBwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:13:05.104Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20250414131035_usertoken.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Migrations\\20250414131035_usertoken.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Migrations\\20250414131035_usertoken.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Migrations\\20250414131035_usertoken.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Migrations\\20250414131035_usertoken.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:10:35.871Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserTokenMap.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UserTokenMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\UserTokenMap.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\UserTokenMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\UserTokenMap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:06:31.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Program.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Program.cs",
-              "RelativeToolTip": "ControlApp.API\\Program.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAADwvykAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T18:19:32.76Z"
+              "WhenOpened": "2025-04-24T17:27:13.624Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DependencyInjectionConfiguration.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "RelativeToolTip": "ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAADwv2AAAAABAAAAAAAAAA==",
+              "Title": "Tecnico.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Tecnico.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Tecnico.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Tecnico.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Entities\\Tecnico.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:13:38.404Z"
+              "WhenOpened": "2025-04-24T17:26:37.001Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserToken.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\UserToken.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\UserToken.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Entities\\UserToken.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\UserToken.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Usuario.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Usuario.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Entities\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:05:24.076Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ActiveTokenValidationMiddleware.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
-              "RelativeToolTip": "ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAADwvzMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:02:20.364Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TokenSecurity.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "RelativeToolTip": "ControlApp.Infra.Security\\Services\\TokenSecurity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:02:09.819Z"
+              "WhenOpened": "2025-04-24T17:26:33.325Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "TokenManager.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenManager.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Services\\TokenManager.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Security\\Services\\TokenManager.cs",
-              "RelativeToolTip": "ControlApp.Infra.Security\\Services\\TokenManager.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAkwC0AAAAJAAAAAAAAAA==",
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T12:57:58.878Z"
+              "WhenOpened": "2025-04-24T17:18:06.028Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LocalizacaoMap.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\LocalizacaoMap.cs",
+              "DocumentIndex": 3,
+              "Title": "ITecnicoRepository.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\ITecnicoRepository.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Repositories\\ITecnicoRepository.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\ITecnicoRepository.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Repositories\\ITecnicoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T17:17:59.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ControlApp.API\\appsettings.json",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\appsettings.json",
+              "RelativeToolTip": "ControlApp.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T13:06:29.055Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T12:17:41.13Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAAM0CAAAAAAAAAAAswPECAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T18:44:31.462Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ControlApp.API.csproj",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\ControlApp.API.csproj",
-              "RelativeDocumentMoniker": "ControlApp.API\\ControlApp.API.csproj",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\ControlApp.API.csproj",
-              "RelativeToolTip": "ControlApp.API\\ControlApp.API.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-14T12:22:13.062Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "ControlApp.API\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Properties\\launchSettings.json",
-              "RelativeToolTip": "ControlApp.API\\Properties\\launchSettings.json",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-14T12:09:21.165Z"
+              "WhenOpened": "2025-04-24T16:43:28.998Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "docker-compose.yml",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\docker-compose.yml",
-              "RelativeDocumentMoniker": "docker-compose.yml",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\docker-compose.yml",
-              "RelativeToolTip": "docker-compose.yml",
-              "ViewState": "AgIAABAAAAAAAAAAAAAcwDYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-04-14T11:51:36.981Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Dockerfile",
-              "RelativeDocumentMoniker": "ControlApp.API\\Dockerfile",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.API\\Dockerfile",
-              "RelativeToolTip": "ControlApp.API\\Dockerfile",
-              "ViewState": "AgIAAAwAAAAAAAAAAIBJwBwAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-14T11:48:06.731Z"
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeToolTip": "ControlApp.API\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAKQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T16:42:03.441Z",
+              "EditorCaption": ""
             }
           ]
         }

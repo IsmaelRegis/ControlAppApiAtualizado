@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj": {}
+    "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {}
   },
   "projects": {
-    "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj": {
+    "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj",
+        "projectUniqueName": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
         "projectName": "ControlApp.Domain",
-        "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj",
+        "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
         "packagesPath": "C:\\Users\\VTSuporte\\.nuget\\packages\\",
-        "outputPath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\obj\\",
+        "outputPath": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

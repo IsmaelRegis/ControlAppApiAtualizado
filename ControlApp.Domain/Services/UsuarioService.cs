@@ -609,7 +609,12 @@ public class UsuarioService : IUsuarioService
                 EnderecoId = Guid.NewGuid(),
                 Cep = requestDto.Endereco.Cep,
                 Numero = requestDto.Endereco.Numero,
-                Complemento = requestDto.Endereco.Complemento
+                Complemento = requestDto.Endereco.Complemento,
+                Logradouro = requestDto.Endereco.Logradouro,
+                Bairro = requestDto.Endereco.Bairro,
+                Cidade = requestDto.Endereco.Cidade, 
+                Estado = requestDto.Endereco.Estado             
+
             };
         }
 

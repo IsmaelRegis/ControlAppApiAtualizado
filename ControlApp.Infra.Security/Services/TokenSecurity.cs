@@ -1,6 +1,4 @@
-﻿// ControlApp.Infra.Security.Services/TokenSecurity.cs
-using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ControlApp.Domain.Interfaces.Security;

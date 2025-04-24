@@ -1,4 +1,5 @@
-﻿using ControlApp.Domain.Dtos.Request;
+﻿using System.IdentityModel.Tokens.Jwt;
+using ControlApp.Domain.Dtos.Request;
 using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
@@ -11,12 +12,14 @@ public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _usuarioService;
     private readonly ITokenSecurity _tokenSecurity;
+    private readonly ITokenManager _tokenManager;
 
     #region Construtor
-    public UsuarioController(IUsuarioService usuarioService, ITokenSecurity tokenSecurity)
+    public UsuarioController(IUsuarioService usuarioService, ITokenSecurity tokenSecurity, ITokenManager tokenManager)
     {
         _usuarioService = usuarioService; // Injeção de dependência do serviço de usuário
         _tokenSecurity = tokenSecurity;   // Injeção de dependência do serviço de token
+        _tokenManager = tokenManager;
     }
     #endregion
 
@@ -153,7 +156,6 @@ public class UsuarioController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Colaborador")]
     [HttpGet("tecnicos")]
     public async Task<IActionResult> GetTecnicos()
     {
@@ -178,6 +180,24 @@ public class UsuarioController : ControllerBase
             return NotFound("Usuário não encontrado.");
         return Ok(usuario);
     }
+
+    // No ControlApp - UsuarioController.cs
+    [HttpGet("tecnicos/online")]
+    public async Task<IActionResult> GetTecnicosOnline()
+    {
+        try
+        {
+            var tecnicos = await _usuarioService.GetAllTecnicosAsync();
+            // Filtrar apenas os técnicos que estão online
+            var tecnicosOnline = tecnicos.Where(t => t.IsOnline).ToList();
+            return Ok(tecnicosOnline);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro ao obter técnicos online: {ex.Message}");
+        }
+    }
+   
 
     [Authorize(Roles = "Administrador")]
     [HttpPost("empresa")]
@@ -240,4 +260,29 @@ public class UsuarioController : ControllerBase
         }
     }
     #endregion
+
+    // No ControlApp - UsuarioController.cs
+    [HttpPost("validate-token")]
+    [AllowAnonymous]
+    public async Task<IActionResult> ValidateToken([FromBody] ValidateTokenRequestDto request)
+    {
+        if (request == null || string.IsNullOrEmpty(request.Token) || request.UserId == Guid.Empty)
+            return BadRequest();
+
+        // Extrai o jti do token
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var jwtToken = tokenHandler.ReadJwtToken(request.Token);
+        var tokenId = jwtToken.Claims.FirstOrDefault(c => c.Type == "jti")?.Value;
+
+        if (string.IsNullOrEmpty(tokenId))
+            return StatusCode(440);
+
+        // Valida apenas o tokenId
+        var isValid = await _tokenManager.ValidateTokenAsync(tokenId, request.UserId);
+
+        if (!isValid)
+            return StatusCode(440, new { Error = "MultipleLoginConflict", Message = "Token não está mais ativo." });
+
+        return Ok(true);
+    }
 }

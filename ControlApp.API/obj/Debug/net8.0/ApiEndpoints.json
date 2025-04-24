@@ -538,6 +538,16 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "GetTecnicosOnline",
+    "RelativePath": "controlapp/usuario/tecnicos/online",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "AtualizarLocalizacaoAtual",
     "RelativePath": "controlapp/usuario/update-location/{usuarioId}",
     "HttpMethod": "PUT",
@@ -654,6 +664,22 @@
         "Name": "EmpresaId",
         "Type": "System.Guid",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "ValidateToken",
+    "RelativePath": "controlapp/usuario/validate-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ValidateTokenRequestDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -5896,11 +5896,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
+      "projectUniqueName": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
       "projectName": "ControlApp.Infra.Data",
-      "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
+      "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
       "packagesPath": "C:\\Users\\VTSuporte\\.nuget\\packages\\",
-      "outputPath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Infra.Data\\obj\\",
+      "outputPath": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5922,8 +5922,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj": {
-              "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp\\ControlApp.Domain\\ControlApp.Domain.csproj"
+            "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
+              "projectPath": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj"
             }
           }
         }
