@@ -52,6 +52,22 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpPost("logout")]
+    [Authorize]
+    public async Task<IActionResult> Logout([FromBody] LogoutRequestDto request)
+    {
+        try
+        {
+            await _usuarioService.LogoutUsuarioAsync(request.UsuarioId, request.Token);
+            return Ok(new { Mensagem = "Logout realizado com sucesso." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Mensagem = "Erro ao realizar logout", Detalhes = ex.Message });
+        }
+    }
+
+
     [Authorize(Roles = "Administrador")]
     [HttpPost("register")]
     public async Task<ActionResult> Register([FromForm] CriarUsuarioRequestDto request)

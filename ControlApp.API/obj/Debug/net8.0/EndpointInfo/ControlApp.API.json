@@ -528,6 +528,37 @@
         }
       }
     },
+    "/controlapp/usuario/logout": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/controlapp/usuario/register": {
       "post": {
         "tags": [
@@ -1473,6 +1504,20 @@
           "precisao": {
             "type": "number",
             "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogoutRequestDto": {
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

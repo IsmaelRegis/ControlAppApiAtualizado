@@ -1,1 +1,0 @@
-﻿SELECT * FROM EMPRESAS WHERE EmpresaId = 'e52c9fc2-de96-4d71-a495-6d42c87c222c';

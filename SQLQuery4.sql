@@ -1,1 +1,0 @@
-﻿DELETE FROM USUARIOS WHERE UsuarioId = '3e4e80fb-fa9b-4778-af5a-62c24d498172';

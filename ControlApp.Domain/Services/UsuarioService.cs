@@ -80,6 +80,24 @@ public class UsuarioService : IUsuarioService
             DataHoraAutenticacao = usuario.DataHoraUltimaAutenticacao ?? DateTime.MinValue
         };
     }
+
+    public async Task LogoutUsuarioAsync(Guid usuarioId, string token)
+    {
+        var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
+        if (usuario == null)
+            throw new InvalidOperationException("Usuário não encontrado.");
+
+        // Se for técnico, marcar como offline
+        if (usuario is Tecnico tecnico)
+        {
+            tecnico.IsOnline = false;
+            await _usuarioRepository.AtualizarUsuarioAsync(tecnico.UsuarioId);
+        }
+
+        // Invalida os tokens ativos desse usuário (e opcionalmente o atual)
+        await _tokenManager.InvalidateTokensForUserAsync(usuarioId, token);
+    }
+
     public async Task<Usuario?> GetByEmailAsync(string email)
     {
         return await _usuarioRepository.ObterUsuarioPorEmailAsync(email); // Busca usuário por email

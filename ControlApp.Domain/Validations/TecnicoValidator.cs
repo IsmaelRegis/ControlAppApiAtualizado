@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using FluentValidation;
+﻿using FluentValidation;
 using ControlApp.Domain.Entities;
 
 namespace ControlApp.Domain.Validations

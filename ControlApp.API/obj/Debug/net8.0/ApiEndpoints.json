@@ -426,6 +426,22 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "Logout",
+    "RelativePath": "controlapp/usuario/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ControlApp.Domain.Dtos.Request.LogoutRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "Register",
     "RelativePath": "controlapp/usuario/register",
     "HttpMethod": "POST",

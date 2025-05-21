@@ -35,7 +35,7 @@ namespace ControlApp.Infra.Security.Services
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
-                Token = tokenId,  // Armazena apenas o ID do token, não o token completo
+                Token = tokenId,  
                 CreatedAt = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddHours(24),
                 IsActive = true,

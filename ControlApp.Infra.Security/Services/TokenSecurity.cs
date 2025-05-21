@@ -21,9 +21,9 @@ namespace ControlApp.Infra.Security.Services
                 {
             new Claim(ClaimTypes.Name, usuarioId.ToString()),
             new Claim(ClaimTypes.Role, userRole),
-            new Claim("jti", tokenId)  // Adiciona ID único ao token
+            new Claim("jti", tokenId)  
         }),
-                Expires = DateTime.UtcNow.AddHours(24), // Adiciona expiração de 24 horas
+                Expires = DateTime.UtcNow.AddHours(24), 
                 Issuer = "ControlApp",
                 Audience = audience,
                 SigningCredentials = new SigningCredentials(
