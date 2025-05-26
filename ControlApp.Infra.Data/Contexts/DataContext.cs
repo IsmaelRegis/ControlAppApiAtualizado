@@ -17,6 +17,7 @@ namespace ControlApp.Infra.Data.Contexts
         public DbSet<Localizacao> Localizacoes { get; set; } // Define a tabela de localizações
         public DbSet<Empresa> Empresas { get; set; }      // Define a tabela de empresas, adicionada pra suportar essa entidade
         public DbSet<UserToken> UserTokens { get; set; }  // Define a tabela de tokens de usuários
+        public DbSet <Auditoria> Auditorias { get; set; } // Define a tabela de auditorias
         #endregion
 
         #region Configuração do Modelo
@@ -30,7 +31,8 @@ namespace ControlApp.Infra.Data.Contexts
             modelBuilder.ApplyConfiguration(new LocalizacaoMap());
             modelBuilder.ApplyConfiguration(new EmpresaMap());
             modelBuilder.ApplyConfiguration(new TecnicoMap());
-            modelBuilder.ApplyConfiguration(new UserTokenMap()); // Adiciona o mapeamento do UserToken
+            modelBuilder.ApplyConfiguration(new UserTokenMap());
+            modelBuilder.ApplyConfiguration(new AuditoriaMap());
         }
         #endregion
     }

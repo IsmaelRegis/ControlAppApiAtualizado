@@ -22,9 +22,9 @@ namespace ControlApp.Infra.Data.Seeders
 
         public async Task SeedAsync()
         {
-            await _context.Database.MigrateAsync(); // Aplica as migrações pra criar/atualizar o banco
+            await _context.Database.MigrateAsync();
 
-            // Verifica se já tem administrador; se não tiver, cria um
+            // Criação do Administrador
             if (!_context.Usuarios.Any(u => u.Role == UserRole.Administrador))
             {
                 var admin = new Administrador
@@ -33,15 +33,35 @@ namespace ControlApp.Infra.Data.Seeders
                     Nome = "Admin",
                     UserName = "admin",
                     Email = "admin@controlapp.com",
-                    Senha = _cryptoSHA256.HashPassword("@Admin123"), 
+                    Senha = _cryptoSHA256.HashPassword("@Admin123"),
                     Role = UserRole.Administrador,
                     Ativo = true,
-                    TipoUsuario = "Administrador",
+                    TipoUsuario = "Administrador"
                 };
 
-                _context.Usuarios.Add(admin);    
-                await _context.SaveChangesAsync(); 
+                _context.Usuarios.Add(admin);
             }
+
+            // Criação do SuperAdministrador
+            if (!_context.Usuarios.Any(u => u.Role == UserRole.SuperAdministrador))
+            {
+                var superAdmin = new SuperAdministrador
+                {
+                    UsuarioId = Guid.NewGuid(),
+                    Nome = "SuperAdmin",
+                    UserName = "superadmin",
+                    Email = "superadmin@controlapp.com",
+                    Senha = _cryptoSHA256.HashPassword("@Super123"),
+                    Role = UserRole.SuperAdministrador,
+                    Ativo = true,
+                    TipoUsuario = "SuperAdministrador"
+                };
+
+                _context.Usuarios.Add(superAdmin);
+            }
+
+            await _context.SaveChangesAsync();
         }
+
     }
 }

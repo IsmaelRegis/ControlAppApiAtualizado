@@ -159,4 +159,10 @@ public class UsuarioRepository : IUsuarioRepository
             .OfType<Tecnico>()
             .FirstOrDefaultAsync(u => u.Cpf == cpf);
     }
+
+    public async Task AtualizarTodosOsUsuariosAsync(Usuario usuario)
+    {
+        _context.Usuarios.Update(usuario);
+        await _context.SaveChangesAsync();
+    }
 }

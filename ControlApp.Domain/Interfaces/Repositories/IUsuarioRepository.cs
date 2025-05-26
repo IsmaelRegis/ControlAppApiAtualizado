@@ -17,6 +17,7 @@ namespace ControlApp.Domain.Interfaces.Repositories
         Task<Usuario> ObterUsuarioPorCpfAsync(string cpf);
         Task<Usuario> ObterUsuarioPorUserNameAsync(string userName);
         Task AtualizarUsuarioAsync(Guid id);
+        Task AtualizarTodosOsUsuariosAsync(Usuario usuario);
         Task DeletarUsuarioAsync(Guid id);
         Task<IEnumerable<Usuario>> GetAllAsync();
         Task<Usuario> ObterUsuariosPorRoleAsync(UserRole role);

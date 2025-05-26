@@ -56,7 +56,8 @@ namespace ControlApp.Infra.Data.Mappings
             builder.HasDiscriminator<string>("TipoUsuario")
                 .HasValue<Usuario>("Usuario") 
                 .HasValue<Tecnico>("Tecnico")
-                .HasValue<Administrador>("Administrador");
+                .HasValue<Administrador>("Administrador")
+                .HasValue<SuperAdministrador>("SuperAdministrador");
         }
     }
 }

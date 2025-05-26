@@ -211,5 +211,10 @@ namespace ControlApp.Infra.Data.Repositories
 
             return ultimaMatricula != null ? int.Parse(ultimaMatricula) : 0;
         }
+
+        public Task AtualizarTodosOsUsuariosAsync(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

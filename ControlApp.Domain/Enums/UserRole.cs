@@ -9,6 +9,7 @@ namespace ControlApp.Domain.Enums
     public enum UserRole
     {
         Administrador,
-        Colaborador
+        Colaborador,
+        SuperAdministrador
     }
 }

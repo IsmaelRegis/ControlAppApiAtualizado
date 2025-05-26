@@ -67,12 +67,14 @@ namespace ControlApp.API.Configurations
             services.AddTransient<ITecnicoRepository, TecnicoRepository>();         // Repositório de Técnicos
             services.AddTransient<IPontoRepository, PontoRepository>();             // Repositório de Pontos
             services.AddTransient<IEmpresaRepository, EmpresaRepository>();         // Repositório de Empresas
+            services.AddTransient<IAuditoriaRepository, AuditoriaRepository>();     // Repositório de Auditorias
             #endregion
 
             #region Entidades e Interfaces de Usuário
             // Registro de implementações concretas para a interface IUsuario
             services.AddTransient<IUsuario, Tecnico>();         // Técnico como implementação de IUsuario
             services.AddTransient<IUsuario, Administrador>();   // Administrador como implementação de IUsuario
+            services.AddTransient<IUsuario, SuperAdministrador>(); // SuperAdministrador como implementação de IUsuario
             #endregion
 
             #region Serviços de Segurança
@@ -90,6 +92,7 @@ namespace ControlApp.API.Configurations
             services.AddTransient<IImageService, ImageService>();   // Serviço para manipulação de imagens
             services.AddTransient<IPontoService, PontoService>();   // Serviço para lógica de negócios de Ponto
             services.AddTransient<IUsuarioService, UsuarioService>(); // Serviço para lógica de negócios de Usuário
+            services.AddTransient<IAuditoriaService, AuditoriaService>(); // Serviço para lógica de negócios de Auditoria
             #endregion
         }
         #endregion

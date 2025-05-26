@@ -20,9 +20,11 @@ public class UsuarioService : IUsuarioService
     private readonly ITrajetoRepository _trajetoRepository;
     private readonly ILocalizacaoRepository _localizacaoRepository;
     private readonly ITokenManager _tokenManager;
+    private readonly IAuditoriaService _auditoriaService;
+    private readonly IAuditoriaRepository _auditoriaRepository;
 
     #region Construtor
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, ITokenManager tokenManager)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, ITokenManager tokenManager, IAuditoriaService auditoriaService, IAuditoriaRepository auditoriaRepository)
     {
         _usuarioRepository = usuarioRepository;
         _tokenSecurity = tokenSecurity;
@@ -35,6 +37,8 @@ public class UsuarioService : IUsuarioService
         _trajetoRepository = trajetoRepository;
         _localizacaoRepository = localizacaoRepository;
         _tokenManager = tokenManager;
+        _auditoriaService = auditoriaService;
+        _auditoriaRepository = auditoriaRepository;
     }
     #endregion
 
@@ -66,6 +70,15 @@ public class UsuarioService : IUsuarioService
             deviceInfo,
             audience);
 
+        await _auditoriaService.RegistrarAsync(
+     usuario.UsuarioId,
+     usuario.Nome,
+     "Entrou no sistema",
+     $"{usuario.Nome} logou como {usuario.Role} às {usuario.DataHoraUltimaAutenticacao:dd/MM/yyyy HH:mm:ss}",
+     usuario.Role
+
+);
+
         return new AutenticarUsuarioResponseDto
         {
             UsuarioId = usuario.UsuarioId,
@@ -96,6 +109,16 @@ public class UsuarioService : IUsuarioService
 
         // Invalida os tokens ativos desse usuário (e opcionalmente o atual)
         await _tokenManager.InvalidateTokensForUserAsync(usuarioId, token);
+
+       await _auditoriaService.RegistrarAsync(
+    usuario.UsuarioId,
+    usuario.Nome,
+    "Saiu do sistema",
+    $"{usuario.Nome} fez logout às {DateTime.Now:dd/MM/yyyy HH:mm:ss}",
+    usuario.Role
+);
+
+
     }
 
     public async Task<Usuario?> GetByEmailAsync(string email)
@@ -771,7 +794,24 @@ public class UsuarioService : IUsuarioService
 
     public async Task DeleteEmpresaAsync(Guid id)
     {
-        await _empresaRepository.ExcluirEmpresaAsync(id); // Deleta a empresa
+        await _empresaRepository.ExcluirEmpresaAsync(id); 
     }
+
     #endregion
+    public async Task LogoutUsuariosInativosDiariamenteAsync()
+    {
+        var usuarios = await _usuarioRepository.GetAllAsync();
+
+        foreach (var usuario in usuarios)
+        {
+            if (usuario is Tecnico tecnico)
+            {
+                tecnico.IsOnline = false;
+                await _usuarioRepository.AtualizarTodosOsUsuariosAsync(tecnico);
+            }
+
+            await _tokenManager.InvalidateTokensForUserAsync(usuario.UsuarioId);
+        }
+    }
+
 }

@@ -22,6 +22,40 @@ namespace ControlApp.Infra.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Auditoria", b =>
+                {
+                    b.Property<Guid>("AuditoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Acao")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DataHora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeUsuario")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Papel")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Resumo")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AuditoriaId");
+
+                    b.ToTable("AUDITORIAS", (string)null);
+                });
+
             modelBuilder.Entity("ControlApp.Domain.Entities.Empresa", b =>
                 {
                     b.Property<Guid>("EmpresaId")
@@ -129,8 +163,8 @@ namespace ControlApp.Infra.Data.Migrations
 
                     b.Property<string>("TipoUsuario")
                         .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(100)
@@ -365,6 +399,13 @@ namespace ControlApp.Infra.Data.Migrations
                     b.HasBaseType("ControlApp.Domain.Entities.Usuario");
 
                     b.HasDiscriminator().HasValue("Administrador");
+                });
+
+            modelBuilder.Entity("ControlApp.Domain.Entities.SuperAdministrador", b =>
+                {
+                    b.HasBaseType("ControlApp.Domain.Entities.Usuario");
+
+                    b.HasDiscriminator().HasValue("SuperAdministrador");
                 });
 
             modelBuilder.Entity("ControlApp.Domain.Entities.Tecnico", b =>
