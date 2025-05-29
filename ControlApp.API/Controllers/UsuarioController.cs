@@ -173,12 +173,12 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("tecnicos")]
-    public async Task<IActionResult> GetTecnicos()
+    public async Task<IActionResult> GetTecnicos([FromQuery] PaginacaoRequestDto paginacao = null)
     {
-        var tecnicos = await _usuarioService.GetAllTecnicosAsync(); // Lista todos os técnicos
-        return Ok(tecnicos);
+        // Se nenhum parâmetro de paginação for fornecido, o método do serviço usará os valores padrão
+        var tecnicosPaginados = await _usuarioService.GetTecnicosPaginadosAsync(paginacao);
+        return Ok(tecnicosPaginados);
     }
-
     [HttpGet("{usuarioId}/status")]
     public async Task<IActionResult> GetUsuarioStatus(Guid usuarioId)
     {
@@ -197,15 +197,12 @@ public class UsuarioController : ControllerBase
         return Ok(usuario);
     }
 
-    // No ControlApp - UsuarioController.cs
     [HttpGet("tecnicos/online")]
     public async Task<IActionResult> GetTecnicosOnline()
     {
         try
         {
-            var tecnicos = await _usuarioService.GetAllTecnicosAsync();
-            // Filtrar apenas os técnicos que estão online
-            var tecnicosOnline = tecnicos.Where(t => t.IsOnline).ToList();
+            var tecnicosOnline = await _usuarioService.GetTecnicosOnlineAsync();
             return Ok(tecnicosOnline);
         }
         catch (Exception ex)
@@ -213,7 +210,7 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, $"Erro ao obter técnicos online: {ex.Message}");
         }
     }
-   
+
 
     [Authorize(Roles = "Administrador")]
     [HttpPost("empresa")]

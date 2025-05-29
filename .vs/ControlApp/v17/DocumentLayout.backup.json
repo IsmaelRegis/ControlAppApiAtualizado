@@ -3,92 +3,12 @@
   "WorkspaceRootPath": "D:\\ControlAppApiAtualizado\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ControlAppApiAtualizado\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\services\\auditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\auditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\migrations\\20250526162506_papel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\migrations\\20250526162506_papel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\interfaces\\services\\iauditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\services\\iauditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\mappings\\auditoriamap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\auditoriamap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\entities\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\entities\\auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\controllers\\auditoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\auditoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\configurations\\dependencyinjectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\configurations\\dependencyinjectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\repositories\\auditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\auditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\repositories\\empresarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\empresarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\repositories\\localizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\localizacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\repositories\\tecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\tecnicorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|d:\\controlappapiatualizado\\controlapp.domain\\interfaces\\repositories\\iauditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\repositories\\iauditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\migrations\\20250526160135_auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\migrations\\20250526160135_auditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|d:\\controlappapiatualizado\\controlapp.infra.data\\migrations\\20250526141158_mapcorrecao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14DB27FE-A3CF-4E14-903A-B6CD73C4050A}|ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj|solutionrelative:controlapp.infra.data\\migrations\\20250526141158_mapcorrecao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ControlAppApiAtualizado\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ControlAppApiAtualizado\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|d:\\controlappapiatualizado\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -98,269 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SQLQuery1.sql ",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\SQLQuery1.sql",
-              "RelativeDocumentMoniker": "SQLQuery1.sql",
-              "ToolTip": "SQLQuery1.sql ",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-05-26T17:10:28.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Auditoria.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Auditoria.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Entities\\Auditoria.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Entities\\Auditoria.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Entities\\Auditoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:45:29.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuditoriaMap.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Mappings\\AuditoriaMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\AuditoriaMap.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Mappings\\AuditoriaMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\AuditoriaMap.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCMAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:49:10.841Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuditoriaService.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\AuditoriaService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\AuditoriaService.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\AuditoriaService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Services\\AuditoriaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:51:26.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IAuditoriaService.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IAuditoriaService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Services\\IAuditoriaService.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IAuditoriaService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Services\\IAuditoriaService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAA1wAQAAABhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:50:39.443Z",
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "ControlApp.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "ControlApp.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvysAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-29T11:44:37.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:56:23.019Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20250526162506_Papel.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526162506_Papel.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Migrations\\20250526162506_Papel.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526162506_Papel.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Migrations\\20250526162506_Papel.cs",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
+              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeToolTip": "ControlApp.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T16:25:07.2Z",
+              "WhenOpened": "2025-05-29T11:44:15.741Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AuditoriaController.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\AuditoriaController.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\AuditoriaController.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\AuditoriaController.cs",
-              "RelativeToolTip": "ControlApp.API\\Controllers\\AuditoriaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T16:02:24.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EmpresaRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\EmpresaRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\EmpresaRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\EmpresaRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\EmpresaRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:55:13.571Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "20250526160135_Auditoria.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526160135_Auditoria.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Migrations\\20250526160135_Auditoria.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526160135_Auditoria.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Migrations\\20250526160135_Auditoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T16:01:35.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DependencyInjectionConfiguration.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "RelativeToolTip": "ControlApp.API\\Configurations\\DependencyInjectionConfiguration.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA1wEUAAABwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T16:04:08.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAA0BAAAAAAAAAADwvy8BAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T13:09:59.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "LocalizacaoRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\LocalizacaoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:55:18.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TecnicoRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\TecnicoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:55:17.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuditoriaRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\AuditoriaRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\AuditoriaRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\AuditoriaRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\AuditoriaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:47:44.774Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Repositories\\UsuarioRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Repositories\\UsuarioRepository.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Repositories\\UsuarioRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:55:14.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Contexts\\DataContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:53:52.054Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IAuditoriaRepository.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\IAuditoriaRepository.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Repositories\\IAuditoriaRepository.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Repositories\\IAuditoriaRepository.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Repositories\\IAuditoriaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T15:46:17.354Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "20250526141158_MapCorrecao.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526141158_MapCorrecao.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Migrations\\20250526141158_MapCorrecao.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Migrations\\20250526141158_MapCorrecao.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Migrations\\20250526141158_MapCorrecao.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T14:11:58.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "UsuarioMap.cs",
-              "DocumentMoniker": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "RelativeDocumentMoniker": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "ToolTip": "D:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "RelativeToolTip": "ControlApp.Infra.Data\\Mappings\\UsuarioMap.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAwwDsAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T14:11:14.131Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             }
           ]
         }
