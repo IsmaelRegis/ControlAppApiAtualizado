@@ -621,6 +621,16 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "GetAllTecnicosAsync",
+    "RelativePath": "controlapp/usuario/todos-os-tecnicos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "AtualizarLocalizacaoAtual",
     "RelativePath": "controlapp/usuario/update-location/{usuarioId}",
     "HttpMethod": "PUT",

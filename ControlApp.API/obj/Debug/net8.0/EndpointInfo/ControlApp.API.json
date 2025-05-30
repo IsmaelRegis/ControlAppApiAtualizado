@@ -1061,6 +1061,18 @@
         }
       }
     },
+    "/controlapp/usuario/todos-os-tecnicos": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/controlapp/usuario/empresa": {
       "post": {
         "tags": [
@@ -2010,7 +2022,8 @@
         "enum": [
           "Administrador",
           "Colaborador",
-          "SuperAdministrador"
+          "SuperAdministrador",
+          "Visitante"
         ],
         "type": "string"
       },

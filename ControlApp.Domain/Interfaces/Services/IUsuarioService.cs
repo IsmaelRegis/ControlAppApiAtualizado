@@ -22,6 +22,7 @@ namespace ControlApp.Domain.Interfaces.Services
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);
         Task<PaginacaoResponseDto<UsuarioResponseDto>> GetTecnicosPaginadosAsync(PaginacaoRequestDto paginacao);
         Task<IEnumerable<UsuarioResponseDto>> GetTecnicosOnlineAsync();
+        Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync();
         Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto);
         Task<EmpresaResponseDto?> GetEmpresaByIdAsync(Guid id);
         Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync();

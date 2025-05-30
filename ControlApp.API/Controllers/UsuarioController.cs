@@ -217,6 +217,19 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpGet("todos-os-tecnicos")]
+    public async Task<IActionResult> GetAllTecnicosAsync()
+    {
+        try
+        {
+            var tecnicos = await _usuarioService.GetAllTecnicosAsync();
+            return Ok(tecnicos);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro ao obter todos os técnicos: {ex.Message}");
+        }
+    }
 
     [Authorize(Roles = "SuperAdministrador")]
     [HttpPost("empresa")]

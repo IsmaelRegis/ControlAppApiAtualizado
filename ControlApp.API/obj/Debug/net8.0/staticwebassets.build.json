@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t1U8+BrzshBts/8IyKhZHQlcxRFB3qRKxBLL17Nbp8A=",
+  "Hash": "rwY156NOIY4lFYjk0vJKWliyRP+Xy1jSGO7aTyDAXsw=",
   "Source": "ControlApp.API",
   "BasePath": "_content/ControlApp.API",
   "Mode": "Default",
@@ -78,6 +78,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\067aee69-bef3-4b4d-9467-eded73cbac17.png"
+    },
+    {
+      "Identity": "D:\\ControlAppApiAtualizado\\ControlApp.API\\wwwroot\\images\\08de6097-eaaa-4216-adf7-0cde5249282b.jpg",
+      "SourceId": "ControlApp.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ControlAppApiAtualizado\\ControlApp.API\\wwwroot\\",
+      "BasePath": "_content/ControlApp.API",
+      "RelativePath": "images/08de6097-eaaa-4216-adf7-0cde5249282b#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5yge3q9rx5",
+      "Integrity": "TShJVU7nRhdgFiisW83lwwOGHU/Aoy7YNWSUWATFAHs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\08de6097-eaaa-4216-adf7-0cde5249282b.jpg"
     },
     {
       "Identity": "D:\\ControlAppApiAtualizado\\ControlApp.API\\wwwroot\\images\\11c5699a-20b4-499b-b645-0066d85d0592.png",
@@ -1479,6 +1500,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-k+D3TJLtxfVzCl1Y6/E+QH3u794QwdNNxLVxp6GgVtE="
+        }
+      ]
+    },
+    {
+      "Route": "images/08de6097-eaaa-4216-adf7-0cde5249282b.5yge3q9rx5.jpg",
+      "AssetFile": "D:\\ControlAppApiAtualizado\\ControlApp.API\\wwwroot\\images\\08de6097-eaaa-4216-adf7-0cde5249282b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48499"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TShJVU7nRhdgFiisW83lwwOGHU/Aoy7YNWSUWATFAHs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 30 May 2025 13:03:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5yge3q9rx5"
+        },
+        {
+          "Name": "label",
+          "Value": "images/08de6097-eaaa-4216-adf7-0cde5249282b.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TShJVU7nRhdgFiisW83lwwOGHU/Aoy7YNWSUWATFAHs="
+        }
+      ]
+    },
+    {
+      "Route": "images/08de6097-eaaa-4216-adf7-0cde5249282b.jpg",
+      "AssetFile": "D:\\ControlAppApiAtualizado\\ControlApp.API\\wwwroot\\images\\08de6097-eaaa-4216-adf7-0cde5249282b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48499"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TShJVU7nRhdgFiisW83lwwOGHU/Aoy7YNWSUWATFAHs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 30 May 2025 13:03:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TShJVU7nRhdgFiisW83lwwOGHU/Aoy7YNWSUWATFAHs="
         }
       ]
     },

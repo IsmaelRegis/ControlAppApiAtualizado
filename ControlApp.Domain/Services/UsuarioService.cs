@@ -423,6 +423,97 @@ public class UsuarioService : IUsuarioService
 
     }
 
+    public async Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync()
+    {
+        #region Busca de Técnicos
+        var usuarios = await _usuarioRepository.GetAllAsync(); // Pega todos os usuários
+        var tecnicos = usuarios.Where(u => u is Tecnico).ToList();
+        #endregion
+
+        #region Mapeamento
+        var result = new List<UsuarioResponseDto>();
+
+        // Obtenha a data atual no horário de Brasília
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
+
+        foreach (var usuario in tecnicos)
+        {
+            var tecnico = usuario as Tecnico;
+
+            // Busca a empresa associada, se houver EmpresaId
+            EmpresaResponseDto? empresaDto = null;
+            if (tecnico?.EmpresaId.HasValue == true)
+            {
+                var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+                if (empresa != null)
+                {
+                    empresaDto = new EmpresaResponseDto
+                    {
+                        EmpresaId = empresa.EmpresaId,
+                        NomeDaEmpresa = empresa.NomeDaEmpresa,
+                        Ativo = empresa.Ativo
+                    };
+                }
+            }
+
+            // Buscar o trajeto do dia atual do técnico
+            List<LocalizacaoResponseDto>? localizacoes = null;
+            if (tecnico != null)
+            {
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+
+                if (trajetosDoDia != null && trajetosDoDia.Any())
+                {
+                    var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (trajetoAtual != null)
+                    {
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
+                        localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+                    }
+                }
+            }
+
+            result.Add(new UsuarioResponseDto
+            {
+                UsuarioId = usuario.UsuarioId,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                UserName = usuario.UserName,
+                Role = usuario.Role,
+                Ativo = usuario.Ativo,
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+                TipoUsuario = usuario.TipoUsuario,
+                Cpf = tecnico?.Cpf ?? "N/A",
+                HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+                HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+                HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+                HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+                IsOnline = tecnico?.IsOnline ?? false,
+                LatitudeAtual = tecnico?.LatitudeAtual,
+                LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+                NumeroMatricula = tecnico?.NumeroMatricula,
+                EmpresaId = tecnico?.EmpresaId,
+                NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+                Empresa = empresaDto,
+                Localizacoes = localizacoes
+            });
+        }
+        #endregion
+
+        return result;
+    }
+
     public async Task<IEnumerable<UsuarioResponseDto>> GetTecnicosOnlineAsync()
     {
         #region Busca de Técnicos
