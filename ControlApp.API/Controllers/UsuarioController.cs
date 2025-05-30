@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using ControlApp.Domain.Dtos.Request;
 using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Interfaces.Security;
@@ -68,7 +69,7 @@ public class UsuarioController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "SuperAdministrador")]
     [HttpPost("register")]
     public async Task<ActionResult> Register([FromForm] CriarUsuarioRequestDto request)
     {
@@ -98,12 +99,17 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPut("update/{id}")]
     public async Task<ActionResult> Update([FromRoute] Guid id, [FromForm] AtualizarUsuarioRequestDto request)
     {
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (role == "Visitante")
+            return Forbid("Visitantes não têm permissão para atualizar.");
+
         try
         {
-            var response = await _usuarioService.UpdateUsuarioAsync(id, request); // Atualiza usuário
+            var response = await _usuarioService.UpdateUsuarioAsync(id, request);
             return Ok(response);
         }
         catch (Exception ex)
@@ -157,7 +163,7 @@ public class UsuarioController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "SuperAdministrador")]
     [HttpDelete("delete/{id}")]
     public async Task<ActionResult> Delete([FromRoute] Guid id)
     {
@@ -212,7 +218,7 @@ public class UsuarioController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "SuperAdministrador")]
     [HttpPost("empresa")]
     public async Task<ActionResult> CreateEmpresa([FromBody] CriarEmpresaRequestDto request)
     {
@@ -243,10 +249,14 @@ public class UsuarioController : ControllerBase
         return Ok(empresas);
     }
 
-    [Authorize(Roles = "Administrador")]
+    [Authorize]
     [HttpPut("empresa/{empresaId}")]
     public async Task<ActionResult> UpdateEmpresa(Guid empresaId, [FromBody] AtualizarEmpresaRequestDto request)
     {
+        var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (role == "Visitante")
+            return Forbid("Visitantes não têm permissão para atualizar.");
+
         try
         {
             var response = await _usuarioService.UpdateEmpresaAsync(empresaId, request); // Atualiza empresa
@@ -258,7 +268,7 @@ public class UsuarioController : ControllerBase
         }
     }
 
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "SuperAdministrador")]
     [HttpDelete("empresa/{empresaId}")]
     public async Task<ActionResult> DeleteEmpresa(Guid empresaId)
     {

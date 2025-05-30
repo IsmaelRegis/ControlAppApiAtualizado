@@ -57,7 +57,8 @@ namespace ControlApp.Infra.Data.Mappings
                 .HasValue<Usuario>("Usuario") 
                 .HasValue<Tecnico>("Tecnico")
                 .HasValue<Administrador>("Administrador")
-                .HasValue<SuperAdministrador>("SuperAdministrador");
+                .HasValue<SuperAdministrador>("SuperAdministrador")
+                .HasValue<Visitante>("Visitante");
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ControlApp.Domain.Enums
     {
         Administrador,
         Colaborador,
-        SuperAdministrador
+        SuperAdministrador,
+        Visitante
     }
 }
