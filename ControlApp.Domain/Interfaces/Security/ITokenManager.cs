@@ -9,5 +9,6 @@ namespace ControlApp.Domain.Interfaces.Security
         Task<string> GenerateTokenAsync(Guid userId, string userRole, string deviceInfo = null, string audience = "VibeService"); // VibeService ou CedaeApp
         Task<bool> ValidateTokenAsync(string token, Guid userId);
         Task InvalidateTokensForUserAsync(Guid userId, string currentToken = null);
+        Task<List<Guid>> InvalidateActiveTokensBeforeDateAsync(DateTime cutOffDate);
     }
 }

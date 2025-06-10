@@ -216,5 +216,15 @@ namespace ControlApp.Infra.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Usuario>> GetUsersByIdsAsync(List<Guid> userIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateUsersAsync(List<Usuario> users)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

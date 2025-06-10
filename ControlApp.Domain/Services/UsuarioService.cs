@@ -6,6 +6,7 @@ using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Domain.Interfaces.Services;
 using ControlApp.Domain.Validations;
+using Microsoft.EntityFrameworkCore;
 
 public class UsuarioService : IUsuarioService
 {
@@ -1013,19 +1014,53 @@ public class UsuarioService : IUsuarioService
     }
 
     #endregion
-    public async Task LogoutUsuariosInativosDiariamenteAsync()
-    {
-        var usuarios = await _usuarioRepository.GetAllAsync();
 
-        foreach (var usuario in usuarios)
+    // Dentro da classe UsuarioService
+    // Dentro da classe UsuarioService
+
+    public async Task ExpireDailyTokensAsync(bool expireTodaysTokens = false)
+    {
+        // Define a data de corte usando UTC.
+        // Esta é a forma mais segura e recomendada.
+        var cutOffDate = expireTodaysTokens
+            ? DateTime.UtcNow.Date.AddDays(1) // Para o teste, inclui todos os tokens criados hoje.
+            : DateTime.UtcNow.Date;          // Para a rotina normal, o corte é à meia-noite UTC de hoje.
+
+        // 1. Invalida os tokens criados antes da data de corte e obtém os IDs dos usuários.
+        var affectedUserIds = await _tokenManager.InvalidateActiveTokensBeforeDateAsync(cutOffDate);
+
+        if (!affectedUserIds.Any())
         {
-            if (usuario is Tecnico tecnico)
+            return; // Nenhum usuário para processar.
+        }
+
+        // 2. Busca todos os usuários afetados de uma só vez.
+        var usersToUpdate = await _usuarioRepository.GetUsersByIdsAsync(affectedUserIds);
+
+        var updatedUsersList = new List<Usuario>();
+
+        // 3. Altera o status 'IsOnline' para os técnicos e registra a auditoria.
+        foreach (var usuario in usersToUpdate)
+        {
+            if (usuario is Tecnico tecnico && tecnico.IsOnline)
             {
                 tecnico.IsOnline = false;
-                await _usuarioRepository.AtualizarTodosOsUsuariosAsync(tecnico);
-            }
+                updatedUsersList.Add(tecnico);
 
-            await _tokenManager.InvalidateTokensForUserAsync(usuario.UsuarioId);
+                await _auditoriaService.RegistrarAsync(
+                    tecnico.UsuarioId,
+                    tecnico.Nome,
+                    "Logout Automático",
+                    $"{tecnico.Nome} foi desconectado pela rotina diária.",
+                    tecnico.Role
+                );
+            }
+        }
+
+        // 4. Salva todas as atualizações de usuários no banco de uma vez.
+        if (updatedUsersList.Any())
+        {
+            await _usuarioRepository.UpdateUsersAsync(updatedUsersList);
         }
     }
 

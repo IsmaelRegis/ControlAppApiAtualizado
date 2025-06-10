@@ -21,6 +21,9 @@ namespace ControlApp.Domain.Interfaces.Repositories
         Task DeletarUsuarioAsync(Guid id);
         Task<IEnumerable<Usuario>> GetAllAsync();
         Task<Usuario> ObterUsuariosPorRoleAsync(UserRole role);
+        Task<List<Usuario>> GetUsersByIdsAsync(List<Guid> userIds);
+        Task UpdateUsersAsync(List<Usuario> users);
     }
-
 }
+
+

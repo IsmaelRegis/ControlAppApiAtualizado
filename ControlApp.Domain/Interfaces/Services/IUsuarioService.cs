@@ -28,6 +28,6 @@ namespace ControlApp.Domain.Interfaces.Services
         Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync();
         Task<EmpresaResponseDto> UpdateEmpresaAsync(Guid id, AtualizarEmpresaRequestDto requestDto);
         Task DeleteEmpresaAsync(Guid id);
-        Task LogoutUsuariosInativosDiariamenteAsync();
+        Task ExpireDailyTokensAsync(bool expireTodaysTokens = false);
     }
 }

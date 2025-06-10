@@ -621,6 +621,22 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "ForceExpireDailyTokens",
+    "RelativePath": "controlapp/usuario/test/expire-daily-tokens",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "expireTodaysTokens",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "GetAllTecnicosAsync",
     "RelativePath": "controlapp/usuario/todos-os-tecnicos",
     "HttpMethod": "GET",

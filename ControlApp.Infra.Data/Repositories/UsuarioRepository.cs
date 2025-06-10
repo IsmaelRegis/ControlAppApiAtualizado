@@ -165,4 +165,23 @@ public class UsuarioRepository : IUsuarioRepository
         _context.Usuarios.Update(usuario);
         await _context.SaveChangesAsync();
     }
+
+    // Dentro da classe UsuarioRepository
+
+    public async Task<List<Usuario>> GetUsersByIdsAsync(List<Guid> userIds)
+    {
+        // Busca no SQL Server todos os usuários cujos IDs estão na lista fornecida.
+        return await _context.Usuarios
+            .Where(u => userIds.Contains(u.UsuarioId))
+            .ToListAsync();
+    }
+
+    public async Task UpdateUsersAsync(List<Usuario> users)
+    {
+        // Informa ao Entity Framework para rastrear as alterações em toda a lista de usuários.
+        _context.Usuarios.UpdateRange(users);
+
+        // Salva todas as alterações no banco de dados em uma única transação.
+        await _context.SaveChangesAsync();
+    }
 }

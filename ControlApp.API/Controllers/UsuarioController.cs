@@ -321,4 +321,20 @@ public class UsuarioController : ControllerBase
 
         return Ok(true);
     }
+    // Proteção para evitar uso acidental
+    [HttpPost("test/expire-daily-tokens")]
+    public async Task<IActionResult> ForceExpireDailyTokens([FromQuery] bool expireTodaysTokens = false) // Parâmetro para teste
+    {
+        try
+        {
+            // Passa o parâmetro para a camada de serviço
+            await _usuarioService.ExpireDailyTokensAsync(expireTodaysTokens);
+
+            return Ok(new { Message = "Rotina de expiração de tokens diários foi executada com sucesso." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "Ocorreu um erro ao executar a rotina de teste.", Error = ex.Message });
+        }
+    }
 }

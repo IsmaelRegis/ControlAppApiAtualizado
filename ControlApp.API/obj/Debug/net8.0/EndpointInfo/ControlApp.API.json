@@ -1228,6 +1228,28 @@
           }
         }
       }
+    },
+    "/controlapp/usuario/test/expire-daily-tokens": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "expireTodaysTokens",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

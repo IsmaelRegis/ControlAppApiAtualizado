@@ -94,5 +94,34 @@ namespace ControlApp.Infra.Security.Services
 
             await _context.SaveChangesAsync();
         }
+
+        // Dentro da classe TokenManager
+
+        public async Task<List<Guid>> InvalidateActiveTokensBeforeDateAsync(DateTime cutOffDate)
+        {
+            // Busca todos os tokens que estão ativos e foram criados antes da data de corte (meia-noite).
+            var tokensToExpire = await _context.UserTokens
+                .Where(t => t.IsActive && t.CreatedAt < cutOffDate)
+                .ToListAsync();
+
+            if (!tokensToExpire.Any())
+            {
+                return new List<Guid>(); // Retorna lista vazia se não há o que fazer.
+            }
+
+            // Pega os Ids dos usuários que serão afetados para retornar à camada de serviço.
+            var affectedUserIds = tokensToExpire.Select(t => t.UserId).Distinct().ToList();
+
+            // Invalida cada token
+            foreach (var token in tokensToExpire)
+            {
+                token.IsActive = false;
+            }
+
+            // Salva todas as alterações no banco de uma só vez.
+            await _context.SaveChangesAsync();
+
+            return affectedUserIds;
+        }
     }
 }
