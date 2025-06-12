@@ -1051,7 +1051,7 @@ public class UsuarioService : IUsuarioService
                     tecnico.UsuarioId,
                     tecnico.Nome,
                     "Logout Automático",
-                    $"{tecnico.Nome} foi desconectado pela rotina diária.",
+                    $"{tecnico.Nome} foi desconectado do sistema automaticamente.",
                     tecnico.Role
                 );
             }

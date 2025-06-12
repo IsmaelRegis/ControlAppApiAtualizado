@@ -1,11 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ControlApp.Domain.Entities;
+﻿using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
 using ControlApp.Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace ControlApp.Infra.Data.Seeders
 {
@@ -54,8 +55,10 @@ namespace ControlApp.Infra.Data.Seeders
                     Senha = _cryptoSHA256.HashPassword("@Super123"),
                     Role = UserRole.SuperAdministrador,
                     Ativo = true,
-                    TipoUsuario = "SuperAdministrador"
-                };
+                    TipoUsuario = "SuperAdministrador",
+                    FotoUrl = "https://cedae.vibetex.com.br/images/logo_vibetex.png"
+                }
+            ;
 
                 _context.Usuarios.Add(superAdmin);
             }
