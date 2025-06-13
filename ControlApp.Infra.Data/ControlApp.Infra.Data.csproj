@@ -23,6 +23,10 @@
     </PackageReference>
     <PackageReference Include="MongoDB.Driver" Version="3.3.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.11.0.117924">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

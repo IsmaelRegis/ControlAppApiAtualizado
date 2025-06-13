@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KMmz6Qnq2FA=",
+  "dgSpecHash": "bpU/VOrMF7s=",
   "success": true,
   "projectFilePath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
   "expectedPackageFiles": [
@@ -90,6 +90,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\rabbitmq.client\\6.5.0\\rabbitmq.client.6.5.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\sonaranalyzer.csharp\\10.11.0.117924\\sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\system.buffers\\4.6.0\\system.buffers.4.6.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

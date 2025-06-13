@@ -142,10 +142,17 @@ public class UsuarioService : IUsuarioService
 
     public async Task<CriarUsuarioResponseDto> CreateUsuarioAsync(CriarUsuarioRequestDto requestDto)
     {
-        // Só permite criar técnicos
-        if (requestDto.Role != UserRole.Colaborador)
-            throw new Exception("Apenas técnicos podem ser criados por este serviço.");
+        // Permite criar técnicos E visitantes
+        if (requestDto.Role != UserRole.Colaborador && requestDto.Role != UserRole.Visitante)
+            throw new Exception("Apenas técnicos e visitantes podem ser criados por este serviço.");
 
+        // Para visitantes, usa lógica específica
+        if (requestDto.Role == UserRole.Visitante)
+        {
+            return await CreateVisitanteAsync(requestDto);
+        }
+
+        // Resto do código para técnicos (código original)
         var usuarioExistente = await _usuarioRepository.ObterUsuarioPorCpfAsync(requestDto.Cpf);
         if (usuarioExistente != null)
             throw new Exception("CPF já cadastrado.");
@@ -219,7 +226,6 @@ public class UsuarioService : IUsuarioService
             }
         }
 
-
         return new CriarUsuarioResponseDto
         {
             UsuarioId = tecnico.UsuarioId,
@@ -242,6 +248,57 @@ public class UsuarioService : IUsuarioService
         };
     }
 
+    // Método privado para criar visitante
+    private async Task<CriarUsuarioResponseDto> CreateVisitanteAsync(CriarUsuarioRequestDto requestDto)
+    {
+        // Validações específicas para visitante
+        if (string.IsNullOrWhiteSpace(requestDto.UserName))
+            throw new Exception("UserName é obrigatório para visitantes.");
+
+        if (string.IsNullOrWhiteSpace(requestDto.Senha))
+            throw new Exception("Senha é obrigatória para visitantes.");
+
+        // Verifica se UserName já existe
+        var usuarioExistentePorUserName = await _usuarioRepository.ObterUsuarioPorUserNameAsync(requestDto.UserName);
+        if (usuarioExistentePorUserName != null)
+            throw new Exception("UserName já cadastrado. Escolha outro UserName.");
+
+        var visitante = new Visitante
+        {
+            UsuarioId = Guid.NewGuid(),
+            Nome = requestDto.Nome ?? "Visitante", // Nome pode ser opcional
+            UserName = requestDto.UserName,
+            Email = requestDto.Email, // Email pode ser opcional para visitantes
+            Senha = _cryptoSHA256.HashPassword(requestDto.Senha),
+            Role = UserRole.Visitante,
+            Ativo = true,
+            TipoUsuario = "Visitante"
+        };
+
+        await _usuarioRepository.CriarUsuarioAsync(visitante);
+
+        return new CriarUsuarioResponseDto
+        {
+            UsuarioId = visitante.UsuarioId,
+            Nome = visitante.Nome,
+            UserName = visitante.UserName,
+            Email = visitante.Email,
+            Senha = visitante.Senha, // Retorna a senha criptografada
+            Role = visitante.Role.ToString(),
+            Ativo = visitante.Ativo,
+            // Campos específicos de técnico ficam null/default para visitantes
+            Cpf = null,
+            HoraEntrada = null,
+            HoraSaida = null,
+            HoraAlmocoInicio = null,
+            HoraAlmocoFim = null,
+            FotoUrl = null,
+            IsOnline = false,
+            NumeroMatricula = null,
+            EmpresaId = null,
+            Empresa = null
+        };
+    }
     public async Task<AtualizarUsuarioResponseDto> UpdateUsuarioAsync(Guid usuarioId, AtualizarUsuarioRequestDto requestDto)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
@@ -770,9 +827,7 @@ public class UsuarioService : IUsuarioService
                             // Excluir localizações deste trajeto
                             await _localizacaoRepository.ExcluirLocalizacoesPorTrajetoIdAsync(trajeto.Id);
 
-                            // Opcional: Você pode decidir manter o trajeto, mas sem localizações
-                            // Ou excluir o trajeto completo:
-                            // await _trajetoRepository.DeleteAsync(trajeto.Id);
+                           
                         }
                     }
                 }

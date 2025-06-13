@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N4Zw5ZNhQQg=",
+  "dgSpecHash": "qPBlPiDpru4=",
   "success": true,
   "projectFilePath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\sonaranalyzer.csharp\\10.11.0.117924\\sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512"
   ],
   "logs": [

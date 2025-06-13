@@ -63,24 +63,6 @@ namespace ControlApp.Infra.Data.Seeders
                 _context.Usuarios.Add(superAdmin);
             }
 
-            // Criação do Visitante
-            if (!_context.Usuarios.Any(u => u.Role == UserRole.Visitante))
-            {
-                var visitante = new Visitante
-                {
-                    UsuarioId = Guid.NewGuid(),
-                    Nome = "Visitante",
-                    UserName = "visitante",
-                    Email = "visitante@controlapp.com",
-                    Senha = _cryptoSHA256.HashPassword("@Visitante123"),
-                    Role = UserRole.Visitante,
-                    Ativo = true,
-                    TipoUsuario = "Visitante"
-                };
-
-                _context.Usuarios.Add(visitante);
-            }
-
             await _context.SaveChangesAsync();
         }
     }

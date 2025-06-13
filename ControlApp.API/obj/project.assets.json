@@ -1682,6 +1682,9 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/10.11.0.117924": {
+        "type": "package"
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "type": "package",
         "dependencies": {
@@ -4948,6 +4951,24 @@
         "snappier.nuspec"
       ]
     },
+    "SonarAnalyzer.CSharp/10.11.0.117924": {
+      "sha512": "C7eK46HEeZCptfuR2kGjLnBzdzBjx1F1fb6Ga8DFOsPPaz1sw7LNWdGh42+Ch5NJW/Iq39xcDds4lvww7i4BGw==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/10.11.0.117924",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "images/sonarsource_64.png",
+        "license/THIRD-PARTY-NOTICES.txt",
+        "sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "sha512": "+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
       "type": "package",
@@ -6128,6 +6149,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.12",
       "Newtonsoft.Json >= 13.0.3",
+      "SonarAnalyzer.CSharp >= 10.11.0.117924",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -6219,6 +6241,12 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.11.0.117924, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

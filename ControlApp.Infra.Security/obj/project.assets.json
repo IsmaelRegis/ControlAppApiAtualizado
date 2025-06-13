@@ -1321,6 +1321,9 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/10.11.0.117924": {
+        "type": "package"
+      },
       "System.Buffers/4.6.0": {
         "type": "package",
         "compile": {
@@ -3534,6 +3537,24 @@
         "snappier.nuspec"
       ]
     },
+    "SonarAnalyzer.CSharp/10.11.0.117924": {
+      "sha512": "C7eK46HEeZCptfuR2kGjLnBzdzBjx1F1fb6Ga8DFOsPPaz1sw7LNWdGh42+Ch5NJW/Iq39xcDds4lvww7i4BGw==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/10.11.0.117924",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "images/sonarsource_64.png",
+        "license/THIRD-PARTY-NOTICES.txt",
+        "sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "System.Buffers/4.6.0": {
       "sha512": "lN6tZi7Q46zFzAbRYXTIvfXcyvQQgxnY7Xm6C6xQ9784dEL1amjM6S6Iw4ZpsvesAKnRVsM4scrDQaDqSClkjA==",
       "type": "package",
@@ -4376,7 +4397,8 @@
     "net8.0": [
       "ControlApp.Domain >= 1.0.0",
       "ControlApp.Infra.Data >= 1.0.0",
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.12"
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.12",
+      "SonarAnalyzer.CSharp >= 10.11.0.117924"
     ]
   },
   "packageFolders": {
@@ -4440,6 +4462,12 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.12, )"
+          },
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.11.0.117924, )"
           }
         },
         "imports": [

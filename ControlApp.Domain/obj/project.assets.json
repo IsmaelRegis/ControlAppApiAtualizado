@@ -289,6 +289,9 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "SonarAnalyzer.CSharp/10.11.0.117924": {
+        "type": "package"
+      },
       "System.Text.Encodings.Web/8.0.0": {
         "type": "package",
         "compile": {
@@ -783,6 +786,24 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "SonarAnalyzer.CSharp/10.11.0.117924": {
+      "sha512": "C7eK46HEeZCptfuR2kGjLnBzdzBjx1F1fb6Ga8DFOsPPaz1sw7LNWdGh42+Ch5NJW/Iq39xcDds4lvww7i4BGw==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/10.11.0.117924",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "images/sonarsource_64.png",
+        "license/THIRD-PARTY-NOTICES.txt",
+        "sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "System.Text.Encodings.Web/8.0.0": {
       "sha512": "yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
       "type": "package",
@@ -825,6 +846,7 @@
       "Microsoft.AspNetCore.Http.Abstractions >= 2.3.0",
       "Microsoft.EntityFrameworkCore >= 8.0.12",
       "Microsoft.Extensions.Configuration.Abstractions >= 8.0.0",
+      "SonarAnalyzer.CSharp >= 10.11.0.117924",
       "iTextSharp >= 5.5.13.4"
     ]
   },
@@ -894,6 +916,12 @@
           "Microsoft.Extensions.Configuration.Abstractions": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.11.0.117924, )"
           },
           "iTextSharp": {
             "target": "Package",
