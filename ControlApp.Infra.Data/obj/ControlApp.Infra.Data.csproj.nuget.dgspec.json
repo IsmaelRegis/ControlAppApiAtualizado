@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
         "projectName": "ControlApp.Domain",
         "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
         "outputPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -104,14 +104,14 @@
         "projectUniqueName": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
         "projectName": "ControlApp.Infra.Data",
         "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
         "outputPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -216,7 +216,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

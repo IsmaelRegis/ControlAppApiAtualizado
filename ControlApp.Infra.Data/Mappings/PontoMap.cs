@@ -9,10 +9,10 @@ public class PontoMap : IEntityTypeConfiguration<Ponto>
         builder.ToTable("PONTOS");
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.InicioExpediente).HasColumnName("INICIO_EXPEDIENTE");
-        builder.Property(p => p.FimExpediente).HasColumnName("FIM_EXPEDIENTE");
-        builder.Property(p => p.InicioPausa).HasColumnName("INICIO_PAUSA");
-        builder.Property(p => p.RetornoPausa).HasColumnName("RETORNO_PAUSA");
+        builder.Property(p => p.InicioExpediente).HasColumnName("INICIO_EXPEDIENTE").IsRequired(false);
+        builder.Property(p => p.FimExpediente).HasColumnName("FIM_EXPEDIENTE").IsRequired(false);
+        builder.Property(p => p.InicioPausa).HasColumnName("INICIO_PAUSA").IsRequired(false);
+        builder.Property(p => p.RetornoPausa).HasColumnName("RETORNO_PAUSA").IsRequired(false);
 
         builder.Property(p => p.HorasTrabalhadas)
                .HasColumnName("HORAS_TRABALHADAS")
@@ -87,11 +87,13 @@ public class PontoMap : IEntityTypeConfiguration<Ponto>
 
         builder.Property(p => p.FotoInicioExpediente)
                .HasColumnName("FOTO_INICIO_EXPEDIENTE")
-               .HasMaxLength(500);
+               .HasMaxLength(500)
+               .IsRequired(false);
 
         builder.Property(p => p.FotoFimExpediente)
                .HasColumnName("FOTO_FIM_EXPEDIENTE")
-               .HasMaxLength(500);
+               .HasMaxLength(500)
+               .IsRequired(false);
 
         builder.Property(p => p.TipoPonto)
                .HasColumnName("TIPO_PONTO")

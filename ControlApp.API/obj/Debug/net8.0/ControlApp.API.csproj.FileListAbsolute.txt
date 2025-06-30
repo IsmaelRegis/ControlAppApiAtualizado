@@ -913,3 +913,7 @@ C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\staticwebassets.upToD
 C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\ControlA.FFD35F0C.Up2Date
 C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\ControlApp.API.genruntimeconfig.cache
 C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\ref\ControlApp.API.dll
+C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\ControlAppApiAtualizado\ControlApp.API\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
