@@ -179,6 +179,35 @@ public class PontoController : ControllerBase
         }
     }
 
+    [HttpGet("{usuarioId}/relatorio-diario")]
+    public async Task<ActionResult<RelatorioDiarioResponseDto>> GetRelatorioDiarioAsync(
+         [FromRoute] Guid usuarioId,
+         // 1. O método agora aceita o parâmetro "data" que vem da URL
+         [FromQuery] DateTime? data)
+    {
+        try
+        {
+            // 2. O parâmetro "data" é passado para o serviço
+            var relatorio = await _pontoService.GetRelatorioDiarioPorUsuarioAsync(usuarioId, data);
+
+            if (relatorio == null)
+            {
+                return NotFound($"Nenhum relatório diário encontrado para o usuário.");
+            }
+
+            return Ok(relatorio);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Erro interno do servidor: " + ex.Message);
+        }
+    }
+
+
     [HttpGet("{usuarioId}/expediente-hoje")]
     public async Task<ActionResult<bool>> VerificarExpedienteDoDiaAsync(Guid usuarioId)
     {

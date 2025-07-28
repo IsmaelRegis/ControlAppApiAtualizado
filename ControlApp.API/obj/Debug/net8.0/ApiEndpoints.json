@@ -263,6 +263,37 @@
   },
   {
     "ContainingType": "PontoController",
+    "Method": "GetRelatorioDiarioAsync",
+    "RelativePath": "controlapp/ponto/{usuarioId}/relatorio-diario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "data",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ControlApp.Domain.Dtos.Response.RelatorioDiarioResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PontoController",
     "Method": "GetTecnicoComPontos",
     "RelativePath": "controlapp/ponto/{usuarioId}/tecnico-com-pontos",
     "HttpMethod": "GET",

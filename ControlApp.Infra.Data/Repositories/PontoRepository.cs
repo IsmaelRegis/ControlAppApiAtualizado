@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ControlApp.Domain.Dtos.Response;
 using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Infra.Data.Contexts;
 //using ControlApp.Infra.Data.MongoDB.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 //using MongoDB.Driver;
 
 namespace ControlApp.Infra.Data.Repositories
@@ -321,5 +322,24 @@ namespace ControlApp.Infra.Data.Repositories
                 .Include(p => p.Tecnico) // Garante que o técnico seja carregado
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Ponto>> ObterPontosPorUsuarioNaDataAsync(Guid usuarioId, DateTime data)
+        {
+            var dataInicio = data.Date;
+            var dataFim = data.Date.AddDays(1);
+
+            return await _context.Pontos
+                .AsNoTracking()
+                .Where(p => p.UsuarioId == usuarioId &&
+                       (
+                           (p.InicioExpediente >= dataInicio && p.InicioExpediente < dataFim) ||
+                           (p.InicioPausa >= dataInicio && p.InicioPausa < dataFim)
+                       )
+                )
+                .OrderBy(p => p.InicioExpediente ?? p.InicioPausa)
+                .ToListAsync();
+        }
+
+
     }
 }

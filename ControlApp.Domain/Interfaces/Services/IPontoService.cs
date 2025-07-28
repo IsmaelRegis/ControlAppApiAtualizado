@@ -16,5 +16,6 @@ public interface IPontoService : IBaseService<Ponto>
     Task<ConsultarTecnicoResponseDto> GetTecnicoComPontosAsync(Guid usuarioId);
     Task<List<PontoCombinadoResponseDto>> GetAllPontosCombinadoAsync();
     Task<List<PontoCombinadoResponseDto>> GetPontosCombinadoPorUsuarioIdAsync(Guid usuarioId);
+    Task<RelatorioDiarioResponseDto> GetRelatorioDiarioPorUsuarioAsync(Guid usuarioId, DateTime? data = null);
     Task<bool> VerificarExpedienteDoDiaAsync(Guid usuarioId);
 }

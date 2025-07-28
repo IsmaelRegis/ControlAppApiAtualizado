@@ -3,6 +3,7 @@ using ControlApp.Domain.Entities;
 using ControlApp.Domain.Enums;
 using ControlApp.Domain.Interfaces.Repositories;
 using ControlApp.Domain.Interfaces.Services;
+using System.Globalization;
 
 public class PontoService : IPontoService
 {
@@ -280,6 +281,69 @@ public class PontoService : IPontoService
     {
         await _pontoRepository.CriarPontoAsync(entity); // Adiciona um novo ponto
     }
+
+    public async Task<RelatorioDiarioResponseDto> GetRelatorioDiarioPorUsuarioAsync(Guid usuarioId, DateTime? data = null)
+    {
+        var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
+        if (usuario == null)
+        {
+            throw new InvalidOperationException("Usuário não encontrado.");
+        }
+
+        var dataAlvo = data?.Date ?? DateTime.Now.Date;
+
+        var pontosDoDia = await _pontoRepository.ObterPontosPorUsuarioNaDataAsync(usuarioId, dataAlvo);
+
+        if (pontosDoDia == null || !pontosDoDia.Any())
+        {
+            return null;
+        }
+
+        var expediente = pontosDoDia.FirstOrDefault(p => p.TipoPonto == TipoPonto.Expediente);
+        if (expediente == null)
+        {
+            return null;
+        }
+
+        var pausas = pontosDoDia.Where(p => p.TipoPonto == TipoPonto.Pausa).ToList();
+
+        var relatorio = new RelatorioDiarioResponseDto
+        {
+            UsuarioId = usuario.UsuarioId,
+            NomeTecnico = usuario.Nome,
+            Data = dataAlvo,
+            PontoExpedienteId = expediente.Id,
+            InicioExpediente = expediente.InicioExpediente,
+            FimExpediente = expediente.FimExpediente,
+            HorasTrabalhadas = expediente.HorasTrabalhadas,
+            FotoInicioExpediente = expediente.FotoInicioExpediente,
+            FotoFimExpediente = expediente.FotoFimExpediente,
+            HorasExtras = expediente.HorasExtras,
+            HorasDevidas = expediente.HorasDevidas,
+            Observacoes = string.Join(" | ", new[] { expediente.ObservacaoInicioExpediente, expediente.ObservacaoFimExpediente }.Where(o => !string.IsNullOrEmpty(o))),
+            LatitudeInicioExpediente = expediente.LatitudeInicioExpediente,
+            LongitudeInicioExpediente = expediente.LongitudeInicioExpediente,
+            LatitudeFimExpediente = expediente.LatitudeFimExpediente,
+            LongitudeFimExpediente = expediente.LongitudeFimExpediente
+        };
+
+        foreach (var pausa in pausas)
+        {
+            relatorio.Pausas.Add(new PausaInfoResponseDto
+            {
+                PontoId = pausa.Id,
+                InicioPausa = pausa.InicioPausa,
+                RetornoPausa = pausa.RetornoPausa,
+                Duracao = (pausa.RetornoPausa.HasValue && pausa.InicioPausa.HasValue)
+                          ? pausa.RetornoPausa.Value - pausa.InicioPausa.Value
+                          : TimeSpan.Zero
+            });
+        }
+
+        return relatorio;
+    }
+
+
 
     public async Task UpdateAsync(Ponto entity)
     {
@@ -649,10 +713,53 @@ public class PontoService : IPontoService
     public async Task<bool> VerificarExpedienteDoDiaAsync(Guid usuarioId)
     {
         var hoje = DateTime.Now.Date;
-        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); // Busca pontos do usuário
-
-        // Confere se tem algum início de expediente hoje
+        var pontos = await _pontoRepository.ObterPontoPorUsuarioId(usuarioId); 
         return pontos.Any(p => p.InicioExpediente.HasValue && p.InicioExpediente.Value.Date == hoje);
     }
     #endregion
+
+    private ConsultarPontoResponseDto MapearPontoParaDto(Ponto ponto, string nomeTecnico)
+    {
+        return new ConsultarPontoResponseDto
+        {
+            Id = ponto.Id,
+            UsuarioId = ponto.UsuarioId,
+            NomeTecnico = nomeTecnico,
+            TipoPonto = ponto.TipoPonto,
+
+            // Dados de Expediente
+            InicioExpediente = ponto.InicioExpediente,
+            FimExpediente = ponto.FimExpediente,
+            DataHoraInicioExpediente = ponto.InicioExpediente,
+            DataHoraFimExpediente = ponto.FimExpediente,
+            ObservacaoInicioExpediente = ponto.ObservacaoInicioExpediente,
+            ObservacaoFimExpediente = ponto.ObservacaoFimExpediente,
+            LatitudeInicioExpediente = ponto.LatitudeInicioExpediente ?? "0",
+            LongitudeInicioExpediente = ponto.LongitudeInicioExpediente ?? "0",
+            LatitudeFimExpediente = ponto.LatitudeFimExpediente ?? "0",
+            LongitudeFimExpediente = ponto.LongitudeFimExpediente ?? "0",
+            FotoInicioExpediente = ponto.FotoInicioExpediente,
+            FotoFimExpediente = ponto.FotoFimExpediente,
+
+            // Dados de Pausa (COM A CORREÇÃO)
+            InicioPausa = ponto.InicioPausa,
+            RetornoPausa = ponto.RetornoPausa,
+            DataHoraInicioPausa = ponto.InicioPausa,
+            DataHoraRetornoPausa = ponto.RetornoPausa,
+            ObservacaoInicioPausa = ponto.ObservacaoInicioPausa,
+            ObservacaoFimPausa = ponto.ObservacaoFimPausa,
+            LatitudeInicioPausa = ponto.LatitudeInicioPausa.HasValue ? ponto.LatitudeInicioPausa.Value.ToString(CultureInfo.InvariantCulture) : "0",
+            LongitudeInicioPausa = ponto.LongitudeInicioPausa.HasValue ? ponto.LongitudeInicioPausa.Value.ToString(CultureInfo.InvariantCulture) : "0",
+            LatitudeRetornoPausa = ponto.LatitudeRetornoPausa.HasValue ? ponto.LatitudeRetornoPausa.Value.ToString(CultureInfo.InvariantCulture) : "0",
+            LongitudeRetornoPausa = ponto.LongitudeRetornoPausa.HasValue ? ponto.LongitudeRetornoPausa.Value.ToString(CultureInfo.InvariantCulture) : "0",
+
+            // Dados Calculados
+            HorasTrabalhadas = ponto.HorasTrabalhadas,
+            HorasExtras = ponto.HorasExtras,
+            HorasDevidas = ponto.HorasDevidas,
+            DistanciaPercorrida = ponto.DistanciaPercorrida
+        };
+    }
+
+
 }

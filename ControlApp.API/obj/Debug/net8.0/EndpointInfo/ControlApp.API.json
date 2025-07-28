@@ -527,6 +527,54 @@
         }
       }
     },
+    "/controlapp/ponto/{usuarioId}/relatorio-diario": {
+      "get": {
+        "tags": [
+          "Ponto"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelatorioDiarioResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelatorioDiarioResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelatorioDiarioResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/controlapp/ponto/{usuarioId}/expediente-hoje": {
       "get": {
         "tags": [
@@ -1644,6 +1692,30 @@
         },
         "additionalProperties": false
       },
+      "PausaInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "pontoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "inicioPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "retornoPausa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "duracao": {
+            "type": "string",
+            "format": "duration"
+          }
+        },
+        "additionalProperties": false
+      },
       "PontoCombinadoResponseDto": {
         "type": "object",
         "properties": {
@@ -1882,6 +1954,88 @@
           "dataHoraInicioPausa": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelatorioDiarioResponseDto": {
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nomeTecnico": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pontoExpedienteId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "inicioExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fimExpediente": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "horasTrabalhadas": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "fotoInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "pausas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PausaInfoResponseDto"
+            },
+            "nullable": true
+          },
+          "horasExtras": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "horasDevidas": {
+            "type": "string",
+            "format": "duration",
+            "nullable": true
+          },
+          "latitudeInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeInicioExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitudeFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitudeFimExpediente": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacoes": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

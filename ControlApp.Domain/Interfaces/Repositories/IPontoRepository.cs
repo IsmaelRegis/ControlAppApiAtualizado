@@ -1,11 +1,12 @@
 ﻿
+using ControlApp.Domain.Dtos.Response;
+using ControlApp.Domain.Entities;
+using ControlApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ControlApp.Domain.Entities;
-using ControlApp.Domain.Enums;
 
 namespace ControlApp.Domain.Interfaces.Repositories
 {
@@ -23,5 +24,6 @@ namespace ControlApp.Domain.Interfaces.Repositories
         Task<ICollection<Ponto>> ObterPontoPorUsuarioId(Guid usuarioId);
         Task AtualizarLocalizacoesDoPontoAsync(Guid pontoId, List<Localizacao> localizacoes);
         Task<ICollection<Ponto>> ObterTodosPontosAsync();
+        Task<IEnumerable<Ponto>> ObterPontosPorUsuarioNaDataAsync(Guid usuarioId, DateTime data);
     }
 }
