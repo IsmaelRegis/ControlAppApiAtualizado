@@ -75,7 +75,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var response = await _usuarioService.CreateUsuarioAsync(request); // Cria novo usuário
+            var response = await _usuarioService.CreateUsuarioAsync(request); 
             var usuarioResponse = new CriarUsuarioResponseDto
             {
                 UsuarioId = response.UsuarioId,
