@@ -39,15 +39,6 @@ namespace ControlApp.Infra.Data.Repositories
 
         public async Task<IEnumerable<Localizacao>> ObterLocalizacoesPorTrajetoIdAsync(Guid trajetoId)
         {
-            /*// Tenta buscar no MongoDB primeiro
-            var localizacoesMongo = await _mongoRepository.ObterPorFiltroAsync(
-                l => l.TrajetoId == trajetoId
-            );
-            
-            // Se encontrar no MongoDB, retorna
-            if (localizacoesMongo.Any()) return localizacoesMongo;*/
-
-            // Busca no SQL Server
             return await _context.Localizacoes
                 .Where(l => l.TrajetoId == trajetoId)
                 .ToListAsync();

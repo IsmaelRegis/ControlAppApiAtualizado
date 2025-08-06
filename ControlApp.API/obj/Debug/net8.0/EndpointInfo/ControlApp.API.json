@@ -1097,6 +1097,29 @@
         }
       }
     },
+    "/controlapp/usuario/{usuarioId}/historico-completo": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/controlapp/usuario/tecnicos/online": {
       "get": {
         "tags": [
@@ -1917,6 +1940,10 @@
       "RegistrarInicioPausaRequestDto": {
         "type": "object",
         "properties": {
+          "expedienteId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "latitude": {
             "type": "string",
             "nullable": true
@@ -1954,6 +1981,10 @@
           "dataHoraInicioPausa": {
             "type": "string",
             "format": "date-time"
+          },
+          "horasTrabalhadas": {
+            "type": "string",
+            "format": "duration"
           }
         },
         "additionalProperties": false

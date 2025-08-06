@@ -68,8 +68,6 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
-    [Authorize(Roles = "SuperAdministrador")]
     [HttpPost("register")]
     public async Task<ActionResult> Register([FromForm] CriarUsuarioRequestDto request)
     {
@@ -201,6 +199,23 @@ public class UsuarioController : ControllerBase
         if (usuario == null)
             return NotFound("Usuário não encontrado.");
         return Ok(usuario);
+    }
+
+    [HttpGet("{usuarioId}/historico-completo")]
+    public async Task<IActionResult> GetUsuarioByIdComHistoricoCompleto(Guid usuarioId)
+    {
+        try
+        {
+            var usuario = await _usuarioService.GetByIdComHistoricoCompletoAsync(usuarioId);
+            if (usuario == null)
+                return NotFound("Usuário não encontrado.");
+
+            return Ok(usuario);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+        }
     }
 
     [HttpGet("tecnicos/online")]

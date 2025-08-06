@@ -20,6 +20,7 @@ namespace ControlApp.Domain.Interfaces.Services
         Task AtualizarLocalizacaoAtualAsync(Guid usuarioId, string latitude, string longitude);
         Task<bool> AdicionarRegistroLocalizacaoAsync(Guid usuarioId, string latitude, string longitude);
         Task<UsuarioResponseDto?> GetByIdAsync(Guid id);
+        Task<UsuarioResponseDto?> GetByIdComHistoricoCompletoAsync(Guid id);
         Task<PaginacaoResponseDto<UsuarioResponseDto>> GetTecnicosPaginadosAsync(PaginacaoRequestDto paginacao);
         Task<IEnumerable<UsuarioResponseDto>> GetTecnicosOnlineAsync();
         Task<IEnumerable<UsuarioResponseDto>> GetAllTecnicosAsync();

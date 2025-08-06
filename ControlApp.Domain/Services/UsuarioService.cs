@@ -112,7 +112,28 @@ public class UsuarioService : IUsuarioService
             var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(requestDto.EmpresaId.Value);
             if (empresa != null)
             {
-                empresaDto = new EmpresaResponseDto { /* Mapeamento da empresa */ };
+                empresaDto = new EmpresaResponseDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    Ativo = empresa.Ativo,
+                    NomeDaEmpresa = empresa.NomeDaEmpresa,
+                    Endereco = empresa.Endereco == null ? null : new EnderecoDto
+                    {
+                        Cep = empresa.Endereco.Cep,
+                        Logradouro = empresa.Endereco.Logradouro,
+                        Complemento = empresa.Endereco.Complemento,
+                        Bairro = empresa.Endereco.Bairro,
+                        Localidade = empresa.Endereco.Cidade,
+                        Uf = empresa.Endereco.Estado,
+                        Numero = empresa.Endereco.Numero
+                    },
+                    Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+                    {
+                        UsuarioId = t.UsuarioId,
+                        Nome = t.Nome,
+                        Cpf = t.Cpf
+                    }).ToList()
+                };
             }
         }
 
@@ -165,7 +186,17 @@ public class UsuarioService : IUsuarioService
             Email = visitante.Email,
             Senha = visitante.Senha,
             Role = visitante.Role.ToString(),
-            Ativo = visitante.Ativo
+            Ativo = visitante.Ativo,
+            Cpf = null,
+            HoraEntrada = null,
+            HoraSaida = null,
+            HoraAlmocoInicio = null,
+            HoraAlmocoFim = null,
+            FotoUrl = null,
+            IsOnline = false,
+            NumeroMatricula = null,
+            EmpresaId = null,
+            Empresa = null
         };
     }
 
@@ -377,8 +408,71 @@ public class UsuarioService : IUsuarioService
 
         foreach (var usuario in usuariosPaginados)
         {
-            // Lógica de mapeamento completa
-            result.Add(new UsuarioResponseDto { /* Mapeamento do usuário */ });
+            var tecnico = usuario as Tecnico;
+            EmpresaResponseDto? empresaDto = null;
+            if (tecnico?.EmpresaId.HasValue == true)
+            {
+                var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+                if (empresa != null)
+                {
+                    empresaDto = new EmpresaResponseDto
+                    {
+                        EmpresaId = empresa.EmpresaId,
+                        NomeDaEmpresa = empresa.NomeDaEmpresa,
+                        Ativo = empresa.Ativo
+                    };
+                }
+            }
+
+            List<LocalizacaoResponseDto>? localizacoes = null;
+            if (tecnico != null)
+            {
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+                if (trajetosDoDia != null && trajetosDoDia.Any())
+                {
+                    var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (trajetoAtual != null)
+                    {
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
+                        localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+                    }
+                }
+            }
+
+            result.Add(new UsuarioResponseDto
+            {
+                UsuarioId = usuario.UsuarioId,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                UserName = usuario.UserName,
+                Role = usuario.Role,
+                Ativo = usuario.Ativo,
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+                TipoUsuario = usuario.TipoUsuario,
+                Cpf = tecnico?.Cpf ?? "N/A",
+                HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+                HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+                HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+                HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+                IsOnline = tecnico?.IsOnline ?? false,
+                LatitudeAtual = tecnico?.LatitudeAtual,
+                LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+                NumeroMatricula = tecnico?.NumeroMatricula,
+                EmpresaId = tecnico?.EmpresaId,
+                NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+                Empresa = empresaDto,
+                Localizacoes = localizacoes
+            });
         }
 
         int totalPaginas = (int)Math.Ceiling(totalUsuarios / (double)paginacao.TamanhoPagina);
@@ -398,7 +492,77 @@ public class UsuarioService : IUsuarioService
         var usuarios = await _usuarioRepository.GetAllAsync();
         var tecnicos = usuarios.Where(u => u is Tecnico).ToList();
         var result = new List<UsuarioResponseDto>();
-        // Lógica de mapeamento completa para cada técnico...
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
+
+        foreach (var usuario in tecnicos)
+        {
+            var tecnico = usuario as Tecnico;
+            EmpresaResponseDto? empresaDto = null;
+            if (tecnico?.EmpresaId.HasValue == true)
+            {
+                var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+                if (empresa != null)
+                {
+                    empresaDto = new EmpresaResponseDto
+                    {
+                        EmpresaId = empresa.EmpresaId,
+                        NomeDaEmpresa = empresa.NomeDaEmpresa,
+                        Ativo = empresa.Ativo
+                    };
+                }
+            }
+
+            List<LocalizacaoResponseDto>? localizacoes = null;
+            if (tecnico != null)
+            {
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+                if (trajetosDoDia != null && trajetosDoDia.Any())
+                {
+                    var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (trajetoAtual != null)
+                    {
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
+                        localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+                    }
+                }
+            }
+
+            result.Add(new UsuarioResponseDto
+            {
+                UsuarioId = usuario.UsuarioId,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                UserName = usuario.UserName,
+                Role = usuario.Role,
+                Ativo = usuario.Ativo,
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+                TipoUsuario = usuario.TipoUsuario,
+                Cpf = tecnico?.Cpf ?? "N/A",
+                HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+                HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+                HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+                HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+                IsOnline = tecnico?.IsOnline ?? false,
+                LatitudeAtual = tecnico?.LatitudeAtual,
+                LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+                NumeroMatricula = tecnico?.NumeroMatricula,
+                EmpresaId = tecnico?.EmpresaId,
+                NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+                Empresa = empresaDto,
+                Localizacoes = localizacoes
+            });
+        }
         return result;
     }
 
@@ -407,7 +571,77 @@ public class UsuarioService : IUsuarioService
         var usuarios = await _usuarioRepository.GetAllAsync();
         var tecnicosOnline = usuarios.Where(u => u is Tecnico tecnico && tecnico.IsOnline).ToList();
         var result = new List<UsuarioResponseDto>();
-        // Lógica de mapeamento completa para cada técnico online...
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
+
+        foreach (var usuario in tecnicosOnline)
+        {
+            var tecnico = usuario as Tecnico;
+            EmpresaResponseDto? empresaDto = null;
+            if (tecnico?.EmpresaId.HasValue == true)
+            {
+                var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+                if (empresa != null)
+                {
+                    empresaDto = new EmpresaResponseDto
+                    {
+                        EmpresaId = empresa.EmpresaId,
+                        NomeDaEmpresa = empresa.NomeDaEmpresa,
+                        Ativo = empresa.Ativo
+                    };
+                }
+            }
+
+            List<LocalizacaoResponseDto>? localizacoes = null;
+            if (tecnico != null)
+            {
+                var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+                var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+                if (trajetosDoDia != null && trajetosDoDia.Any())
+                {
+                    var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                    if (trajetoAtual != null)
+                    {
+                        var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
+                        localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+                    }
+                }
+            }
+
+            result.Add(new UsuarioResponseDto
+            {
+                UsuarioId = usuario.UsuarioId,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                UserName = usuario.UserName,
+                Role = usuario.Role,
+                Ativo = usuario.Ativo,
+                FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+                TipoUsuario = usuario.TipoUsuario,
+                Cpf = tecnico?.Cpf ?? "N/A",
+                HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+                HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+                HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+                HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+                IsOnline = tecnico?.IsOnline ?? false,
+                LatitudeAtual = tecnico?.LatitudeAtual,
+                LongitudeAtual = tecnico?.LongitutdeAtual,
+                DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+                DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+                NumeroMatricula = tecnico?.NumeroMatricula,
+                EmpresaId = tecnico?.EmpresaId,
+                NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+                Empresa = empresaDto,
+                Localizacoes = localizacoes
+            });
+        }
         return result;
     }
 
@@ -417,15 +651,156 @@ public class UsuarioService : IUsuarioService
         if (usuario == null) return null;
 
         var tecnico = usuario as Tecnico;
+        TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+        DateTime dataAtual = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone).Date;
+
         EmpresaResponseDto? empresaDto = null;
-        // Lógica de mapeamento completa...
+        if (tecnico?.EmpresaId.HasValue == true)
+        {
+            var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+            if (empresa != null)
+            {
+                empresaDto = new EmpresaResponseDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    NomeDaEmpresa = empresa.NomeDaEmpresa,
+                    Ativo = empresa.Ativo
+                };
+            }
+        }
+
+        List<LocalizacaoResponseDto>? localizacoes = null;
+        if (tecnico != null)
+        {
+            var trajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+            var trajetosDoDia = trajetos?.Where(t => t.Data.Date == dataAtual).ToList();
+            if (trajetosDoDia != null && trajetosDoDia.Any())
+            {
+                var trajetoAtual = trajetosDoDia.OrderByDescending(t => t.Data).FirstOrDefault();
+                if (trajetoAtual != null)
+                {
+                    var localizacoesTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajetoAtual.Id);
+                    localizacoes = localizacoesTrajeto.Select(l => new LocalizacaoResponseDto
+                    {
+                        LocalizacaoId = l.LocalizacaoId,
+                        Latitude = l.Latitude,
+                        Longitude = l.Longitude,
+                        DataHora = l.DataHora,
+                        Precisao = l.Precisao
+                    }).ToList();
+                }
+            }
+        }
 
         return new UsuarioResponseDto
         {
             UsuarioId = usuario.UsuarioId,
             Nome = usuario.Nome,
             Email = usuario.Email,
-            // ... resto do mapeamento
+            UserName = usuario.UserName,
+            Role = usuario.Role,
+            Ativo = usuario.Ativo,
+            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+            TipoUsuario = usuario.TipoUsuario,
+            Cpf = tecnico?.Cpf ?? "N/A",
+            HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+            HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+            HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+            HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+            IsOnline = tecnico?.IsOnline ?? false,
+            LatitudeAtual = tecnico?.LatitudeAtual,
+            LongitudeAtual = tecnico?.LongitutdeAtual,
+            DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+            NumeroMatricula = tecnico?.NumeroMatricula,
+            EmpresaId = tecnico?.EmpresaId,
+            Empresa = empresaDto,
+            NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+            Localizacoes = localizacoes
+        };
+    }
+
+    public async Task<UsuarioResponseDto?> GetByIdComHistoricoCompletoAsync(Guid id)
+    {
+        var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
+        if (usuario == null) return null;
+
+        var tecnico = usuario as Tecnico;
+
+        EmpresaResponseDto? empresaDto = null;
+        if (tecnico?.EmpresaId.HasValue == true)
+        {
+            var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(tecnico.EmpresaId.Value);
+            if (empresa != null)
+            {
+                empresaDto = new EmpresaResponseDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    NomeDaEmpresa = empresa.NomeDaEmpresa,
+                    Ativo = empresa.Ativo
+                };
+            }
+        }
+
+        List<LocalizacaoResponseDto>? todasAsLocalizacoes = null;
+        if (tecnico != null)
+        {
+            var todosOsTrajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
+
+            // Linha de debug que pode ser útil manter por enquanto
+            Console.WriteLine($"DEBUG: O repositório retornou {todosOsTrajetos.Count()} trajetos do histórico para o usuário {id}.");
+
+            if (todosOsTrajetos != null && todosOsTrajetos.Any())
+            {
+                todasAsLocalizacoes = new List<LocalizacaoResponseDto>();
+
+                foreach (var trajeto in todosOsTrajetos.OrderByDescending(t => t.Data))
+                {
+                    var localizacoesDoTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajeto.Id);
+
+                    // --- LINHA CORRIGIDA ---
+                    if (localizacoesDoTrajeto != null && localizacoesDoTrajeto.Any())
+                    {
+                        var localizacoesMapeadas = localizacoesDoTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+
+                        todasAsLocalizacoes.AddRange(localizacoesMapeadas);
+                    }
+                }
+            }
+        }
+
+        return new UsuarioResponseDto
+        {
+            UsuarioId = usuario.UsuarioId,
+            Nome = usuario.Nome,
+            Email = usuario.Email,
+            UserName = usuario.UserName,
+            Role = usuario.Role,
+            Ativo = usuario.Ativo,
+            FotoUrl = usuario.FotoUrl ?? "URL_PADRAO_SEM_IMAGEM",
+            TipoUsuario = usuario.TipoUsuario,
+            Cpf = tecnico?.Cpf ?? "N/A",
+            HoraEntrada = tecnico?.HoraEntrada ?? TimeSpan.Zero,
+            HoraSaida = tecnico?.HoraSaida ?? TimeSpan.Zero,
+            HoraAlmocoInicio = tecnico?.HoraAlmocoInicio ?? TimeSpan.Zero,
+            HoraAlmocoFim = tecnico?.HoraAlmocoFim ?? TimeSpan.Zero,
+            IsOnline = tecnico?.IsOnline ?? false,
+            LatitudeAtual = tecnico?.LatitudeAtual,
+            LongitudeAtual = tecnico?.LongitutdeAtual,
+            DataEHoraLocalizacao = tecnico?.DataEHoraLocalizacao ?? DateTime.MinValue,
+            DataHoraUltimaAutenticacao = usuario.DataHoraUltimaAutenticacao,
+            NumeroMatricula = tecnico?.NumeroMatricula,
+            EmpresaId = tecnico?.EmpresaId,
+            Empresa = empresaDto,
+            NomeDaEmpresa = empresaDto?.NomeDaEmpresa,
+            Localizacoes = todasAsLocalizacoes
         };
     }
 
@@ -470,8 +845,69 @@ public class UsuarioService : IUsuarioService
 
     public async Task<bool> AdicionarRegistroLocalizacaoAsync(Guid usuarioId, string latitude, string longitude)
     {
-        // Lógica completa de adicionar registro de localização...
-        return true;
+        try
+        {
+            var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(usuarioId);
+            if (usuario == null)
+                throw new InvalidOperationException("Usuário não encontrado.");
+
+            if (usuario is Tecnico tecnico)
+            {
+                TimeZoneInfo brasiliaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+                DateTime dataHoraLocal = TimeZoneInfo.ConvertTime(DateTime.Now, brasiliaTimeZone);
+
+                // --- LÓGICA DE EXCLUSÃO REMOVIDA ---
+                // O bloco foreach que apagava as localizações antigas foi completamente removido.
+
+                // LÓGICA OTIMIZADA: Busca diretamente apenas o trajeto do dia atual.
+                var trajetoHoje = await _trajetoRepository.GetTrajetoDoDiaAsync(tecnico.UsuarioId, dataHoraLocal);
+                Guid trajetoId;
+
+                if (trajetoHoje == null)
+                {
+                    // Se não existe um trajeto para hoje, cria um novo.
+                    var novoTrajeto = new Trajeto
+                    {
+                        Id = Guid.NewGuid(),
+                        Data = dataHoraLocal,
+                        UsuarioId = tecnico.UsuarioId,
+                        Status = "Em andamento",
+                        DistanciaTotalKm = 0,
+                        DuracaoTotal = TimeSpan.Zero
+                    };
+                    await _trajetoRepository.AddAsync(novoTrajeto);
+                    trajetoId = novoTrajeto.Id;
+                }
+                else
+                {
+                    // Se já existe, usa a ID do trajeto de hoje.
+                    trajetoId = trajetoHoje.Id;
+                }
+
+                // Cria e salva a nova localização no trajeto do dia.
+                var localizacao = new Localizacao
+                {
+                    LocalizacaoId = Guid.NewGuid(),
+                    Latitude = latitude,
+                    Longitude = longitude,
+                    DataHora = dataHoraLocal,
+                    Precisao = 0,
+                    TrajetoId = trajetoId
+                };
+                return await _localizacaoRepository.AdicionarLocalizacaoAsync(localizacao);
+            }
+            else
+            {
+                throw new InvalidOperationException("Apenas técnicos podem ter a localização registrada.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao registrar localização: {ex.Message}");
+            if (ex.InnerException != null)
+                Console.WriteLine($"Exceção interna: {ex.InnerException.Message}");
+            return false;
+        }
     }
 
     Task<Usuario?> IBaseService<Usuario>.GetByIdAsync(Guid id)
@@ -493,35 +929,159 @@ public class UsuarioService : IUsuarioService
 
     public async Task<EmpresaResponseDto> CreateEmpresaAsync(CriarEmpresaRequestDto requestDto)
     {
-        // Lógica completa de criação de empresa...
-        var empresa = new Empresa { /*...*/ };
+        var empresa = new Empresa
+        {
+            EmpresaId = Guid.NewGuid(),
+            NomeDaEmpresa = requestDto.NomeDaEmpresa,
+            DataCriacao = DateTime.Now,
+            Ativo = true
+        };
+
+        if (requestDto.Endereco != null && !string.IsNullOrEmpty(requestDto.Endereco.Cep))
+        {
+            empresa.Endereco = new Endereco
+            {
+                EnderecoId = Guid.NewGuid(),
+                Cep = requestDto.Endereco.Cep,
+                Numero = requestDto.Endereco.Numero,
+                Complemento = requestDto.Endereco.Complemento,
+                Logradouro = requestDto.Endereco.Logradouro,
+                Bairro = requestDto.Endereco.Bairro,
+                Cidade = requestDto.Endereco.Cidade,
+                Estado = requestDto.Endereco.Estado
+            };
+        }
+
         await _empresaRepository.CriarEmpresaAsync(empresa);
-        return new EmpresaResponseDto { /*...*/ };
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
+            Endereco = empresa.Endereco == null ? null : new EnderecoDto
+            {
+                Cep = empresa.Endereco.Cep,
+                Numero = empresa.Endereco.Numero,
+                Complemento = empresa.Endereco.Complemento,
+                Logradouro = empresa.Endereco.Logradouro,
+                Bairro = empresa.Endereco.Bairro,
+                Localidade = empresa.Endereco.Cidade,
+                Uf = empresa.Endereco.Estado
+            },
+            Tecnicos = null
+        };
     }
 
     public async Task<EmpresaResponseDto?> GetEmpresaByIdAsync(Guid id)
     {
-        // Lógica completa de busca de empresa...
         var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(id);
-        if (empresa == null) return null;
-        return new EmpresaResponseDto { /*...*/ };
+        if (empresa == null)
+            return null;
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
+            Endereco = new EnderecoDto
+            {
+                Cep = empresa.Endereco?.Cep,
+                Logradouro = empresa.Endereco?.Logradouro,
+                Bairro = empresa.Endereco?.Bairro,
+                Localidade = empresa.Endereco?.Cidade,
+                Uf = empresa.Endereco?.Estado,
+                Complemento = empresa.Endereco?.Complemento,
+                Numero = empresa.Endereco?.Numero
+            },
+            Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf,
+                Role = t.Role
+            }).ToList()
+        };
     }
 
     public async Task<IEnumerable<EmpresaResponseDto>> GetAllEmpresasAsync()
     {
-        // Lógica completa de busca de todas as empresas...
         var empresas = await _empresaRepository.GetAllEmpresasAsync();
-        return empresas.Select(e => new EmpresaResponseDto { /*...*/ });
+        return empresas.Select(e => new EmpresaResponseDto
+        {
+            EmpresaId = e.EmpresaId,
+            NomeDaEmpresa = e.NomeDaEmpresa,
+            Ativo = e.Ativo,
+            DataCriacao = e.DataCriacao,
+            Endereco = new EnderecoDto
+            {
+                Cep = e.Endereco?.Cep,
+                Logradouro = e.Endereco?.Logradouro,
+                Bairro = e.Endereco?.Bairro,
+                Localidade = e.Endereco?.Cidade,
+                Uf = e.Endereco?.Estado,
+                Complemento = e.Endereco?.Complemento,
+                Numero = e.Endereco?.Numero
+            },
+            Tecnicos = e.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf,
+                Role = t.Role
+            }).ToList()
+        });
     }
 
     public async Task<EmpresaResponseDto> UpdateEmpresaAsync(Guid empresaId, AtualizarEmpresaRequestDto requestDto)
     {
-        // Lógica completa de atualização de empresa...
         var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(empresaId);
-        if (empresa == null) throw new Exception("Empresa não encontrada.");
-        //...
+        if (empresa == null)
+            throw new Exception("Empresa não encontrada.");
+
+        empresa.NomeDaEmpresa = requestDto.NomeDaEmpresa ?? empresa.NomeDaEmpresa;
+
+        if (requestDto.Endereco != null)
+        {
+            if (empresa.Endereco == null)
+                empresa.Endereco = new Endereco { EnderecoId = Guid.NewGuid() };
+            empresa.Endereco.Cep = requestDto.Endereco.Cep ?? empresa.Endereco.Cep;
+            empresa.Endereco.Numero = requestDto.Endereco.Numero ?? empresa.Endereco.Numero;
+            empresa.Endereco.Complemento = requestDto.Endereco.Complemento ?? empresa.Endereco.Complemento;
+            empresa.Endereco.Logradouro = requestDto.Endereco.Logradouro ?? empresa.Endereco.Logradouro;
+            empresa.Endereco.Bairro = requestDto.Endereco.Bairro ?? empresa.Endereco.Bairro;
+            empresa.Endereco.Cidade = requestDto.Endereco.Cidade ?? empresa.Endereco.Cidade;
+            empresa.Endereco.Estado = requestDto.Endereco.Estado ?? empresa.Endereco.Estado;
+        }
+
         await _empresaRepository.AtualizarEmpresaAsync(empresa);
-        return new EmpresaResponseDto { /*...*/ };
+
+        return new EmpresaResponseDto
+        {
+            EmpresaId = empresa.EmpresaId,
+            NomeDaEmpresa = empresa.NomeDaEmpresa,
+            Ativo = empresa.Ativo,
+            DataCriacao = empresa.DataCriacao,
+            Endereco = empresa.Endereco == null ? null : new EnderecoDto
+            {
+                Cep = empresa.Endereco.Cep,
+                Numero = empresa.Endereco.Numero,
+                Complemento = empresa.Endereco.Complemento,
+                Logradouro = empresa.Endereco.Logradouro,
+                Bairro = empresa.Endereco.Bairro,
+                Localidade = empresa.Endereco.Cidade,
+                Uf = empresa.Endereco.Estado
+            },
+            Tecnicos = empresa.Tecnicos?.Select(t => new TecnicoResponseDto
+            {
+                UsuarioId = t.UsuarioId,
+                Nome = t.Nome,
+                Cpf = t.Cpf,
+                Role = t.Role
+            }).ToList()
+        };
     }
 
     public async Task DeleteEmpresaAsync(Guid id)

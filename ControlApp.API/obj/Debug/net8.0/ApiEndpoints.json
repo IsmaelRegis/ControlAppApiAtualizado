@@ -376,6 +376,22 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "GetUsuarioByIdComHistoricoCompleto",
+    "RelativePath": "controlapp/usuario/{usuarioId}/historico-completo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "GetUsuarioStatus",
     "RelativePath": "controlapp/usuario/{usuarioId}/status",
     "HttpMethod": "GET",

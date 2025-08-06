@@ -37,6 +37,15 @@ namespace ControlApp.Infra.Data.Repositories
             _localizacaoRepository = localizacaoRepository;
         }
 
+        public async Task<List<Ponto>> ObterPausasPorExpedienteIdAsync(Guid expedienteId)
+        {
+            return await _context.Pontos
+                .Where(p => p.TipoPonto == TipoPonto.Pausa &&
+                            p.ExpedienteId == expedienteId &&
+                            p.Ativo)
+                .ToListAsync();
+        }
+
         public async Task AtualizarPontoAsync(Guid id, Ponto pontoAtualizado)
         {
             try

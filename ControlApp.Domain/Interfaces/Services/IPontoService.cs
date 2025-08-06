@@ -18,4 +18,5 @@ public interface IPontoService : IBaseService<Ponto>
     Task<List<PontoCombinadoResponseDto>> GetPontosCombinadoPorUsuarioIdAsync(Guid usuarioId);
     Task<RelatorioDiarioResponseDto> GetRelatorioDiarioPorUsuarioAsync(Guid usuarioId, DateTime? data = null);
     Task<bool> VerificarExpedienteDoDiaAsync(Guid usuarioId);
+    Task<TempoTrabalhadoAtualResponseDto> ObterTempoTrabalhadoAtualAsync(Guid usuarioId);
 }
