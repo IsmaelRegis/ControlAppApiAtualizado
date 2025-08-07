@@ -12,7 +12,7 @@ using ControlApp.Infra.Data.Services;*/
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region Configuração de Serviços
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -34,16 +34,14 @@ MongoDbConfig.ConfigureMongoDbMappings();*/
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders(); // Configura Identity com usuários e roles
-#endregion
 
-#region Configurações Adicionais
+
 builder.Services.AddRouting(options => options.LowercaseUrls = true); // Configura URLs em minúsculas
 builder.Services.AddScoped<DataSeeder>(); // Registra o seeder de dados como scoped
 builder.Services.AddHostedService<TokenCleanupService>();
 builder.Services.AddHostedService<TokenExpirationService>();
-#endregion
 
-#region Configuração do Swagger
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -78,17 +76,14 @@ builder.Services.AddSwaggerGen(c =>
         }
     }); // Adiciona requisito de segurança Bearer
 });
-#endregion
 
-#region Configurações Personalizadas
 CorsConfiguration.AddCorsConfiguration(builder.Services); // Adiciona configuração de CORS
 DependencyInjectionConfiguration.AddDependencyInjection(builder.Services); // Adiciona injeção de dependências
 JwtBearerConfiguration.Configure(builder.Services, builder.Configuration); // Configura autenticação JWT
-#endregion
+
 
 var app = builder.Build();
 
-#region Configuração de Arquivos Estáticos
 app.UseStaticFiles();
 app.UseFileServer(new FileServerOptions
 {
@@ -96,9 +91,8 @@ app.UseFileServer(new FileServerOptions
     RequestPath = "/images", // Define caminho de requisição para imagens
     EnableDirectoryBrowsing = false // Desativa navegação no diretório
 });
-#endregion
 
-#region Inicialização do Banco de Dados
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -122,7 +116,7 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine($"Erro durante a sincronização inicial com MongoDB: {ex.Message}");
     }*/
 }
-#endregion
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -130,7 +124,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); // Habilita interface do Swagger
 }
 
-#region Pipeline da Aplicação
 app.UseRouting(); // Configura roteamento
 app.UseCors("AgendaPolicy"); // Aplica política de CORS
 app.UseAuthentication(); // Habilita autenticação
@@ -138,7 +131,7 @@ app.UseActiveTokenValidation(); // Adiciona middleware de validação de token ati
 app.UseAuthorization(); // Habilita autorização
 app.MapControllers(); // Mapeia os controladores
 
-#region Configuração de URLs
+
 // Verifica se a aplicação está sendo executada no Docker
 string aspNetCoreUrls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
 bool isRunningInDocker = !string.IsNullOrEmpty(aspNetCoreUrls);
@@ -161,7 +154,5 @@ else
 {
     Console.WriteLine($"Executando no Docker com ASPNETCORE_URLS={aspNetCoreUrls}");
 }
-#endregion
 
 app.Run();
-#endregion

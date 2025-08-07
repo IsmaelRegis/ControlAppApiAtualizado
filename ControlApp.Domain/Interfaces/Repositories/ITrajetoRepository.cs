@@ -10,7 +10,7 @@ namespace ControlApp.Domain.Interfaces.Repositories
         Task<Trajeto?> GetByIdAsync(Guid id);
         Task UpdateAsync(Trajeto trajeto);
         Task<IEnumerable<Trajeto>> GetAllAsync();
-        Task<IEnumerable<Trajeto>> ObterTrajetosPorUsuarioAsync(Guid usuarioId);
+        Task<IEnumerable<Trajeto>> ObterTrajetosPorUsuarioAsync(Guid usuarioId, DateTime? dataInicio = null, DateTime? dataFim = null);
         Task AddAsync(Trajeto trajeto);
         Task AddTrajetoComLocalizacoesAsync(Trajeto trajeto, List<Localizacao> localizacoes);
         Task<Trajeto?> GetTrajetoDoDiaAsync(Guid usuarioId, DateTime date);

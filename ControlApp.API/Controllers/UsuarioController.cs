@@ -15,16 +15,13 @@ public class UsuarioController : ControllerBase
     private readonly ITokenSecurity _tokenSecurity;
     private readonly ITokenManager _tokenManager;
 
-    #region Construtor
     public UsuarioController(IUsuarioService usuarioService, ITokenSecurity tokenSecurity, ITokenManager tokenManager)
     {
         _usuarioService = usuarioService; // Injeção de dependência do serviço de usuário
         _tokenSecurity = tokenSecurity;   // Injeção de dependência do serviço de token
         _tokenManager = tokenManager;
     }
-    #endregion
 
-    #region Endpoints
     /* 
      * Endpoints para gerenciamento de usuários e empresas.
      */
@@ -202,11 +199,19 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("{usuarioId}/historico-completo")]
-    public async Task<IActionResult> GetUsuarioByIdComHistoricoCompleto(Guid usuarioId)
+    public async Task<IActionResult> GetUsuarioByIdComHistoricoCompleto(
+      Guid usuarioId,
+      [FromQuery] DateTime? dataInicio,
+      [FromQuery] DateTime? dataFim)
     {
         try
         {
-            var usuario = await _usuarioService.GetByIdComHistoricoCompletoAsync(usuarioId);
+
+            var usuario = await _usuarioService.GetByIdComHistoricoCompletoAsync(
+                usuarioId,
+                dataInicio,
+                dataFim);
+
             if (usuario == null)
                 return NotFound("Usuário não encontrado.");
 
@@ -302,7 +307,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            await _usuarioService.DeleteEmpresaAsync(empresaId); // Exclui empresa
+            await _usuarioService.DeleteEmpresaAsync(empresaId); 
             return Ok("Empresa excluída com sucesso.");
         }
         catch (Exception ex)
@@ -310,7 +315,6 @@ public class UsuarioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-    #endregion
 
     // No ControlApp - UsuarioController.cs
     [HttpPost("validate-token")]

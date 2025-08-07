@@ -13,14 +13,14 @@ public class PontoController : ControllerBase
 {
     private readonly IPontoService _pontoService;
 
-    #region Construtor
+
     public PontoController(IPontoService pontoService)
     {
         _pontoService = pontoService; // Injeção de dependência do serviço de pontos
     }
-    #endregion
 
-    #region Endpoints
+
+
     /* 
      * Endpoints para gerenciamento de pontos, incluindo registros e consultas.
      */
@@ -213,7 +213,7 @@ public class PontoController : ControllerBase
     {
         try
         {
-            var expedienteIniciado = await _pontoService.VerificarExpedienteDoDiaAsync(usuarioId); // Verifica o expediente do dia
+            var expedienteIniciado = await _pontoService.VerificarExpedienteDoDiaAsync(usuarioId); 
             return Ok(expedienteIniciado);
         }
         catch (Exception ex)
@@ -221,5 +221,4 @@ public class PontoController : ControllerBase
             return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
         }
     }
-    #endregion
 }

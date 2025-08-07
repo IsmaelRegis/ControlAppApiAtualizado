@@ -147,33 +147,30 @@ namespace ControlApp.Infra.Data.Repositories
                 .FirstOrDefaultAsync(t => t.UsuarioId == usuarioId && t.Data.Date == date.Date);
         }
 
-        public async Task<IEnumerable<Trajeto>> ObterTrajetosPorUsuarioAsync(Guid usuarioId)
+        public async Task<IEnumerable<Trajeto>> ObterTrajetosPorUsuarioAsync(Guid usuarioId, DateTime? dataInicio = null, DateTime? dataFim = null)
         {
-            /*// Tenta buscar no MongoDB primeiro
-            var trajetosMongo = await _mongoRepository.ObterPorFiltroAsync(
-                t => t.UsuarioId == usuarioId
-            );
-
-            // Se encontrar, adiciona localizações
-            if (trajetosMongo.Any())
-            {
-                var trajetosComLocalizacoes = new List<Trajeto>();
-                foreach (var trajeto in trajetosMongo)
-                {
-                    var localizacoes = await _localizacaoMongoRepository.ObterPorFiltroAsync(
-                        l => l.TrajetoId == trajeto.Id
-                    );
-                    trajeto.Localizacoes = localizacoes.ToList();
-                    trajetosComLocalizacoes.Add(trajeto);
-                }
-                return trajetosComLocalizacoes;
-            }*/
-
-            // Busca no SQL Server
-            return await _context.Trajetos
+            // 1. Inicia a consulta base, incluindo as localizações e o filtro por usuário
+            var query = _context.Trajetos
                 .Include(t => t.Localizacoes)
-                .Where(t => t.UsuarioId == usuarioId)
-                .ToListAsync();
+                .Where(t => t.UsuarioId == usuarioId);
+
+            // 2. Adiciona o filtro opcional de Data Inicial
+            if (dataInicio.HasValue)
+            {
+                var inicio = dataInicio.Value.Date;
+                query = query.Where(t => t.Data >= inicio);
+            }
+
+            // 3. Adiciona o filtro opcional de Data Final
+            if (dataFim.HasValue)
+            {
+                // Pega até o final do dia informado (23:59:59.999...)
+                var fim = dataFim.Value.Date.AddDays(1).AddTicks(-1);
+                query = query.Where(t => t.Data <= fim);
+            }
+
+            // 4. Executa a consulta final, que agora pode conter os filtros de data
+            return await query.ToListAsync();
         }
 
         public void DetachEntity<T>(T entity) where T : class

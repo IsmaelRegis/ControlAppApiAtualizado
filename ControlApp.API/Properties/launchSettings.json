@@ -9,9 +9,9 @@
       },
       "dotnetRunMessages": true,
 
-      //"applicationUrl": "http://0.0.0.0:5141" //local
+      "applicationUrl": "http://0.0.0.0:5001" //local
       //"applicationUrl": "http://0.0.0.0:6000" //homologacao
-      "applicationUrl": "http://0.0.0.0:5000" //prod
+      //"applicationUrl": "http://0.0.0.0:5000" //prod
     },
     "IIS Express": {
       "commandName": "IISExpress",
