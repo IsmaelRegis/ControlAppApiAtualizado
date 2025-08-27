@@ -15,13 +15,16 @@ public class UsuarioController : ControllerBase
     private readonly ITokenSecurity _tokenSecurity;
     private readonly ITokenManager _tokenManager;
 
+    #region Construtor
     public UsuarioController(IUsuarioService usuarioService, ITokenSecurity tokenSecurity, ITokenManager tokenManager)
     {
         _usuarioService = usuarioService; // Injeção de dependência do serviço de usuário
         _tokenSecurity = tokenSecurity;   // Injeção de dependência do serviço de token
         _tokenManager = tokenManager;
     }
+    #endregion
 
+    #region Endpoints
     /* 
      * Endpoints para gerenciamento de usuários e empresas.
      */
@@ -70,7 +73,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            var response = await _usuarioService.CreateUsuarioAsync(request); 
+            var response = await _usuarioService.CreateUsuarioAsync(request);
             var usuarioResponse = new CriarUsuarioResponseDto
             {
                 UsuarioId = response.UsuarioId,
@@ -174,12 +177,14 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("tecnicos")]
+    [Authorize]
     public async Task<IActionResult> GetTecnicos([FromQuery] PaginacaoRequestDto paginacao = null)
     {
         // Se nenhum parâmetro de paginação for fornecido, o método do serviço usará os valores padrão
         var tecnicosPaginados = await _usuarioService.GetTecnicosPaginadosAsync(paginacao);
         return Ok(tecnicosPaginados);
     }
+
     [HttpGet("{usuarioId}/status")]
     public async Task<IActionResult> GetUsuarioStatus(Guid usuarioId)
     {
@@ -199,19 +204,12 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("{usuarioId}/historico-completo")]
-    public async Task<IActionResult> GetUsuarioByIdComHistoricoCompleto(
-      Guid usuarioId,
-      [FromQuery] DateTime? dataInicio,
-      [FromQuery] DateTime? dataFim)
+    [Authorize]
+    public async Task<IActionResult> GetUsuarioByIdComHistoricoCompleto(Guid usuarioId)
     {
         try
         {
-
-            var usuario = await _usuarioService.GetByIdComHistoricoCompletoAsync(
-                usuarioId,
-                dataInicio,
-                dataFim);
-
+            var usuario = await _usuarioService.GetByIdComHistoricoCompletoAsync(usuarioId);
             if (usuario == null)
                 return NotFound("Usuário não encontrado.");
 
@@ -307,7 +305,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            await _usuarioService.DeleteEmpresaAsync(empresaId); 
+            await _usuarioService.DeleteEmpresaAsync(empresaId); // Exclui empresa
             return Ok("Empresa excluída com sucesso.");
         }
         catch (Exception ex)
@@ -315,6 +313,7 @@ public class UsuarioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    #endregion
 
     // No ControlApp - UsuarioController.cs
     [HttpPost("validate-token")]
@@ -340,6 +339,7 @@ public class UsuarioController : ControllerBase
 
         return Ok(true);
     }
+
     // Proteção para evitar uso acidental
     [HttpPost("test/expire-daily-tokens")]
     public async Task<IActionResult> ForceExpireDailyTokens([FromQuery] bool expireTodaysTokens = false) // Parâmetro para teste

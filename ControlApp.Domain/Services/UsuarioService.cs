@@ -28,6 +28,7 @@ public class UsuarioService : IUsuarioService
     private readonly IAuditoriaService _auditoriaService;
     private readonly IAuditoriaRepository _auditoriaRepository;
 
+    #region Construtor
     public UsuarioService(IUsuarioRepository usuarioRepository, ITokenSecurity tokenSecurity, IImageService imageService, ITecnicoRepository tecnicoRepository, IEmpresaRepository empresaRepository, ITrajetoRepository trajetoRepository, ILocalizacaoRepository localizacaoRepository, ITokenManager tokenManager, IAuditoriaService auditoriaService, IAuditoriaRepository auditoriaRepository)
     {
         _usuarioRepository = usuarioRepository;
@@ -44,7 +45,9 @@ public class UsuarioService : IUsuarioService
         _auditoriaService = auditoriaService;
         _auditoriaRepository = auditoriaRepository;
     }
+    #endregion
 
+    #region Métodos de Criação de Usuário (Refatorado)
 
     public async Task<CriarUsuarioResponseDto> CreateUsuarioAsync(CriarUsuarioRequestDto requestDto)
     {
@@ -257,6 +260,9 @@ public class UsuarioService : IUsuarioService
         };
     }
 
+    #endregion
+
+    #region Métodos de Autenticação e Gestão de Usuários
 
     public async Task<AutenticarUsuarioResponseDto> AuthenticateUsuarioAsync(AutenticarUsuarioRequestDto requestDto, string deviceInfo = null, string audience = "VibeService")
     {
@@ -714,7 +720,7 @@ public class UsuarioService : IUsuarioService
         };
     }
 
-    public async Task<UsuarioResponseDto?> GetByIdComHistoricoCompletoAsync(Guid id, DateTime? dataInicio, DateTime? dataFim)
+    public async Task<UsuarioResponseDto?> GetByIdComHistoricoCompletoAsync(Guid id)
     {
         var usuario = await _usuarioRepository.ObterUsuarioPorIdAsync(id);
         if (usuario == null) return null;
@@ -739,25 +745,34 @@ public class UsuarioService : IUsuarioService
         List<LocalizacaoResponseDto>? todasAsLocalizacoes = null;
         if (tecnico != null)
         {
+            var todosOsTrajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId);
 
-            var todosOsTrajetos = await _trajetoRepository.ObterTrajetosPorUsuarioAsync(tecnico.UsuarioId, dataInicio, dataFim);
-
+            // Linha de debug que pode ser útil manter por enquanto
             Console.WriteLine($"DEBUG: O repositório retornou {todosOsTrajetos.Count()} trajetos do histórico para o usuário {id}.");
 
             if (todosOsTrajetos != null && todosOsTrajetos.Any())
             {
+                todasAsLocalizacoes = new List<LocalizacaoResponseDto>();
 
-                todasAsLocalizacoes = todosOsTrajetos
-                    .SelectMany(trajeto => trajeto.Localizacoes)
-                    .OrderByDescending(localizacao => localizacao.DataHora)
-                    .Select(l => new LocalizacaoResponseDto
+                foreach (var trajeto in todosOsTrajetos.OrderByDescending(t => t.Data))
+                {
+                    var localizacoesDoTrajeto = await _localizacaoRepository.ObterLocalizacoesPorTrajetoIdAsync(trajeto.Id);
+
+                    // --- LINHA CORRIGIDA ---
+                    if (localizacoesDoTrajeto != null && localizacoesDoTrajeto.Any())
                     {
-                        LocalizacaoId = l.LocalizacaoId,
-                        Latitude = l.Latitude,
-                        Longitude = l.Longitude,
-                        DataHora = l.DataHora,
-                        Precisao = l.Precisao
-                    }).ToList();
+                        var localizacoesMapeadas = localizacoesDoTrajeto.Select(l => new LocalizacaoResponseDto
+                        {
+                            LocalizacaoId = l.LocalizacaoId,
+                            Latitude = l.Latitude,
+                            Longitude = l.Longitude,
+                            DataHora = l.DataHora,
+                            Precisao = l.Precisao
+                        }).ToList();
+
+                        todasAsLocalizacoes.AddRange(localizacoesMapeadas);
+                    }
+                }
             }
         }
 
@@ -1102,4 +1117,5 @@ public class UsuarioService : IUsuarioService
             await _usuarioRepository.UpdateUsersAsync(updatedUsersList);
         }
     }
+    #endregion
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj": {}
+    "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj": {}
   },
   "projects": {
-    "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
+    "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
+        "projectUniqueName": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
         "projectName": "ControlApp.Domain",
-        "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
-        "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
-        "outputPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\obj\\",
+        "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj",
+        "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+        "outputPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -94,24 +94,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj": {
+    "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
+        "projectUniqueName": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
         "projectName": "ControlApp.Infra.Data",
-        "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
-        "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
-        "outputPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\obj\\",
+        "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+        "outputPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -127,8 +127,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
-                "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj"
+              "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
+                "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj"
               }
             }
           }
@@ -143,7 +143,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -216,24 +216,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj": {
+    "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj",
+        "projectUniqueName": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj",
         "projectName": "ControlApp.Infra.Security",
-        "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj",
-        "packagesPath": "C:\\Users\\ismae\\.nuget\\packages\\",
-        "outputPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\obj\\",
+        "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj",
+        "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+        "outputPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ismae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -249,11 +249,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
-                "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj"
+              "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj": {
+                "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\ControlApp.Domain.csproj"
               },
-              "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj": {
-                "projectPath": "C:\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj"
+              "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj": {
+                "projectPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Data\\ControlApp.Infra.Data.csproj"
               }
             }
           }
@@ -268,7 +268,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -301,7 +301,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

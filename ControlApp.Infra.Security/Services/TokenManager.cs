@@ -35,7 +35,7 @@ namespace ControlApp.Infra.Security.Services
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
-                Token = tokenId,  
+                Token = tokenId,
                 CreatedAt = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddHours(24),
                 IsActive = true,
@@ -47,36 +47,20 @@ namespace ControlApp.Infra.Security.Services
 
             return token;
         }
-        public async Task<bool> ValidateTokenAsync(string token, Guid userId)
+        public async Task<bool> ValidateTokenAsync(string jti, Guid userId)
         {
-            try
-            {
-                // Extrai o ID do token (jti)
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var jwtToken = tokenHandler.ReadJwtToken(token);
-                var tokenId = jwtToken.Claims.FirstOrDefault(c => c.Type == "jti")?.Value;
-
-                if (string.IsNullOrEmpty(tokenId))
-                {
-                    Console.WriteLine($"Token sem jti claim para usuário {userId}");
-                    return false;
-                }
-
-                // Verifica se este token ID está ativo no banco
-                var userToken = await _context.UserTokens
-                    .FirstOrDefaultAsync(t =>
-                        t.UserId == userId &&
-                        t.Token == tokenId &&
-                        t.IsActive);
-
-                return userToken != null;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao validar token: {ex.Message}");
+            if (string.IsNullOrEmpty(jti))
                 return false;
-            }
+
+            var userToken = await _context.UserTokens
+                .FirstOrDefaultAsync(t =>
+                    t.UserId == userId &&
+                    t.Token == jti &&
+                    t.IsActive);
+
+            return userToken != null;
         }
+
         public async Task InvalidateTokensForUserAsync(Guid userId, string currentToken = null)
         {
             var userTokens = await _context.UserTokens
