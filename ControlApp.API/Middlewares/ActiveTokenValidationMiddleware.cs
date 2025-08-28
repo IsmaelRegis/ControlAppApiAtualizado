@@ -30,20 +30,17 @@ namespace ControlApp.API.Middlewares
                     {
                         string token = authHeader.Substring("Bearer ".Length).Trim();
                         // Obtém o ID do usuário das claims
-                        var userIdClaim = context.User.FindFirst(ClaimTypes.Name);
-                        if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out Guid userId))
+                        // Valida se o token é ativo
+                        bool isTokenValid = await tokenManager.ValidateTokenAsync(token);
+                        if (!isTokenValid)
                         {
-                            // Valida se o token é ativo para este usuário
-                            bool isTokenValid = await tokenManager.ValidateTokenAsync(token, userId);
-                            if (!isTokenValid)
-                            {
-                                // Token não está ativo, retorna código 440 (Login Conflict)
-                                context.Response.StatusCode = 440;
-                                context.Response.ContentType = "application/json";
-                                await context.Response.WriteAsync("{\"Error\": \"MultipleLoginConflict\", \"Message\": \"Sua conta foi acessada em outro dispositivo. Por favor, faça login novamente.\"}");
-                                return;
-                            }
+                            context.Response.StatusCode = 440;
+                            context.Response.ContentType = "application/json";
+                            await context.Response.WriteAsync("{\"Error\": \"MultipleLoginConflict\", \"Message\": \"Sua conta foi acessada em outro dispositivo. Por favor, faça login novamente.\"}");
+                            return;
                         }
+
+
                     }
                 }
             }

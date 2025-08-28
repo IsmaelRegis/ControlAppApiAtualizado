@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using ControlApp.Domain.Entities;
 using ControlApp.Domain.Interfaces.Security;
 using ControlApp.Infra.Data.Contexts;
@@ -47,19 +48,23 @@ namespace ControlApp.Infra.Security.Services
 
             return token;
         }
-        public async Task<bool> ValidateTokenAsync(string jti, Guid userId)
+        public async Task<bool> ValidateTokenAsync(string jwtTokenString)
         {
-            if (string.IsNullOrEmpty(jti))
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(jwtTokenString);
+
+            var jti = jwtToken.Claims.FirstOrDefault(c => c.Type == "jti")?.Value;
+            var userIdStr = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name || c.Type == "unique_name")?.Value;
+
+            if (string.IsNullOrEmpty(jti) || string.IsNullOrEmpty(userIdStr) || !Guid.TryParse(userIdStr, out var userId))
                 return false;
 
             var userToken = await _context.UserTokens
-                .FirstOrDefaultAsync(t =>
-                    t.UserId == userId &&
-                    t.Token == jti &&
-                    t.IsActive);
+                .FirstOrDefaultAsync(t => t.UserId == userId && t.Token == jti && t.IsActive);
 
             return userToken != null;
         }
+
 
         public async Task InvalidateTokensForUserAsync(Guid userId, string currentToken = null)
         {

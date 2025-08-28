@@ -3,20 +3,39 @@
   "WorkspaceRootPath": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Hp\\AppData\\Local\\Temp\\a3rchoj4..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\middlewares\\activetokenvalidationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\middlewares\\activetokenvalidationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\pontocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9C092616-50D8-4C45-A327-B2F98ABFA535}|ControlApp.API\\ControlApp.API.csproj|solutionrelative:controlapp.api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACCC5925-0107-46AC-821B-5C81680B622E}|ControlApp.Infra.Security\\ControlApp.Infra.Security.csproj|solutionrelative:controlapp.infra.security\\services\\tokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|c:\\projetosvibetex\\controlappapiatualizado\\controlapp.domain\\interfaces\\security\\itokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F236F2A-F78D-4EDF-AB59-5618AEDE5B91}|ControlApp.Domain\\ControlApp.Domain.csproj|solutionrelative:controlapp.domain\\interfaces\\security\\itokenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,46 +45,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IUsuarioService.cs",
-              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Services\\IUsuarioService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ActiveTokenValidationMiddleware.cs",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
+              "RelativeToolTip": "ControlApp.API\\Middlewares\\ActiveTokenValidationMiddleware.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T13:01:50.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-27T13:50:26.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
+              "Title": "ITokenManager.cs",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Security\\ITokenManager.cs",
+              "RelativeDocumentMoniker": "ControlApp.Domain\\Interfaces\\Security\\ITokenManager.cs",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Interfaces\\Security\\ITokenManager.cs",
+              "RelativeToolTip": "ControlApp.Domain\\Interfaces\\Security\\ITokenManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T13:49:38.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "ControlApp.API\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAADMBAAAAAAAAAAAqwGYBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADYBAAAAAAAAAAAAAE4BAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T13:01:31.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Domain\\Services\\UsuarioService.cs",
-              "RelativeToolTip": "ControlApp.Domain\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAAC0EAAAAAAAAAAAqwGAEAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T13:01:12.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-27T13:48:39.71Z"
             },
             {
               "$type": "Document",
@@ -75,10 +91,69 @@
               "RelativeDocumentMoniker": "ControlApp.Infra.Security\\Services\\TokenManager.cs",
               "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.Infra.Security\\Services\\TokenManager.cs",
               "RelativeToolTip": "ControlApp.Infra.Security\\Services\\TokenManager.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAqwG4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAYwFwAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T13:00:52.023Z",
+              "WhenOpened": "2025-08-27T13:44:01.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "a3rchoj4..sql",
+              "DocumentMoniker": "C:\\Users\\Hp\\AppData\\Local\\Temp\\a3rchoj4..sql",
+              "RelativeDocumentMoniker": "..\\..\\Users\\Hp\\AppData\\Local\\Temp\\a3rchoj4..sql",
+              "ToolTip": "C:\\Users\\Hp\\AppData\\Local\\Temp\\a3rchoj4..sql",
+              "RelativeToolTip": "..\\..\\Users\\Hp\\AppData\\Local\\Temp\\a3rchoj4..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-08-27T13:41:14.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PontoController.cs",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\PontoController.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Controllers\\PontoController.cs",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Controllers\\PontoController.cs",
+              "RelativeToolTip": "ControlApp.API\\Controllers\\PontoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T13:23:07.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeDocumentMoniker": "ControlApp.API\\Program.cs",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Program.cs",
+              "RelativeToolTip": "ControlApp.API\\Program.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJ0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T13:11:08.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "ControlApp.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "ControlApp.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-27T13:10:42.172Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ControlApp.API\\appsettings.json",
+              "ToolTip": "C:\\ProjetosVibetex\\ControlAppApiAtualizado\\ControlApp.API\\appsettings.json",
+              "RelativeToolTip": "ControlApp.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-27T13:10:40.686Z"
             }
           ]
         }

@@ -11,3 +11,16 @@ C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Release\net8.0\Contr
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Release\net8.0\refint\ControlApp.Domain.dll
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.pdb
 C:\ControlAppApiAtualizado\ControlApp\ControlApp.Domain\obj\Release\net8.0\ref\ControlApp.Domain.dll
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\bin\Release\net8.0\ControlApp.Domain.deps.json
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\bin\Release\net8.0\ControlApp.Domain.dll
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\bin\Release\net8.0\ControlApp.Domain.pdb
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.csproj.AssemblyReference.cache
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.AssemblyInfoInputs.cache
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.AssemblyInfo.cs
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.csproj.CoreCompileInputs.cache
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.sourcelink.json
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.dll
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\refint\ControlApp.Domain.dll
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ControlApp.Domain.pdb
+C:\ProjetosVibetex\ControlAppApiAtualizado\ControlApp.Domain\obj\Release\net8.0\ref\ControlApp.Domain.dll

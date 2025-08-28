@@ -320,25 +320,17 @@ public class UsuarioController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> ValidateToken([FromBody] ValidateTokenRequestDto request)
     {
-        if (request == null || string.IsNullOrEmpty(request.Token) || request.UserId == Guid.Empty)
+        if (request == null || string.IsNullOrEmpty(request.Token))
             return BadRequest();
 
-        // Extrai o jti do token
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var jwtToken = tokenHandler.ReadJwtToken(request.Token);
-        var tokenId = jwtToken.Claims.FirstOrDefault(c => c.Type == "jti")?.Value;
-
-        if (string.IsNullOrEmpty(tokenId))
-            return StatusCode(440);
-
-        // Valida apenas o tokenId
-        var isValid = await _tokenManager.ValidateTokenAsync(tokenId, request.UserId);
+        var isValid = await _tokenManager.ValidateTokenAsync(request.Token);
 
         if (!isValid)
             return StatusCode(440, new { Error = "MultipleLoginConflict", Message = "Token não está mais ativo." });
 
         return Ok(true);
     }
+
 
     // Proteção para evitar uso acidental
     [HttpPost("test/expire-daily-tokens")]

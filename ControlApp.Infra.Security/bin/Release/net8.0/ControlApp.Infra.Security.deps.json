@@ -10,7 +10,8 @@
         "dependencies": {
           "ControlApp.Domain": "1.0.0",
           "ControlApp.Infra.Data": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.12"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.12",
+          "SonarAnalyzer.CSharp": "10.11.0.117924"
         },
         "runtime": {
           "ControlApp.Infra.Security.dll": {}
@@ -780,6 +781,7 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/10.11.0.117924": {},
       "System.Buffers/4.6.0": {},
       "System.ClientModel/1.0.0": {
         "dependencies": {
@@ -990,7 +992,7 @@
         },
         "runtime": {
           "ControlApp.Domain.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -1009,7 +1011,7 @@
         },
         "runtime": {
           "ControlApp.Infra.Data.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -1539,6 +1541,13 @@
       "sha512": "sha512-rFtK2KEI9hIe8gtx3a0YDXdHOpedIf9wYCEYtBEmtlyiWVX3XlCNV03JrmmAi/Cdfn7dxK+k0sjjcLv4fpHnqA==",
       "path": "snappier/1.0.0",
       "hashPath": "snappier.1.0.0.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/10.11.0.117924": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C7eK46HEeZCptfuR2kGjLnBzdzBjx1F1fb6Ga8DFOsPPaz1sw7LNWdGh42+Ch5NJW/Iq39xcDds4lvww7i4BGw==",
+      "path": "sonaranalyzer.csharp/10.11.0.117924",
+      "hashPath": "sonaranalyzer.csharp.10.11.0.117924.nupkg.sha512"
     },
     "System.Buffers/4.6.0": {
       "type": "package",

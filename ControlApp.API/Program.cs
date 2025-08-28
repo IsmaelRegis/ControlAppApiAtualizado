@@ -146,7 +146,7 @@ if (!isRunningInDocker)
     }
     else
     {
-        app.Urls.Add("http://0.0.0.0:6000"); // Porta para produção local
+        app.Urls.Add("http://0.0.0.0:5000"); // Porta para produção local
         Console.WriteLine("Aplicação configurada para executar na porta 5000 em ambiente de produção");
     }
 }
